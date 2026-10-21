@@ -1,0 +1,3 @@
+Letakkan file lagu di folder ini dengan nama persis:
+janji-suci-yovie-nuno.mp3
+(Nama bisa diganti di assets/js/config.js pada bagian "music".)

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#9caf88">
+<title>Undangan Pernikahan</title>
+<meta property="og:title" content="Undangan Pernikahan Afina & Wisnu">
+<meta property="og:description" content="Minggu, 15 November 2026. Kami mengundang Anda di hari bahagia kami.">
+<meta property="og:type" content="website">
+<!-- Setelah punya gambar pratinjau (1200x630), aktifkan baris ini: -->
+<!-- <meta property="og:image" content="https://mab-app.eu.org/assets/img/og.jpg"> -->
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,500&family=Pinyon+Script&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+tailwind.config = { theme: { extend: { fontFamily: {
+  serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+  script: ['"Pinyon Script"', 'cursive'],
+  sans: ['Jost', 'system-ui', 'sans-serif'] } } } };
+</script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<button id="musicBtn" aria-label="Putar atau jeda musik" class="fixed right-4 z-50 w-11 h-11 rounded-full card flex items-center justify-center shadow-lg" style="bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); color: var(--gold)">
+  <svg id="icPlay" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+  <svg id="icPause" class="hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+</button>
+<audio id="bgm" loop preload="none"></audio>
+
+<!-- HERO / COVER -->
+<header id="hero" class="hero relative min-h-screen flex items-center justify-center text-center px-6 py-16">
+  <div class="frame"></div>
+  <div class="relative max-w-md">
+    <p class="font-serif italic text-lg" style="color: var(--muted)">Undangan Pernikahan</p>
+    <h1 class="font-script mt-6 leading-tight" style="color: var(--sage-d); font-size: clamp(3.6rem, 18vw, 6rem)">
+      <span data-bind="couple.bride.short"></span>
+      <span class="block font-serif italic text-3xl my-1" style="color: var(--gold)">&amp;</span>
+      <span data-bind="couple.groom.short"></span>
+    </h1>
+    <div class="divider mt-8"><span class="font-serif text-xl tracking-wide" data-bind="date.label"></span></div>
+    <p class="mt-6 text-sm leading-relaxed" style="color: var(--muted)" data-bind="hero.intro"></p>
+    <div class="guest mt-9">
+      <p class="font-serif italic text-lg" style="color: var(--muted)">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+      <p id="guestName" class="guest-name mt-2">Tamu Undangan</p>
+    </div>
+    <button id="openBtn" class="btn-gold float mt-9 px-9 py-3.5 text-sm">Buka Undangan</button>
+  </div>
+</header>
+
+<main id="content">
+  <section class="px-6 py-20 text-center">
+    <div class="max-w-xl mx-auto reveal">
+      <p class="font-serif italic text-xl leading-relaxed" style="color: var(--sage-d)">“<span data-bind="verse.text"></span>”</p>
+      <p class="mt-3 text-sm" style="color: var(--muted)" data-bind="verse.source"></p>
+    </div>
+    <div class="max-w-xl mx-auto mt-14 reveal">
+      <h2 class="font-script text-5xl" style="color: var(--gold)">Menuju Hari Bahagia</h2>
+      <div class="grid grid-cols-4 gap-2.5 sm:gap-4 mt-8">
+        <div class="card gold-border py-4"><div id="cd-d" class="font-serif text-3xl sm:text-4xl font-semibold">00</div><div class="text-xs mt-1" style="color: var(--muted)">Hari</div></div>
+        <div class="card gold-border py-4"><div id="cd-h" class="font-serif text-3xl sm:text-4xl font-semibold">00</div><div class="text-xs mt-1" style="color: var(--muted)">Jam</div></div>
+        <div class="card gold-border py-4"><div id="cd-m" class="font-serif text-3xl sm:text-4xl font-semibold">00</div><div class="text-xs mt-1" style="color: var(--muted)">Menit</div></div>
+        <div class="card gold-border py-4"><div id="cd-s" class="font-serif text-3xl sm:text-4xl font-semibold">00</div><div class="text-xs mt-1" style="color: var(--muted)">Detik</div></div>
+      </div>
+      <p id="cd-msg" class="mt-5 font-serif italic text-lg hidden" style="color: var(--sage-d)"></p>
+    </div>
+  </section>
+
+  <section class="px-6 py-20" style="background: var(--sage-l)">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="font-script text-5xl reveal" style="color: var(--sage-d)">Mempelai</h2>
+      <div id="coupleGrid" class="grid md:grid-cols-2 gap-14 mt-14"></div>
+    </div>
+  </section>
+
+  <section class="px-6 py-20">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="font-script text-5xl reveal" style="color: var(--gold)">Rangkaian Acara</h2>
+      <p class="mt-3 font-serif text-xl reveal" style="color: var(--muted)" data-bind="date.label"></p>
+      <div id="eventsGrid" class="grid md:grid-cols-2 gap-6 mt-12 text-left"></div>
+    </div>
+  </section>
+
+  <section class="px-6 pb-20">
+    <div class="max-w-xl mx-auto card p-8 text-center reveal">
+      <h2 class="font-serif text-2xl font-semibold" style="color: var(--sage-d)">Protokol Kesehatan</h2>
+      <p class="mt-3 text-sm leading-relaxed" style="color: var(--muted)" data-bind="health"></p>
+    </div>
+  </section>
+
+  <section class="px-6 py-20" style="background: var(--sage-l)">
+    <div class="max-w-xl mx-auto">
+      <h2 class="font-script text-5xl text-center reveal" style="color: var(--sage-d)">Konfirmasi &amp; Ucapan</h2>
+      <p class="text-center text-sm mt-3 reveal" style="color: var(--muted)">Kabari kami apakah Anda dapat hadir dan tinggalkan doa restu.</p>
+      <form id="rsvpForm" class="card p-6 sm:p-8 mt-10 space-y-5 reveal" novalidate>
+        <div>
+          <label for="nama" class="block text-sm mb-1.5">Nama</label>
+          <input id="nama" class="field" maxlength="60" placeholder="Nama lengkap Anda" autocomplete="name">
+        </div>
+        <fieldset>
+          <legend class="text-sm mb-1.5">Status kehadiran</legend>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="radio-pill relative"><input type="radio" name="hadir" value="Hadir" checked><span>Hadir</span></label>
+            <label class="radio-pill relative"><input type="radio" name="hadir" value="Tidak Hadir"><span>Tidak Hadir</span></label>
+          </div>
+        </fieldset>
+        <div>
+          <label for="ucapan" class="block text-sm mb-1.5">Ucapan &amp; doa restu</label>
+          <textarea id="ucapan" rows="4" maxlength="300" class="field resize-none" placeholder="Tulis ucapan untuk kedua mempelai"></textarea>
+        </div>
+        <p id="formErr" class="text-sm hidden" style="color: #b4533c" role="alert"></p>
+        <button type="submit" class="btn-gold w-full py-3.5 text-sm">Kirim Ucapan</button>
+      </form>
+      <div class="mt-10">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-serif text-2xl font-semibold">Ucapan Tamu</h3>
+          <span id="wishCount" class="text-sm" style="color: var(--muted)"></span>
+        </div>
+        <ul id="wishList" class="space-y-3 max-h-[28rem] overflow-y-auto pr-1"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-6 py-20">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="font-script text-5xl reveal" style="color: var(--gold)">Hadiah Digital</h2>
+      <p class="mt-4 text-sm leading-relaxed max-w-md mx-auto reveal" style="color: var(--muted)">Kehadiran dan doa Anda sudah menjadi hadiah terindah. Bila ingin berbagi kebahagiaan lebih, Anda dapat mengirimkannya melalui salah satu cara berikut.</p>
+      <div id="giftGrid" class="grid sm:grid-cols-2 gap-5 mt-10"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="hero px-6 py-20 text-center">
+  <p class="font-serif italic text-lg max-w-md mx-auto leading-relaxed" style="color: var(--muted)" data-bind="footer.closing"></p>
+  <p class="font-script text-5xl mt-8" style="color: var(--sage-d)"><span data-bind="couple.bride.short"></span> &amp; <span data-bind="couple.groom.short"></span></p>
+  <p class="text-xs mt-8" style="color: var(--muted)" data-bind="footer.families"></p>
+</footer>
+
+<div id="toast" class="fixed left-1/2 -translate-x-1/2 px-5 py-2.5 rounded-full text-sm opacity-0 pointer-events-none transition-opacity duration-300 z-50" style="bottom: calc(5rem + env(safe-area-inset-bottom, 0px)); background: var(--sage-d); color: var(--bg)"></div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

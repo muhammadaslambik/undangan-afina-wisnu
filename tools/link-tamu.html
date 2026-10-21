@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><title>Pembuat Tautan Tamu</title>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script></head>
+<body class="bg-stone-50 text-stone-800 p-6">
+<main class="max-w-xl mx-auto space-y-4">
+  <h1 class="text-2xl font-semibold">Pembuat Tautan Tamu</h1>
+  <label class="block text-sm">Alamat undangan
+    <input id="base" class="w-full border rounded-lg p-2 mt-1" value="https://afina-wisnu.pages.dev/"></label>
+  <label class="block text-sm">Nama tamu (satu nama per baris)
+    <textarea id="names" rows="6" class="w-full border rounded-lg p-2 mt-1" placeholder="Budi Santoso&#10;Keluarga Bapak Andi"></textarea></label>
+  <button id="go" class="bg-stone-800 text-white rounded-lg px-4 py-2">Buat tautan</button>
+  <ul id="out" class="space-y-2"></ul>
+</main>
+<script>
+const $ = (s) => document.querySelector(s);
+$('#go').onclick = () => {
+  const base = $('#base').value.trim().replace(/\/?$/, '/');
+  const out = $('#out'); out.innerHTML = '';
+  $('#names').value.split('\n').map((n) => n.trim()).filter(Boolean).forEach((name) => {
+    const url = base + '?to=' + encodeURIComponent(name).replace(/%20/g, '+');
+    const li = document.createElement('li'); li.className = 'border rounded-lg p-3 bg-white text-sm break-all';
+    const b = document.createElement('b'); b.textContent = name;
+    const u = document.createElement('div'); u.textContent = url; u.className = 'text-stone-500 my-1';
+    const copy = document.createElement('button'); copy.textContent = 'Salin'; copy.className = 'underline mr-4';
+    copy.onclick = () => navigator.clipboard.writeText(url).then(() => (copy.textContent = 'Tersalin'));
+    const wa = document.createElement('a'); wa.textContent = 'Kirim via WhatsApp'; wa.className = 'underline'; wa.target = '_blank'; wa.rel = 'noopener';
+    wa.href = 'https://wa.me/?text=' + encodeURIComponent('Kepada Yth. ' + name + '\n\nKami mengundang Anda ke pernikahan kami:\n' + url);
+    li.append(b, u, copy, wa); out.append(li);
+  });
+};
+</script></body></html>

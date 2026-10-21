@@ -1,0 +1,59 @@
+/* ===== Tema: ubah warna di sini ===== */
+:root {
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  --bg: #faf8f3; --surface: #ffffff; --sage: #9caf88; --sage-d: #5f7352; --sage-l: #e6ece0;
+  --gold: #b8924a; --gold-l: #d9bd84; --ink: #2f3a2c; --muted: #6d7768; --line: #e3dccb;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1b2119; --surface: #242c21; --sage: #8fa57a; --sage-d: #b9cba8; --sage-l: #2b3427;
+    --gold: #d4ad63; --gold-l: #e6c98c; --ink: #eee9dc; --muted: #a9b2a1; --line: #3a4436;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1b2119; --surface: #242c21; --sage: #8fa57a; --sage-d: #b9cba8; --sage-l: #2b3427;
+  --gold: #d4ad63; --gold-l: #e6c98c; --ink: #eee9dc; --muted: #a9b2a1; --line: #3a4436;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
+body { background: var(--bg); color: var(--ink); font-family: Jost, system-ui, sans-serif; overflow-x: hidden; }
+
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 1.25rem; }
+.gold-border { border: 1px solid var(--gold); }
+.btn-gold { background: linear-gradient(135deg, var(--gold), var(--gold-l)); color: #2a2416; font-weight: 500; letter-spacing: .04em; border-radius: 999px; transition: transform .25s, box-shadow .25s; }
+.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 22px -8px var(--gold); }
+.btn-line { border: 1px solid var(--gold); color: var(--gold); border-radius: 999px; transition: background .25s, color .25s; }
+.btn-line:hover { background: var(--gold); color: #2a2416; }
+.divider { display: flex; align-items: center; gap: .75rem; color: var(--gold); justify-content: center; }
+.divider::before, .divider::after { content: ""; height: 1px; width: 3.5rem; background: var(--gold); opacity: .6; }
+
+.hero { background:
+  radial-gradient(ellipse at 20% 10%, color-mix(in srgb, var(--sage) 35%, transparent), transparent 55%),
+  radial-gradient(ellipse at 85% 90%, color-mix(in srgb, var(--gold) 22%, transparent), transparent 50%),
+  var(--bg); }
+.frame { position: absolute; inset: 14px; border: 1px solid var(--gold); opacity: .55; pointer-events: none; border-radius: 1.5rem; }
+
+.guest { position: relative; border: 1px solid var(--gold); background: color-mix(in srgb, var(--surface) 78%, transparent); backdrop-filter: blur(6px); border-radius: 1.25rem; padding: 1.4rem 1.25rem 1.5rem; }
+.guest-name { font-family: 'Pinyon Script', cursive; color: var(--sage-d); font-size: clamp(2.2rem, 10vw, 3.2rem); line-height: 1.2; overflow-wrap: anywhere; text-shadow: 0 1px 0 color-mix(in srgb, var(--gold) 35%, transparent); }
+
+.field { width: 100%; background: var(--bg); border: 1px solid var(--line); border-radius: .85rem; padding: .8rem 1rem; color: var(--ink); outline: none; transition: border-color .2s, box-shadow .2s; }
+.field:focus { border-color: var(--gold); box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 25%, transparent); }
+.radio-pill input { position: absolute; opacity: 0; }
+.radio-pill span { display: block; text-align: center; padding: .75rem; border: 1px solid var(--line); border-radius: .85rem; cursor: pointer; transition: all .2s; }
+.radio-pill input:checked + span { background: var(--sage-d); color: var(--bg); border-color: var(--sage-d); }
+.radio-pill input:focus-visible + span { box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 40%, transparent); }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s ease; }
+.reveal.show { opacity: 1; transform: none; }
+.wish-in { animation: wishIn .6s ease both; }
+@keyframes wishIn { from { opacity: 0; transform: translateY(-10px) scale(.98); } to { opacity: 1; transform: none; } }
+.float { animation: float 6s ease-in-out infinite; }
+@keyframes float { 50% { transform: translateY(-8px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .float, .wish-in { animation: none; }
+}
