@@ -48,14 +48,14 @@ window.INVITATION = {
       time: '09.00 WIB – 11.00 WIB',
       place: 'Rumah Mempelai Wanita',
       address: 'Ds. Loireng, Kec. Sayung, Kab. Demak, RT: 02/RW: 02, Jawa Tengah.',
-      mapUrl: 'https://maps.google.com', // ganti dengan tautan Google Maps lokasi
+      mapUrl: 'https://maps.app.goo.gl/vB1MUiRTvxw3Rq5v5?g_st=am',
     },
     {
       title: 'Resepsi',
       time: '11.00 – Selesai',
       place: 'Rumah Mempelai Wanita',
       address: 'Ds. Loireng, Kec. Sayung, Kab. Demak, RT: 02/RW: 02, Jawa Tengah.',
-      mapUrl: 'https://maps.google.com',
+      mapUrl: 'https://maps.app.goo.gl/vB1MUiRTvxw3Rq5v5?g_st=am',
     },
   ],
 
