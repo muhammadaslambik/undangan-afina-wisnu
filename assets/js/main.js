@@ -10,6 +10,20 @@
     return n;
   };
 
+  /* ---------- Kunci scroll sampai undangan dibuka ---------- */
+  const lockedEls = () => document.querySelectorAll('#content, footer');
+  const lockPage = () => {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+    document.documentElement.classList.add('locked');
+    lockedEls().forEach((n) => (n.inert = true)); // mencegah fokus/tab ke bagian bawah
+  };
+  const unlockPage = () => {
+    document.documentElement.classList.remove('locked');
+    lockedEls().forEach((n) => (n.inert = false));
+  };
+  lockPage();
+
   /* ---------- Toast ---------- */
   let toastTimer;
   const toast = (msg) => {
@@ -228,6 +242,7 @@
   $('#musicBtn').addEventListener('click', () => (bgm.paused ? playMusic() : bgm.pause()));
   $('#openBtn').addEventListener('click', () => {
     playMusic();
-    $('#content').scrollIntoView({ behavior: 'smooth' });
+    unlockPage();
+    requestAnimationFrame(() => $('#content').scrollIntoView({ behavior: 'smooth' }));
   });
 })();

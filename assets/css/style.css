@@ -57,3 +57,10 @@ body { background: var(--bg); color: var(--ink); font-family: Jost, system-ui, s
   .reveal { opacity: 1; transform: none; transition: none; }
   .float, .wish-in { animation: none; }
 }
+/* Halaman terkunci sampai tombol "Buka Undangan" ditekan */
+html.locked, html.locked body {
+  overflow: hidden;
+  height: 100%;
+  overscroll-behavior: none;
+  touch-action: none;
+}
