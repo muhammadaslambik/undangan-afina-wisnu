@@ -17,14 +17,14 @@ window.INVITATION = {
   couple: {
     bride: {
       short: 'Afina',
-      full: 'Afina Syuhudi',
+      full: 'Afina Syuhudi, S.Psi.',
       role: 'Putri dari',
       parents: 'Bapak Suhudi & Ibu Saudah',
       photo: 'assets/img/afina.svg', // ganti dengan foto asli, mis. assets/img/afina.jpg
     },
     groom: {
       short: 'Wisnu',
-      full: 'Wisnu Setya Wardhana',
+      full: 'Wisnu Setya Wardhana, S.Pd.',
       role: 'Putra dari',
       parents: 'Bapak Duwi Mulyono & Ibu Warniyati',
       photo: 'assets/img/wisnu.svg',
@@ -32,28 +32,29 @@ window.INVITATION = {
   },
 
   date: {
-    iso: '2026-11-15T08:00:00+07:00', // target countdown (WIB = +07:00)
-    label: 'Minggu, 15 November 2026',
+    iso: '2026-11-15T09:00:00+07:00', // target countdown (WIB = +07:00), mengikuti awal akad
+    label: 'Ahad, 15 November 2026',
   },
 
   verse: {
-    text: 'Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu merasa tenteram kepadanya.',
+    arabic: 'وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِقَوْمٍ يَتَفَكَّرُونَ',
+    text: 'Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.',
     source: 'QS. Ar-Rum: 21',
   },
 
   events: [
     {
       title: 'Akad Nikah',
-      time: '08.00 WIB – Selesai',
+      time: '09.00 WIB – 11.00 WIB',
       place: 'Rumah Mempelai Wanita',
-      address: 'Kediaman Bapak Suhudi\n[Alamat lengkap diisi di sini]',
+      address: 'Ds. Loireng, Kec. Sayung, Kab. Demak, RT: 02/RW: 02, Jawa Tengah.',
       mapUrl: 'https://maps.google.com', // ganti dengan tautan Google Maps lokasi
     },
     {
       title: 'Resepsi',
-      time: '11.00 – 13.00 WIB',
+      time: '11.00 – Selesai',
       place: 'Rumah Mempelai Wanita',
-      address: 'Kediaman Bapak Suhudi\n[Alamat lengkap diisi di sini]',
+      address: 'Ds. Loireng, Kec. Sayung, Kab. Demak, RT: 02/RW: 02, Jawa Tengah.',
       mapUrl: 'https://maps.google.com',
     },
   ],
