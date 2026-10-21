@@ -57,10 +57,51 @@ body { background: var(--bg); color: var(--ink); font-family: Jost, system-ui, s
   .reveal { opacity: 1; transform: none; transition: none; }
   .float, .wish-in { animation: none; }
 }
-/* Halaman terkunci sampai tombol "Buka Undangan" ditekan */
-html.locked, html.locked body {
-  overflow: hidden;
-  height: 100%;
-  overscroll-behavior: none;
-  touch-action: none;
+
+/* ===== Kunci: isi undangan tersembunyi sampai tombol ditekan ===== */
+html.locked #content,
+html.locked footer { display: none; }
+
+/* ===== Cover: muat dalam satu layar ===== */
+#hero { min-height: 100vh; min-height: 100svh; padding-top: 1.25rem; padding-bottom: 1.25rem; }
+.hero-inner {
+  display: flex; flex-direction: column; align-items: center;
+  gap: clamp(.55rem, 2.2vh, 1.4rem); gap: clamp(.55rem, 2.2svh, 1.4rem);
 }
+.hero-kicker { font-size: clamp(.95rem, 2.4vh, 1.15rem); font-size: clamp(.95rem, 2.4svh, 1.15rem); }
+
+.hero-title {
+  display: flex; flex-direction: column; align-items: center;
+  line-height: 1.05;
+  font-size: clamp(2.6rem, min(15vw, 11vh), 5.5rem);
+  font-size: clamp(2.6rem, min(15vw, 11svh), 5.5rem);
+}
+.hero-amp { font-size: .42em; line-height: 1; margin: .1em 0; }
+
+.hero-date { font-size: clamp(1rem, 2.6vh, 1.3rem); font-size: clamp(1rem, 2.6svh, 1.3rem); }
+.hero-date.divider::before, .hero-date.divider::after { width: 2rem; }
+
+.hero-intro { font-size: .875rem; line-height: 1.5; max-width: 28rem; }
+
+#hero .guest { width: min(100%, 26rem); padding: clamp(.7rem, 2vh, 1.3rem) 1rem; padding: clamp(.7rem, 2svh, 1.3rem) 1rem; }
+.guest-label { font-size: clamp(.9rem, 2.2vh, 1.1rem); font-size: clamp(.9rem, 2.2svh, 1.1rem); }
+#hero .guest-name {
+  margin-top: .2rem;
+  font-size: clamp(1.9rem, min(9vw, 6.5vh), 3rem);
+  font-size: clamp(1.9rem, min(9vw, 6.5svh), 3rem);
+}
+.hero-btn { padding: .85rem 2.4rem; font-size: .875rem; }
+
+/* Desktop / layar lebar: nama pengantin satu baris */
+@media (min-width: 640px) {
+  .hero-title {
+    flex-direction: row; align-items: center; gap: .35em;
+    font-size: clamp(3rem, min(9vw, 14vh), 6.5rem);
+    font-size: clamp(3rem, min(9vw, 14svh), 6.5rem);
+  }
+  .hero-amp { margin: 0; }
+  .hero-date.divider::before, .hero-date.divider::after { width: 3.5rem; }
+}
+
+/* Layar sangat pendek: sembunyikan kalimat pengantar */
+@media (max-height: 560px) { .hero-intro { display: none; } }

@@ -10,7 +10,7 @@
 <meta property="og:description" content="Minggu, 15 November 2026. Kami mengundang Anda di hari bahagia kami.">
 <meta property="og:type" content="website">
 <!-- Setelah punya gambar pratinjau (1200x630), aktifkan baris ini: -->
-<!-- <meta property="og:image" content="https://mab-app.eu.org/assets/img/og.jpg"> -->
+<!-- <meta property="og:image" content="https://afina-wisnu.pages.dev/assets/img/og.jpg"> -->
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,500&family=Pinyon+Script&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -32,22 +32,22 @@ tailwind.config = { theme: { extend: { fontFamily: {
 <audio id="bgm" loop preload="none"></audio>
 
 <!-- HERO / COVER -->
-<header id="hero" class="hero relative min-h-screen flex items-center justify-center text-center px-6 py-16">
+<header id="hero" class="hero relative flex items-center justify-center text-center px-5">
   <div class="frame"></div>
-  <div class="relative max-w-md">
-    <p class="font-serif italic text-lg" style="color: var(--muted)">Undangan Pernikahan</p>
-    <h1 class="font-script mt-6 leading-tight" style="color: var(--sage-d); font-size: clamp(3.6rem, 18vw, 6rem)">
+  <div class="hero-inner relative w-full max-w-xl">
+    <p class="font-serif italic hero-kicker" style="color: var(--muted)">Undangan Pernikahan</p>
+    <h1 class="hero-title font-script" style="color: var(--sage-d)">
       <span data-bind="couple.bride.short"></span>
-      <span class="block font-serif italic text-3xl my-1" style="color: var(--gold)">&amp;</span>
+      <span class="hero-amp font-serif italic" style="color: var(--gold)">&amp;</span>
       <span data-bind="couple.groom.short"></span>
     </h1>
-    <div class="divider mt-8"><span class="font-serif text-xl tracking-wide" data-bind="date.label"></span></div>
-    <p class="mt-6 text-sm leading-relaxed" style="color: var(--muted)" data-bind="hero.intro"></p>
-    <div class="guest mt-9">
-      <p class="font-serif italic text-lg" style="color: var(--muted)">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
-      <p id="guestName" class="guest-name mt-2">Tamu Undangan</p>
+    <div class="divider hero-date"><span class="font-serif tracking-wide" data-bind="date.label"></span></div>
+    <p class="hero-intro" style="color: var(--muted)" data-bind="hero.intro"></p>
+    <div class="guest">
+      <p class="font-serif italic guest-label" style="color: var(--muted)">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+      <p id="guestName" class="guest-name">Tamu Undangan</p>
     </div>
-    <button id="openBtn" class="btn-gold float mt-9 px-9 py-3.5 text-sm">Buka Undangan</button>
+    <button id="openBtn" class="btn-gold float hero-btn">Buka Undangan</button>
   </div>
 </header>
 

@@ -10,18 +10,13 @@
     return n;
   };
 
-  /* ---------- Kunci scroll sampai undangan dibuka ---------- */
-  const lockedEls = () => document.querySelectorAll('#content, footer');
+  /* ---------- Kunci: isi undangan tersembunyi sampai tombol ditekan ---------- */
   const lockPage = () => {
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
     document.documentElement.classList.add('locked');
-    lockedEls().forEach((n) => (n.inert = true)); // mencegah fokus/tab ke bagian bawah
   };
-  const unlockPage = () => {
-    document.documentElement.classList.remove('locked');
-    lockedEls().forEach((n) => (n.inert = false));
-  };
+  const unlockPage = () => document.documentElement.classList.remove('locked');
   lockPage();
 
   /* ---------- Toast ---------- */
