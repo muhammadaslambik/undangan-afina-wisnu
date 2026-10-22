@@ -17,8 +17,13 @@
   --gold: #d4ad63; --gold-l: #e6c98c; --ink: #eee9dc; --muted: #a9b2a1; --line: #3a4436;
 }
 
-html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
-body { background: var(--bg); color: var(--ink); font-family: Jost, system-ui, sans-serif; overflow-x: hidden; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+  scrollbar-gutter: stable;          /* ruang bilah gulir selalu ada: hiasan kanan tidak bergeser */
+  overscroll-behavior-y: none;       /* tanpa efek tarik-pantul di ujung halaman */
+}
+body { background: var(--bg); color: var(--ink); font-family: Jost, system-ui, sans-serif; overflow-x: hidden; overscroll-behavior-y: none; }
 
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: 1.25rem; }
 .gold-border { border: 1px solid var(--gold); }
@@ -35,14 +40,25 @@ body { background: var(--bg); color: var(--ink); font-family: Jost, system-ui, s
   var(--bg); }
 .frame { position: absolute; inset: 14px; border: 1px solid var(--gold); opacity: .55; pointer-events: none; border-radius: 1.5rem; }
 
-/* ===== Hiasan sudut: tetap di empat sudut layar, tampil di semua bagian ===== */
-.page-corners { position: fixed; inset: 0; pointer-events: none; z-index: 40; }
+/* ===== Hiasan sudut: terkunci di layar, tidak bergerak sama sekali ===== */
+.page-corners {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 100vh;
+  height: 100svh;                    /* tinggi layar terkecil: tidak berubah saat bilah alamat muncul/hilang */
+  pointer-events: none;
+  z-index: 40;
+  contain: layout paint;
+  transform: translateZ(0);
+  will-change: transform;
+}
 .corner {
   position: absolute;
   width: clamp(44px, 11vw, 80px);
   height: clamp(44px, 11vw, 80px);
   color: var(--gold);
   opacity: .6;
+  backface-visibility: hidden;
 }
 .corner.tl { top: calc(8px + env(safe-area-inset-top, 0px)); left: 8px; }
 .corner.tr { top: calc(8px + env(safe-area-inset-top, 0px)); right: 8px; transform: scaleX(-1); }
