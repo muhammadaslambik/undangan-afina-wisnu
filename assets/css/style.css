@@ -35,20 +35,19 @@ body { background: var(--bg); color: var(--ink); font-family: Jost, system-ui, s
   var(--bg); }
 .frame { position: absolute; inset: 14px; border: 1px solid var(--gold); opacity: .55; pointer-events: none; border-radius: 1.5rem; }
 
-/* ===== Hiasan sudut ===== */
-footer.hero { position: relative; overflow: hidden; }
-.corners { position: absolute; inset: 14px; pointer-events: none; }
+/* ===== Hiasan sudut: tetap di empat sudut layar, tampil di semua bagian ===== */
+.page-corners { position: fixed; inset: 0; pointer-events: none; z-index: 40; }
 .corner {
   position: absolute;
-  width: clamp(56px, 15vw, 96px);
-  height: clamp(56px, 15vw, 96px);
+  width: clamp(44px, 11vw, 80px);
+  height: clamp(44px, 11vw, 80px);
   color: var(--gold);
-  opacity: .75;
+  opacity: .6;
 }
-.corner.tl { top: 8px; left: 8px; }
-.corner.tr { top: 8px; right: 8px; transform: scaleX(-1); }
-.corner.bl { bottom: 8px; left: 8px; transform: scaleY(-1); }
-.corner.br { bottom: 8px; right: 8px; transform: scale(-1, -1); }
+.corner.tl { top: calc(8px + env(safe-area-inset-top, 0px)); left: 8px; }
+.corner.tr { top: calc(8px + env(safe-area-inset-top, 0px)); right: 8px; transform: scaleX(-1); }
+.corner.bl { bottom: calc(8px + env(safe-area-inset-bottom, 0px)); left: 8px; transform: scaleY(-1); }
+.corner.br { bottom: calc(8px + env(safe-area-inset-bottom, 0px)); right: 8px; transform: scale(-1, -1); }
 
 .guest { position: relative; border: 1px solid var(--gold); background: color-mix(in srgb, var(--surface) 78%, transparent); backdrop-filter: blur(6px); border-radius: 1.25rem; padding: 1.4rem 1.25rem 1.5rem; }
 .guest-name { font-family: 'Pinyon Script', cursive; color: var(--sage-d); font-size: clamp(2.2rem, 10vw, 3.2rem); line-height: 1.2; overflow-wrap: anywhere; text-shadow: 0 1px 0 color-mix(in srgb, var(--gold) 35%, transparent); }
