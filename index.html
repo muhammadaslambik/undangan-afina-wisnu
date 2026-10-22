@@ -22,7 +22,7 @@ tailwind.config = { theme: { extend: { fontFamily: {
   script: ['"Pinyon Script"', 'cursive'],
   sans: ['Jost', 'system-ui', 'sans-serif'] } } } };
 </script>
-<link rel="stylesheet" href="assets/css/style.css?v=7">
+<link rel="stylesheet" href="assets/css/style.css?v=8">
 </head>
 <body>
 
@@ -42,8 +42,9 @@ tailwind.config = { theme: { extend: { fontFamily: {
   </symbol>
 </svg>
 
-<!-- Hiasan di empat sudut layar, tampil di semua bagian -->
+<!-- Bingkai dan hiasan sudut: terkunci di layar, tampil di semua bagian -->
 <div class="page-corners" aria-hidden="true">
+  <div class="page-frame"></div>
   <svg class="corner tl"><use href="#orn"/></svg>
   <svg class="corner tr"><use href="#orn"/></svg>
   <svg class="corner bl"><use href="#orn"/></svg>
@@ -58,7 +59,6 @@ tailwind.config = { theme: { extend: { fontFamily: {
 
 <!-- HERO / COVER -->
 <header id="hero" class="hero relative flex items-center justify-center text-center px-5">
-  <div class="frame"></div>
   <div class="hero-inner relative w-full max-w-xl">
     <p class="font-serif italic hero-kicker" style="color: var(--muted)">Undangan Pernikahan</p>
     <h1 class="hero-title font-script" style="color: var(--sage-d)">
@@ -168,7 +168,7 @@ tailwind.config = { theme: { extend: { fontFamily: {
 
 <div id="toast" class="fixed left-1/2 -translate-x-1/2 px-5 py-2.5 rounded-full text-sm opacity-0 pointer-events-none transition-opacity duration-300 z-50" style="bottom: calc(5rem + env(safe-area-inset-bottom, 0px)); background: var(--sage-d); color: var(--bg)"></div>
 
-<script src="assets/js/config.js?v=7"></script>
-<script src="assets/js/main.js?v=7"></script>
+<script src="assets/js/config.js?v=8"></script>
+<script src="assets/js/main.js?v=8"></script>
 </body>
 </html>

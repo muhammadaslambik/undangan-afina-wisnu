@@ -20,7 +20,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: env(safe-area-inset-top, 0px);
-  scrollbar-gutter: stable;          /* ruang bilah gulir selalu ada: hiasan kanan tidak bergeser */
+  scrollbar-gutter: stable;          /* ruang bilah gulir selalu ada: bingkai kanan tidak bergeser */
   overscroll-behavior-y: none;       /* tanpa efek tarik-pantul di ujung halaman */
 }
 body { background: var(--bg); color: var(--ink); font-family: Jost, system-ui, sans-serif; overflow-x: hidden; overscroll-behavior-y: none; }
@@ -38,9 +38,8 @@ body { background: var(--bg); color: var(--ink); font-family: Jost, system-ui, s
   radial-gradient(ellipse at 20% 10%, color-mix(in srgb, var(--sage) 35%, transparent), transparent 55%),
   radial-gradient(ellipse at 85% 90%, color-mix(in srgb, var(--gold) 22%, transparent), transparent 50%),
   var(--bg); }
-.frame { position: absolute; inset: 14px; border: 1px solid var(--gold); opacity: .55; pointer-events: none; border-radius: 1.5rem; }
 
-/* ===== Hiasan sudut: terkunci di layar, tidak bergerak sama sekali ===== */
+/* ===== Bingkai dan hiasan sudut: terkunci di layar, tidak bergerak sama sekali ===== */
 .page-corners {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -51,6 +50,16 @@ body { background: var(--bg); color: var(--ink); font-family: Jost, system-ui, s
   contain: layout paint;
   transform: translateZ(0);
   will-change: transform;
+}
+.page-frame {
+  position: absolute;
+  top: calc(14px + env(safe-area-inset-top, 0px));
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  left: 14px;
+  right: 14px;
+  border: 1px solid var(--gold);
+  border-radius: 1.5rem;
+  opacity: .55;
 }
 .corner {
   position: absolute;
