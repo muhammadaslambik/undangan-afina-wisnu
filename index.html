@@ -22,9 +22,25 @@ tailwind.config = { theme: { extend: { fontFamily: {
   script: ['"Pinyon Script"', 'cursive'],
   sans: ['Jost', 'system-ui', 'sans-serif'] } } } };
 </script>
-<link rel="stylesheet" href="assets/css/style.css?v=5">
+<link rel="stylesheet" href="assets/css/style.css?v=6">
 </head>
 <body>
+
+<!-- Hiasan sudut (dipakai ulang di cover dan footer) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="orn" viewBox="0 0 80 80">
+    <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+      <path d="M6 58C6 28 28 6 58 6"/>
+      <path d="M14 46C14 28 28 14 46 14" opacity=".55"/>
+    </g>
+    <g fill="currentColor">
+      <circle cx="6" cy="58" r="1.8"/>
+      <circle cx="58" cy="6" r="1.8"/>
+      <path d="M30 19C34 12.5 41 11 46 13.5C42 18.5 36 20.5 30 19Z" opacity=".85"/>
+      <path d="M19 30C12.5 34 11 41 13.5 46C18.5 42 20.5 36 19 30Z" opacity=".85"/>
+    </g>
+  </symbol>
+</svg>
 
 <button id="musicBtn" aria-label="Putar atau jeda musik" class="fixed right-4 z-50 w-11 h-11 rounded-full card flex items-center justify-center shadow-lg" style="bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); color: var(--gold)">
   <svg id="icPlay" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -35,6 +51,12 @@ tailwind.config = { theme: { extend: { fontFamily: {
 <!-- HERO / COVER -->
 <header id="hero" class="hero relative flex items-center justify-center text-center px-5">
   <div class="frame"></div>
+  <div class="corners" aria-hidden="true">
+    <svg class="corner tl"><use href="#orn"/></svg>
+    <svg class="corner tr"><use href="#orn"/></svg>
+    <svg class="corner bl"><use href="#orn"/></svg>
+    <svg class="corner br"><use href="#orn"/></svg>
+  </div>
   <div class="hero-inner relative w-full max-w-xl">
     <p class="font-serif italic hero-kicker" style="color: var(--muted)">Undangan Pernikahan</p>
     <h1 class="hero-title font-script" style="color: var(--sage-d)">
@@ -136,15 +158,23 @@ tailwind.config = { theme: { extend: { fontFamily: {
   </section>
 </main>
 
-<footer class="hero px-6 py-20 text-center">
-  <p class="font-serif italic text-lg max-w-md mx-auto leading-relaxed" style="color: var(--muted)" data-bind="footer.closing"></p>
-  <p class="font-script text-5xl mt-8" style="color: var(--sage-d)"><span data-bind="couple.bride.short"></span> &amp; <span data-bind="couple.groom.short"></span></p>
-  <p class="text-xs mt-8" style="color: var(--muted)" data-bind="footer.families"></p>
+<footer class="hero relative px-6 py-20 text-center">
+  <div class="corners" aria-hidden="true">
+    <svg class="corner tl"><use href="#orn"/></svg>
+    <svg class="corner tr"><use href="#orn"/></svg>
+    <svg class="corner bl"><use href="#orn"/></svg>
+    <svg class="corner br"><use href="#orn"/></svg>
+  </div>
+  <div class="relative">
+    <p class="font-serif italic text-lg max-w-md mx-auto leading-relaxed" style="color: var(--muted)" data-bind="footer.closing"></p>
+    <p class="font-script text-5xl mt-8" style="color: var(--sage-d)"><span data-bind="couple.bride.short"></span> &amp; <span data-bind="couple.groom.short"></span></p>
+    <p class="text-xs mt-8" style="color: var(--muted)" data-bind="footer.families"></p>
+  </div>
 </footer>
 
 <div id="toast" class="fixed left-1/2 -translate-x-1/2 px-5 py-2.5 rounded-full text-sm opacity-0 pointer-events-none transition-opacity duration-300 z-50" style="bottom: calc(5rem + env(safe-area-inset-bottom, 0px)); background: var(--sage-d); color: var(--bg)"></div>
 
-<script src="assets/js/config.js?v=5"></script>
-<script src="assets/js/main.js?v=5"></script>
+<script src="assets/js/config.js?v=6"></script>
+<script src="assets/js/main.js?v=6"></script>
 </body>
 </html>
