@@ -125,32 +125,20 @@
     }
   };
 
-  /* ---------- Musik ---------- */
+  /* ---------- Musik: hanya bunyi setelah tombol ditekan ---------- */
   const bgm = $('#bgm');
   $('#musicBtn').title = C.musicTitle || 'Musik';
   const setIcon = (on) => { $('#icPlay').classList.toggle('hidden', on); $('#icPause').classList.toggle('hidden', !on); };
   bgm.preload = 'auto';
   bgm.volume = 0.7;
   bgm.src = C.music;
-  bgm.addEventListener('play', () => { setIcon(true); disarmFirstTap(); });
+  bgm.addEventListener('play', () => setIcon(true));
   bgm.addEventListener('pause', () => setIcon(false));
 
-  const playMusic = async (quiet = false) => {
-    try { await bgm.play(); return true; }
-    catch (e) { if (!quiet) toast('Ketuk layar untuk memutar musik'); return false; }
+  const playMusic = async () => {
+    try { await bgm.play(); }
+    catch (e) { toast('Musik belum bisa diputar. Ketuk tombol musik.'); }
   };
-
-  // Cadangan: mulai pada interaksi pertama di mana pun (kecuali tombol musik)
-  const tapEvents = ['pointerup', 'touchend', 'click', 'keydown'];
-  const onFirstTap = (e) => {
-    if (e.target.closest && e.target.closest('#musicBtn')) return;
-    playMusic(true);
-  };
-  function disarmFirstTap() { tapEvents.forEach((ev) => document.removeEventListener(ev, onFirstTap)); }
-  function armFirstTap() { tapEvents.forEach((ev) => document.addEventListener(ev, onFirstTap, { passive: true })); }
-
-  // Upaya 1: putar otomatis. Upaya 2: tunggu ketukan pertama.
-  playMusic(true).then((ok) => { if (!ok) armFirstTap(); });
 
   /* ---------- Countdown ---------- */
   const target = new Date(C.date.iso).getTime();
