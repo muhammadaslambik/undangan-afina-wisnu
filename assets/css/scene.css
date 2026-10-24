@@ -2,8 +2,7 @@
 #hero{overflow:hidden}
 #hero .hero-inner{position:relative;z-index:1;animation:sc-up 1.6s ease-out .5s both}
 .scene{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.scene::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 45% at 50% 100%,rgba(201,165,92,.2),transparent 70%),linear-gradient(180deg,rgba(13,19,13,.5) 0%,rgba(13,19,13,.8) 36%,rgba(13,19,13,.8) 68%,rgba(13,19,13,.93) 100%)}
-.scene::after{content:"";position:absolute;inset:-4%;z-index:-1;background:url(../img/mempelai.jpg) center top/cover no-repeat;filter:saturate(.8);animation:sc-photo 2.4s ease-out both,sc-zoom 26s ease-in-out 2.4s infinite alternate}
+.scene::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 45% at 50% 100%,rgba(201,165,92,.2),transparent 70%)}
 .sc-star{position:absolute;width:var(--z);height:var(--z);border-radius:50%;background:#f3e4b8;opacity:.2;animation:sc-tw var(--d) ease-in-out var(--l) infinite}
 .sc-moon{position:absolute;top:9%;right:17%;width:46px;height:46px;color:#e9d39a;opacity:0;animation:sc-fade 2s ease-out 1s forwards,sc-bob 7s ease-in-out infinite;filter:drop-shadow(0 0 10px rgba(233,211,154,.55))}
 .sc-cloud{position:absolute;left:-30%;width:55%;height:70px;border-radius:50%;background:rgba(190,205,180,.08);filter:blur(18px);animation:sc-drift var(--d) linear var(--l) infinite}
@@ -32,3 +31,7 @@
   .scene *,.scene::after,#hero .hero-inner{animation:none!important}
   .sc-sky,.sc-moon{opacity:.95}.sc-bird{display:none}
 }
+
+/* Foto latar per halaman: atur lewat style="--img:url(...);--pos:...;--ov:..." */
+.bgp{position:relative;isolation:isolate}
+.bgp::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(rgba(13,19,13,var(--ov,.8)),rgba(13,19,13,calc(var(--ov,.8) + .08))),var(--img) var(--pos,center 20%)/cover no-repeat}
