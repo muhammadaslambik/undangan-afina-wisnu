@@ -24,6 +24,16 @@ tailwind.config = { theme: { extend: { fontFamily: {
 </script>
 <link rel="stylesheet" href="assets/css/style.css?v=8">
 <link rel="stylesheet" href="assets/css/scene.css?v=2">
+<style>
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
+@media(min-width:768px){.gal{grid-template-columns:repeat(3,1fr);gap:1rem}}
+.gal button{display:block;padding:0;border:1px solid rgba(201,165,92,.45);border-radius:14px;overflow:hidden;aspect-ratio:2/3;background:#0d130d;cursor:zoom-in}
+.gal img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 22%;transition:transform .6s ease}
+.gal button:hover img{transform:scale(1.05)}
+#lb{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;background:rgba(8,12,8,.93);padding:1rem;cursor:zoom-out}
+#lb.on{display:flex}
+#lb img{max-width:100%;max-height:100%;border-radius:12px;box-shadow:0 10px 40px #000}
+</style>
 </head>
 <body>
 
@@ -113,6 +123,21 @@ tailwind.config = { theme: { extend: { fontFamily: {
     </div>
   </section>
 
+  <section class="px-6 py-20" style="background: var(--sage-l)">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="font-script text-5xl reveal" style="color: var(--gold)">Galeri Foto</h2>
+      <p class="mt-3 text-sm reveal" style="color: var(--muted)">Sepenggal momen bahagia kami.</p>
+      <div class="gal mt-10">
+      <button type="button" class="reveal" data-full="assets/img/foto-hitam.jpg" aria-label="Perbesar foto"><img src="assets/img/foto-hitam.jpg" alt="Foto mempelai" loading="lazy" decoding="async"></button>
+      <button type="button" class="reveal" data-full="assets/img/foto-emas.jpg" aria-label="Perbesar foto"><img src="assets/img/foto-emas.jpg" alt="Foto mempelai" loading="lazy" decoding="async"></button>
+      <button type="button" class="reveal" data-full="assets/img/foto-pantai.jpg" aria-label="Perbesar foto"><img src="assets/img/foto-pantai.jpg" alt="Foto mempelai" loading="lazy" decoding="async"></button>
+      <button type="button" class="reveal" data-full="assets/img/foto-siger.jpg" aria-label="Perbesar foto"><img src="assets/img/foto-siger.jpg" alt="Foto mempelai" loading="lazy" decoding="async"></button>
+      <button type="button" class="reveal" data-full="assets/img/foto-studio.jpg" aria-label="Perbesar foto"><img src="assets/img/foto-studio.jpg" alt="Foto mempelai" loading="lazy" decoding="async"></button>
+      <button type="button" class="reveal" data-full="assets/img/foto-putih.jpg" aria-label="Perbesar foto"><img src="assets/img/foto-putih.jpg" alt="Foto mempelai" loading="lazy" decoding="async"></button>
+      </div>
+    </div>
+  </section>
+
   <section class="px-6 pb-20">
     <div class="max-w-xl mx-auto card p-8 text-center reveal">
       <h2 class="font-serif text-2xl font-semibold" style="color: var(--sage-d)">Protokol Kesehatan</h2>
@@ -173,5 +198,17 @@ tailwind.config = { theme: { extend: { fontFamily: {
 <script src="assets/js/config.js?v=8"></script>
 <script src="assets/js/main.js?v=9"></script>
 <script src="assets/js/scene.js?v=1"></script>
+<script>
+(() => {
+  const lb = document.createElement('div'); lb.id = 'lb'; lb.innerHTML = '<img alt="">';
+  document.body.append(lb);
+  const im = lb.firstChild, close = () => lb.classList.remove('on');
+  document.querySelectorAll('.gal button').forEach((b) => b.addEventListener('click', () => {
+    im.src = b.dataset.full; im.alt = b.firstElementChild.alt; lb.classList.add('on');
+  }));
+  lb.addEventListener('click', close);
+  addEventListener('keydown', (e) => e.key === 'Escape' && close());
+})();
+</script>
 </body>
 </html>
