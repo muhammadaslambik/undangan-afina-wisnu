@@ -214,7 +214,8 @@
   bindText();
   renderCouple();
   renderEvents();
-  renderGifts();
+  if (new URLSearchParams(location.search).get('hadiah') === '0') $('#giftGrid').closest('section').remove();
+  else renderGifts();
   applyGuest();
   window.addEventListener('hashchange', applyGuest);
   renderWishes();

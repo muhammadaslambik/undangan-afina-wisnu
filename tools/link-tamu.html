@@ -7,8 +7,12 @@
   <h1 class="text-2xl font-semibold">Pembuat Tautan Tamu</h1>
   <label class="block text-sm">Alamat undangan
     <input id="base" class="w-full border rounded-lg p-2 mt-1" value="https://afina-wisnu.pages.dev/"></label>
+  <label class="flex items-center gap-2 text-sm">
+    <input id="gift" type="checkbox" checked class="w-4 h-4">
+    Sertakan hadiah digital (untuk semua nama di bawah)</label>
   <label class="block text-sm">Nama tamu (satu nama per baris)
-    <textarea id="names" rows="6" class="w-full border rounded-lg p-2 mt-1" placeholder="Budi Santoso&#10;Keluarga Bapak Andi"></textarea></label>
+    <textarea id="names" rows="6" class="w-full border rounded-lg p-2 mt-1" placeholder="Budi Santoso&#10;Keluarga Bapak Andi | tanpa&#10;Ibu Siti | hadiah"></textarea></label>
+  <p class="text-xs text-stone-500">Opsional: tambahkan <b>| tanpa</b> atau <b>| hadiah</b> di akhir baris untuk mengganti pilihan kotak centang pada tamu itu saja.</p>
   <button id="go" class="bg-stone-800 text-white rounded-lg px-4 py-2">Buat tautan</button>
   <ul id="out" class="space-y-2"></ul>
 </main>
@@ -17,16 +21,25 @@ const $ = (s) => document.querySelector(s);
 $('#go').onclick = () => {
   const base = $('#base').value.trim().replace(/\/?$/, '/');
   const out = $('#out'); out.innerHTML = '';
-  $('#names').value.split('\n').map((n) => n.trim()).filter(Boolean).forEach((name) => {
-    const url = base + '?to=' + encodeURIComponent(name).replace(/%20/g, '+');
+  $('#names').value.split('\n').map((n) => n.trim()).filter(Boolean).forEach((line) => {
+    const parts = line.split('|').map((s) => s.trim());
+    const name = parts[0];
+    if (!name) return;
+    let gift = $('#gift').checked;
+    const opt = (parts[1] || '').toLowerCase();
+    if (opt === 'tanpa') gift = false;
+    else if (opt === 'hadiah') gift = true;
+    const url = base + '?to=' + encodeURIComponent(name).replace(/%20/g, '+') + (gift ? '' : '&hadiah=0');
     const li = document.createElement('li'); li.className = 'border rounded-lg p-3 bg-white text-sm break-all';
     const b = document.createElement('b'); b.textContent = name;
+    const tag = document.createElement('span'); tag.className = 'ml-2 text-xs px-2 py-0.5 rounded-full ' + (gift ? 'bg-emerald-100 text-emerald-800' : 'bg-stone-200 text-stone-600');
+    tag.textContent = gift ? 'dengan hadiah digital' : 'tanpa hadiah digital';
     const u = document.createElement('div'); u.textContent = url; u.className = 'text-stone-500 my-1';
     const copy = document.createElement('button'); copy.textContent = 'Salin'; copy.className = 'underline mr-4';
     copy.onclick = () => navigator.clipboard.writeText(url).then(() => (copy.textContent = 'Tersalin'));
     const wa = document.createElement('a'); wa.textContent = 'Kirim via WhatsApp'; wa.className = 'underline'; wa.target = '_blank'; wa.rel = 'noopener';
     wa.href = 'https://wa.me/?text=' + encodeURIComponent('Kepada Yth. ' + name + '\n\nKami mengundang Anda ke pernikahan kami:\n' + url);
-    li.append(b, u, copy, wa); out.append(li);
+    li.append(b, tag, u, copy, wa); out.append(li);
   });
 };
 </script></body></html>
