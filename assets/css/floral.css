@@ -1,10 +1,6 @@
 /* Tema bunga: latar krem berbunga, teks gelap. Dimuat setelah style.css dan scene.css */
 :root,html[data-theme="dark"],html[data-theme="light"]{--bg:#f6f0e4!important;--sage:#a9b8a4!important;--sage-d:#35566b!important;--sage-l:rgba(255,255,255,.28)!important;--gold:#a67c2e!important;--muted:#5b6760!important;--line:rgba(53,86,107,.25)!important;color-scheme:light}
 html,body{background:#f6f0e4!important;color:#2b3a36!important}
-.bgp{position:relative;isolation:isolate;background:var(--bgc,#f6f0e4)!important}
-.bgp::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--img) center/cover no-repeat!important}
-main .bgp{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center}
-@media(min-width:900px){.bgp::before{background-size:auto 100%!important}}
 .card{background:rgba(255,255,255,.66)!important;border-color:rgba(166,124,46,.38)!important;color:#2b3a36;box-shadow:0 6px 22px rgba(53,86,107,.12)!important}
 .field{background:rgba(255,255,255,.85)!important;color:#2b3a36!important;border-color:rgba(53,86,107,.3)!important}
 .field::placeholder{color:#7b857f!important}
@@ -19,3 +15,12 @@ main .bgp{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;
 /* Cover: hanya burung yang terbang; bintang, bulan, dan awan malam disembunyikan */
 .sc-star,.sc-moon,.sc-cloud,.scene::before{display:none!important}
 .sc-bird{color:#5f7f94!important}
+
+/* Latar bunga: kolom selebar maks. 480px di tengah; isi dijauhkan dari bunga dan diberi kabut krem agar tulisan jelas */
+.bgp{position:relative;isolation:isolate;background:var(--bgc,#f6f0e4)!important}
+.bgp::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:min(100%,480px);transform:translateX(-50%);z-index:-1;background:radial-gradient(ellipse 52% 46% at 50% 50%,rgba(251,247,240,.94),rgba(251,247,240,.62) 62%,rgba(251,247,240,0) 100%) center/100% 100% no-repeat,var(--img) center/cover no-repeat!important}
+main .bgp,footer.bgp{min-height:100vh;min-height:max(100svh,calc(min(100vw,480px)*1.5));display:flex;flex-direction:column;justify-content:center}
+main .bgp{padding-top:calc(min(100vw,480px)*.3)!important;padding-bottom:calc(min(100vw,480px)*.3)!important}
+main .bgp>div,footer.bgp>*{width:100%;max-width:30rem!important;margin-left:auto;margin-right:auto}
+@media(min-width:768px){#eventsGrid{grid-template-columns:1fr!important}#coupleGrid{gap:1.5rem!important}}
+#hero .hero-title{font-size:clamp(2.6rem,12vw,4.2rem)!important}
