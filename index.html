@@ -23,6 +23,7 @@ tailwind.config = { theme: { extend: { fontFamily: {
   sans: ['Jost', 'system-ui', 'sans-serif'] } } } };
 </script>
 <link rel="stylesheet" href="assets/css/style.css?v=8">
+<link rel="stylesheet" href="assets/css/scene.css?v=1">
 </head>
 <body>
 
@@ -59,6 +60,7 @@ tailwind.config = { theme: { extend: { fontFamily: {
 
 <!-- HERO / COVER -->
 <header id="hero" class="hero relative flex items-center justify-center text-center px-5">
+  <div id="scene" class="scene" aria-hidden="true"></div>
   <div class="hero-inner relative w-full max-w-xl">
     <p class="font-serif italic hero-kicker" style="color: var(--muted)">Undangan Pernikahan</p>
     <h1 class="hero-title font-script" style="color: var(--sage-d)">
@@ -170,5 +172,6 @@ tailwind.config = { theme: { extend: { fontFamily: {
 
 <script src="assets/js/config.js?v=8"></script>
 <script src="assets/js/main.js?v=9"></script>
+<script src="assets/js/scene.js?v=1"></script>
 </body>
 </html>
