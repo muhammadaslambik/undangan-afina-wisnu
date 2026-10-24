@@ -30,9 +30,14 @@ tailwind.config = { theme: { extend: { fontFamily: {
 .gal button{display:block;padding:0;border:1px solid rgba(201,165,92,.45);border-radius:14px;overflow:hidden;aspect-ratio:2/3;background:#0d130d;cursor:zoom-in}
 .gal img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 22%;transition:transform .6s ease}
 .gal button:hover img{transform:scale(1.05)}
-#lb{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;background:rgba(8,12,8,.93);padding:1rem;cursor:zoom-out}
+#lb{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;background:rgba(8,12,8,.95);padding:1rem;touch-action:none;user-select:none;-webkit-user-select:none}
 #lb.on{display:flex}
-#lb img{max-width:100%;max-height:100%;border-radius:12px;box-shadow:0 10px 40px #000}
+#lb img{max-width:100%;max-height:calc(100% - 56px);object-fit:contain;border-radius:12px;box-shadow:0 10px 40px #000}
+.lb-btn{position:absolute;width:44px;height:44px;border-radius:50%;border:1px solid rgba(201,165,92,.6);background:rgba(13,19,13,.6);color:#e9d39a;font-size:24px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.lb-x{right:12px;top:calc(12px + env(safe-area-inset-top,0px))}
+.lb-prev{left:10px;top:50%;margin-top:-22px}
+.lb-next{right:10px;top:50%;margin-top:-22px}
+.lb-n{position:absolute;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom,0px));text-align:center;color:#e9d39a;font-size:13px;letter-spacing:.12em}
 </style>
 </head>
 <body>
@@ -200,14 +205,46 @@ tailwind.config = { theme: { extend: { fontFamily: {
 <script src="assets/js/scene.js?v=1"></script>
 <script>
 (() => {
-  const lb = document.createElement('div'); lb.id = 'lb'; lb.innerHTML = '<img alt="">';
+  const btns = [...document.querySelectorAll('.gal button')];
+  const srcs = btns.map((b) => b.dataset.full);
+  const lb = document.createElement('div'); lb.id = 'lb';
+  lb.innerHTML = '<img alt="Foto mempelai"><button type="button" class="lb-btn lb-x" aria-label="Tutup">×</button><button type="button" class="lb-btn lb-prev" aria-label="Foto sebelumnya">‹</button><button type="button" class="lb-btn lb-next" aria-label="Foto berikutnya">›</button><div class="lb-n"></div>';
   document.body.append(lb);
-  const im = lb.firstChild, close = () => lb.classList.remove('on');
-  document.querySelectorAll('.gal button').forEach((b) => b.addEventListener('click', () => {
-    im.src = b.dataset.full; im.alt = b.firstElementChild.alt; lb.classList.add('on');
-  }));
-  lb.addEventListener('click', close);
-  addEventListener('keydown', (e) => e.key === 'Escape' && close());
+  const im = lb.querySelector('img'), num = lb.querySelector('.lb-n');
+  let i = 0, isOpen = false;
+  const show = (k, dir = 0) => {
+    i = (k + srcs.length) % srcs.length;
+    im.src = srcs[i]; num.textContent = (i + 1) + ' / ' + srcs.length;
+    if (dir) im.animate([{ transform: 'translateX(' + dir * 48 + 'px)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 260, easing: 'ease-out' });
+    [i + 1, i - 1].forEach((j) => { new Image().src = srcs[(j + srcs.length) % srcs.length]; });
+  };
+  const open = (k) => {
+    if (!isOpen) {
+      history.pushState({ lb: 1 }, '');
+      isOpen = true; lb.classList.add('on'); document.documentElement.style.overflow = 'hidden';
+    }
+    show(k);
+  };
+  const hide = () => { isOpen = false; lb.classList.remove('on'); document.documentElement.style.overflow = ''; };
+  const close = () => { if (!isOpen) return; if (history.state && history.state.lb) history.back(); else hide(); };
+  window.addEventListener('popstate', () => { if (isOpen) hide(); });
+  btns.forEach((b, k) => b.addEventListener('click', () => open(k)));
+  lb.querySelector('.lb-x').addEventListener('click', close);
+  lb.querySelector('.lb-prev').addEventListener('click', (e) => { e.stopPropagation(); show(i - 1, -1); });
+  lb.querySelector('.lb-next').addEventListener('click', (e) => { e.stopPropagation(); show(i + 1, 1); });
+  lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+  let x0 = 0, y0 = 0;
+  lb.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  lb.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) show(i + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
+  }, { passive: true });
+  addEventListener('keydown', (e) => {
+    if (!isOpen) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowRight') show(i + 1, 1);
+    else if (e.key === 'ArrowLeft') show(i - 1, -1);
+  });
 })();
 </script>
 </body>
