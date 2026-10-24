@@ -20,14 +20,14 @@ window.INVITATION = {
       full: 'Afina Syuhudi, S.Psi.',
       role: 'Putri dari',
       parents: 'Bapak Suhudi & Ibu Saudah',
-      photo: 'assets/img/afina.svg', // ganti dengan foto asli, mis. assets/img/afina.jpg
+      photo: 'assets/img/afina.jpg',
     },
     groom: {
       short: 'Wisnu',
       full: 'Wisnu Setya Wardhana, S.Pd.',
       role: 'Putra dari',
       parents: 'Bapak Duwi Mulyono & Ibu Warniyati',
-      photo: 'assets/img/wisnu.svg',
+      photo: 'assets/img/wisnu.jpg',
     },
   },
 
