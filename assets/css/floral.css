@@ -1,29 +1,11 @@
-/* Tema bunga: latar krem berbunga, teks gelap. Dimuat setelah style.css dan scene.css */
-:root,html[data-theme="dark"],html[data-theme="light"]{--bg:#f6f0e4!important;--sage:#a9b8a4!important;--sage-d:#35566b!important;--sage-l:rgba(255,255,255,.28)!important;--gold:#a67c2e!important;--muted:#5b6760!important;--line:rgba(53,86,107,.25)!important;color-scheme:light}
-html,body{background:#f6f0e4!important;color:#2b3a36!important}
-.card{background:rgba(255,255,255,.66)!important;border-color:rgba(166,124,46,.38)!important;color:#2b3a36;box-shadow:0 6px 22px rgba(53,86,107,.12)!important}
-.field{background:rgba(255,255,255,.85)!important;color:#2b3a36!important;border-color:rgba(53,86,107,.3)!important}
-.field::placeholder{color:#7b857f!important}
-.btn-line{color:#35566b!important;border-color:rgba(53,86,107,.5)!important}
-.guest{background:rgba(255,255,255,.55)!important;border-color:rgba(166,124,46,.5)!important}
-.guest-name{color:#35566b!important}
-.page-frame{border-color:rgba(166,124,46,.55)!important}
-.corner{color:#a67c2e!important}
-.wish-box{background:rgba(255,255,255,.55)!important;border-color:rgba(166,124,46,.45)!important}
-.wish-hint{color:#35566b!important;background:linear-gradient(transparent,rgba(246,240,228,.96))!important}
-.wish-x{background:rgba(255,255,255,.9)!important;color:#35566b!important;border-color:rgba(166,124,46,.6)!important}
-/* Cover: hanya burung yang terbang; bintang, bulan, dan awan malam disembunyikan */
-.sc-star,.sc-moon,.sc-cloud,.scene::before{display:none!important}
-.sc-bird{color:#5f7f94!important}
-
-@media(min-width:768px){#eventsGrid{grid-template-columns:1fr!important}#coupleGrid{gap:1.5rem!important}}
-
-/* Latar bunga: bunga hanya di strip atas dan bawah tiap halaman; isi diberi jarak setinggi strip sehingga tidak pernah menimpa tulisan */
-.bgp{--fw:min(100vw,480px);position:relative;isolation:isolate;background:var(--bgc,#f6f0e4)!important;padding-top:calc(var(--fw)*var(--ht,.55) + 1rem)!important;padding-bottom:calc(var(--fw)*var(--hb,.55) + 1rem)!important}
+/* Latar bunga mode gelap: bunga hanya di strip atas dan bawah tiap halaman; isi diberi jarak sehingga tidak menimpa tulisan.
+   Dimuat setelah style.css dan scene.css */
+.bgp{--fw:min(100vw,480px);position:relative;isolation:isolate;background:var(--bgc,#141a13)!important;padding-top:calc(var(--fw)*var(--ht,.45)*.7 + .75rem)!important;padding-bottom:calc(var(--fw)*var(--hb,.45)*.7 + .75rem)!important}
 .bgp::before,.bgp::after{content:"";position:absolute;left:50%;width:var(--fw);transform:translateX(-50%);z-index:-1;background-repeat:no-repeat;background-size:100% 100%;pointer-events:none;-webkit-mask-composite:source-in;mask-composite:intersect}
-.bgp::before{top:0;height:calc(var(--fw)*var(--ht,.55));background-image:var(--img-top);-webkit-mask-image:linear-gradient(to bottom,#000 66%,transparent),linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(to bottom,#000 66%,transparent),linear-gradient(to right,transparent,#000 7%,#000 93%,transparent)}
-.bgp::after{bottom:0;height:calc(var(--fw)*var(--hb,.55));background-image:var(--img-bot);-webkit-mask-image:linear-gradient(to top,#000 66%,transparent),linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(to top,#000 66%,transparent),linear-gradient(to right,transparent,#000 7%,#000 93%,transparent)}
-main .bgp,footer.bgp{min-height:100svh;display:flex;flex-direction:column;justify-content:center}
+.bgp::before{top:0;height:calc(var(--fw)*var(--ht,.45));background-image:var(--img-top);-webkit-mask-image:linear-gradient(to bottom,#000 75%,transparent),linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(to bottom,#000 75%,transparent),linear-gradient(to right,transparent,#000 7%,#000 93%,transparent)}
+.bgp::after{bottom:0;height:calc(var(--fw)*var(--hb,.45));background-image:var(--img-bot);-webkit-mask-image:linear-gradient(to top,#000 75%,transparent),linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(to top,#000 75%,transparent),linear-gradient(to right,transparent,#000 7%,#000 93%,transparent)}
+main .bgp,footer.bgp{display:flex;flex-direction:column;justify-content:center}
 main .bgp>div,footer.bgp>*{width:100%;max-width:30rem!important;margin-left:auto;margin-right:auto}
+@media(min-width:768px){#eventsGrid{grid-template-columns:1fr!important}#coupleGrid{gap:1.5rem!important}}
 #hero{--fw:min(100vw,480px,48svh)}
 #hero .hero-title{font-size:clamp(2.6rem,12vw,4.2rem)!important}
