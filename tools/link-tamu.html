@@ -29,7 +29,7 @@ $('#go').onclick = () => {
     const opt = (parts[1] || '').toLowerCase();
     if (opt === 'tanpa') gift = false;
     else if (opt === 'hadiah') gift = true;
-    const url = base + '?to=' + encodeURIComponent(name).replace(/%20/g, '+') + (gift ? '' : '&hadiah=0');
+    const url = (gift ? base : base + 'hadiah=0') + '?to=' + encodeURIComponent(name).replace(/%20/g, '+');
     const li = document.createElement('li'); li.className = 'border rounded-lg p-3 bg-white text-sm break-all';
     const b = document.createElement('b'); b.textContent = name;
     const tag = document.createElement('span'); tag.className = 'ml-2 text-xs px-2 py-0.5 rounded-full ' + (gift ? 'bg-emerald-100 text-emerald-800' : 'bg-stone-200 text-stone-600');

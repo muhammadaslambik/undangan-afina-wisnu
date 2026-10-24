@@ -214,7 +214,7 @@
   bindText();
   renderCouple();
   renderEvents();
-  if (new URLSearchParams(location.search).get('hadiah') === '0') $('#giftGrid').closest('section').remove();
+  if (location.pathname.includes('hadiah=0') || new URLSearchParams(location.search).get('hadiah') === '0') $('#giftGrid').closest('section').remove();
   else renderGifts();
   applyGuest();
   window.addEventListener('hashchange', applyGuest);
