@@ -9,6 +9,7 @@
 .sc-bird{position:absolute;left:0;top:var(--t);color:#e9d39a;opacity:0;transform:scale(var(--s,1));animation:sc-fly var(--d) linear var(--l) infinite}
 .sc-bird svg{display:block;overflow:visible;animation:sc-flap .55s ease-in-out infinite alternate;transform-origin:50% 60%}
 .sc-bird path{fill:currentColor}
+.sc-paused .sc-bird,.sc-paused .sc-bird svg{animation-play-state:paused}
 .sc-sky{position:absolute;left:50%;bottom:0;width:min(100%,900px);height:auto;transform:translateX(-50%);opacity:0;animation:sc-rise 2s ease-out .3s forwards}
 .sc-sil{fill:#0d130d}
 .sc-gold{fill:none;stroke:#c9a55c;stroke-width:1.2;opacity:.75}
