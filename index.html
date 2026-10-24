@@ -274,6 +274,12 @@ tailwind.config = { theme: { extend: { fontFamily: {
     const im = track.querySelectorAll('img');
     im[0].src = srcs[mod(i - 1)]; im[1].src = srcs[i]; im[2].src = srcs[mod(i + 1)]; label();
   };
+  const rotate = (dir) => {
+    i = mod(i + dir);
+    if (dir > 0) { const e = track.firstElementChild; track.append(e); e.firstElementChild.src = srcs[mod(i + 1)]; }
+    else { const e = track.lastElementChild; track.prepend(e); e.firstElementChild.src = srcs[mod(i - 1)]; }
+    label();
+  };
   const go = (dir) => {
     if (busy) return; busy = true;
     if (s !== 1) resetZ(false);
@@ -281,10 +287,7 @@ tailwind.config = { theme: { extend: { fontFamily: {
     let fin = false;
     const done = () => {
       if (fin) return; fin = true;
-      i = mod(i + dir);
-      if (dir > 0) { const e = track.firstElementChild; track.append(e); e.firstElementChild.src = srcs[mod(i + 1)]; }
-      else { const e = track.lastElementChild; track.prepend(e); e.firstElementChild.src = srcs[mod(i - 1)]; }
-      label(); setX(-W(), false); busy = false;
+      rotate(dir); setX(-W(), false); busy = false;
     };
     track.addEventListener('transitionend', done, { once: true });
     setTimeout(done, 400);
@@ -368,11 +371,11 @@ tailwind.config = { theme: { extend: { fontFamily: {
   lb.addEventListener('pointerup', (e) => up(e, false));
   lb.addEventListener('pointercancel', (e) => up(e, true));
 
-  // Trackpad desktop: dua jari menggeser (foto mengikuti jari), cubit untuk zoom
+  // Trackpad desktop: foto menempel ke dua jari (1:1) dan baru berpindah setelah gerakan berhenti
   let wacc = 0, wAxis = '', wlock = 0, wt;
   const wend = () => {
     if (wAxis === 'x') {
-      if (Math.abs(wacc) > W() * 0.2) { wlock = Date.now() + 450; go(wacc > 0 ? 1 : -1); } else setX(-W(), true);
+      if (Math.abs(wacc) > W() * 0.2) { wlock = Date.now() + 200; go(wacc > 0 ? 1 : -1); } else setX(-W(), true);
     }
     wacc = 0; wAxis = '';
   };
@@ -385,10 +388,16 @@ tailwind.config = { theme: { extend: { fontFamily: {
     if (s > 1) { tx -= e.deltaX; ty -= e.deltaY; fit(); applyZ(false); return; }
     if (busy || Date.now() < wlock) return;
     if (!wAxis) wAxis = Math.abs(e.deltaX) >= Math.abs(e.deltaY) ? 'x' : 'y';
-    wacc += wAxis === 'x' ? e.deltaX : e.deltaY;
-    if (wAxis === 'x') setX(-W() - clamp(wacc, -W(), W()), false);
-    else if (Math.abs(wacc) > 60) { wlock = Date.now() + 450; go(wacc > 0 ? 1 : -1); wacc = 0; wAxis = ''; return; }
-    clearTimeout(wt); wt = setTimeout(wend, 110);
+    if (wAxis === 'x') {
+      wacc += e.deltaX;
+      while (wacc >= W()) { rotate(1); wacc -= W(); }
+      while (wacc <= -W()) { rotate(-1); wacc += W(); }
+      setX(-W() - wacc, false);
+    } else {
+      wacc += e.deltaY;
+      if (Math.abs(wacc) > 60) { wlock = Date.now() + 450; go(wacc > 0 ? 1 : -1); wacc = 0; wAxis = ''; return; }
+    }
+    clearTimeout(wt); wt = setTimeout(wend, 500);
   }, { passive: false });
 
   addEventListener('keydown', (e) => {
