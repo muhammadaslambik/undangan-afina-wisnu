@@ -23,7 +23,7 @@ tailwind.config = { theme: { extend: { fontFamily: {
   sans: ['Jost', 'system-ui', 'sans-serif'] } } } };
 </script>
 <link rel="stylesheet" href="assets/css/style.css?v=8">
-<link rel="stylesheet" href="assets/css/scene.css?v=2">
+<link rel="stylesheet" href="assets/css/scene.css?v=3">
 <style>
 .gal{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
 @media(min-width:768px){.gal{grid-template-columns:repeat(3,1fr);gap:1rem}}
@@ -32,16 +32,24 @@ tailwind.config = { theme: { extend: { fontFamily: {
 .gal button:hover img{transform:scale(1.05)}
 #lb{position:fixed;inset:0;z-index:80;display:none;background:rgba(8,12,8,.96);touch-action:none;user-select:none;-webkit-user-select:none;overscroll-behavior:contain}
 #lb.on{display:block}
-.lb-view{position:absolute;inset:0;overflow:hidden;cursor:grab}
+.lb-view{position:absolute;top:0;bottom:0;left:50%;width:min(100vw,66.667vh);width:min(100vw,66.667dvh);transform:translateX(-50%);overflow:hidden;cursor:grab}
 .lb-track{display:flex;width:300%;height:100%;will-change:transform}
-.lb-s{flex:0 0 33.3333%;height:100%;display:flex;align-items:center;justify-content:center;padding:1rem 1rem 3.5rem}
-.lb-s img{max-width:100%;max-height:100%;object-fit:contain;border-radius:12px;box-shadow:0 10px 40px #000;pointer-events:none;-webkit-user-drag:none}
+.lb-s{flex:0 0 33.3333%;height:100%;display:flex;align-items:center;justify-content:center}
+.lb-s img{width:100%;height:auto;max-height:100%;object-fit:contain;pointer-events:none;-webkit-user-drag:none}
 .lb-btn{position:absolute;width:44px;height:44px;border-radius:50%;border:1px solid rgba(201,165,92,.6);background:rgba(13,19,13,.6);color:#e9d39a;font-size:24px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:opacity .25s}
 .lb-x{right:12px;top:calc(12px + env(safe-area-inset-top,0px))}
 .lb-prev{left:10px;top:50%;margin-top:-22px}
 .lb-next{right:10px;top:50%;margin-top:-22px}
 .lb-n{position:absolute;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom,0px));text-align:center;color:#e9d39a;font-size:13px;letter-spacing:.12em;transition:opacity .25s;pointer-events:none}
 .ui-off .lb-btn,.ui-off .lb-n{opacity:0;pointer-events:none}
+.wish-box{position:relative;height:min(34rem,78vh);height:min(34rem,78svh);overflow:hidden;border-radius:18px;border:1px solid rgba(201,165,92,.4);background:rgba(13,19,13,.55);cursor:pointer}
+.wish-box.on{cursor:auto;border-color:#c9a55c}
+.wish-list{height:100%;overflow:hidden;padding:.75rem;margin:0;list-style:none;touch-action:pan-y}
+.wish-box.on .wish-list{overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding-top:3.2rem}
+.wish-hint{position:absolute;left:0;right:0;bottom:0;padding:2.4rem .75rem .75rem;text-align:center;font-size:.8rem;color:#e9d39a;background:linear-gradient(transparent,rgba(13,19,13,.96));pointer-events:none}
+.wish-box.on .wish-hint{display:none}
+.wish-x{display:none;position:absolute;top:.5rem;right:.5rem;width:36px;height:36px;border-radius:50%;border:1px solid rgba(201,165,92,.6);background:rgba(13,19,13,.85);color:#e9d39a;font-size:22px;line-height:1;align-items:center;justify-content:center;z-index:2;cursor:pointer}
+.wish-box.on .wish-x{display:flex}
 </style>
 </head>
 <body>
@@ -71,7 +79,7 @@ tailwind.config = { theme: { extend: { fontFamily: {
   <svg class="corner br"><use href="#orn"/></svg>
 </div>
 
-<button id="musicBtn" aria-label="Putar atau jeda musik" class="fixed right-4 z-50 w-11 h-11 rounded-full card flex items-center justify-center shadow-lg" style="bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); color: var(--gold)">
+<button id="musicBtn" aria-label="Putar atau jeda musik" class="fixed right-4 z-50 w-11 h-11 rounded-full card flex items-center justify-center shadow-lg" style="bottom: calc(1.6rem + env(safe-area-inset-bottom, 0px)); color: var(--gold)">
   <svg id="icPlay" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
   <svg id="icPause" class="hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
 </button>
@@ -177,12 +185,16 @@ tailwind.config = { theme: { extend: { fontFamily: {
         <p id="formErr" class="text-sm hidden" style="color: #b4533c" role="alert"></p>
         <button type="submit" class="btn-gold w-full py-3.5 text-sm">Kirim Ucapan</button>
       </form>
-      <div class="mt-10">
+      <div class="mt-10 mx-auto" style="max-width:26rem">
         <div class="flex items-center justify-between mb-4">
           <h3 class="font-serif text-2xl font-semibold">Ucapan Tamu</h3>
           <span id="wishCount" class="text-sm" style="color: var(--muted)"></span>
         </div>
-        <ul id="wishList" class="space-y-3 max-h-[28rem] overflow-y-auto pr-1"></ul>
+        <div id="wishBox" class="wish-box" role="button" tabindex="0" aria-label="Ketuk untuk melihat semua ucapan">
+          <ul id="wishList" class="wish-list space-y-3"></ul>
+          <button type="button" id="wishClose" class="wish-x" aria-label="Tutup">×</button>
+          <div class="wish-hint">Ketuk untuk melihat ucapan lainnya</div>
+        </div>
       </div>
     </div>
   </section>
@@ -204,8 +216,8 @@ tailwind.config = { theme: { extend: { fontFamily: {
 
 <div id="toast" class="fixed left-1/2 -translate-x-1/2 px-5 py-2.5 rounded-full text-sm opacity-0 pointer-events-none transition-opacity duration-300 z-50" style="bottom: calc(5rem + env(safe-area-inset-bottom, 0px)); background: var(--sage-d); color: var(--bg)"></div>
 
-<script src="assets/js/config.js?v=8"></script>
-<script src="assets/js/main.js?v=9"></script>
+<script src="assets/js/config.js?v=9"></script>
+<script src="assets/js/main.js?v=10"></script>
 <script src="assets/js/scene.js?v=1"></script>
 <script>
 (() => {
@@ -274,12 +286,12 @@ tailwind.config = { theme: { extend: { fontFamily: {
 
   // Geser mengikuti jari/kursor secara langsung; ketuk (tanpa geser) untuk sembunyi/tampil navigasi
   let sx = 0, dx = 0, t0 = 0, drag = false, moved = false;
-  view.addEventListener('pointerdown', (e) => {
-    if (busy) return;
+  lb.addEventListener('pointerdown', (e) => {
+    if (busy || e.target.closest('.lb-btn')) return;
     drag = true; moved = false; sx = e.clientX; dx = 0; t0 = performance.now();
-    view.setPointerCapture(e.pointerId);
+    lb.setPointerCapture(e.pointerId);
   });
-  view.addEventListener('pointermove', (e) => {
+  lb.addEventListener('pointermove', (e) => {
     if (!drag) return;
     dx = e.clientX - sx;
     if (Math.abs(dx) > 6) moved = true;
@@ -292,12 +304,12 @@ tailwind.config = { theme: { extend: { fontFamily: {
     if (!cancel && (Math.abs(dx) > W() * 0.2 || speed > 0.5)) go(dx < 0 ? 1 : -1);
     else setX(-W(), true);
   };
-  view.addEventListener('pointerup', () => end(false));
-  view.addEventListener('pointercancel', () => end(true));
+  lb.addEventListener('pointerup', () => end(false));
+  lb.addEventListener('pointercancel', () => end(true));
 
   // Desktop: geser dua jari di trackpad (atau roda mouse)
   let wacc = 0, wlock = 0, wt;
-  view.addEventListener('wheel', (e) => {
+  lb.addEventListener('wheel', (e) => {
     e.preventDefault();
     const now = Date.now(); if (now < wlock) return;
     wacc += Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;

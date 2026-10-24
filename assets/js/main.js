@@ -165,8 +165,8 @@
     document.querySelectorAll('.reveal').forEach((n) => io.observe(n));
   };
 
-  /* ---------- RSVP & ucapan ---------- */
-  const wishes = [...C.sampleWishes];
+  /* ---------- RSVP & ucapan (database: Google Sheets lewat Apps Script) ---------- */
+  let wishes = C.rsvpEndpoint ? [] : [...C.sampleWishes];
   const renderWishes = (animateFirst = false) => {
     const list = $('#wishList');
     list.innerHTML = '';
@@ -181,6 +181,17 @@
       list.append(li);
     });
     $('#wishCount').textContent = wishes.length + ' ucapan';
+  };
+
+  const loadWishes = async () => {
+    if (!C.rsvpEndpoint) return;
+    try {
+      const r = await fetch(C.rsvpEndpoint + (C.rsvpEndpoint.includes('?') ? '&' : '?') + 't=' + Date.now());
+      const d = await r.json();
+      if (!Array.isArray(d)) return;
+      const list = $('#wishList'), st = list.scrollTop;
+      wishes = d; renderWishes(); list.scrollTop = st;
+    } catch (e) { /* gagal memuat: biarkan daftar apa adanya */ }
   };
 
   const sendToServer = (data) => {
@@ -204,10 +215,32 @@
       wishes.unshift(entry);
       renderWishes(true);
       sendToServer(entry);
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.disabled = true; setTimeout(() => (btn.disabled = false), 10000);
       e.target.reset();
       $('#wishList').scrollTop = 0;
       toast('Ucapan terkirim. Terima kasih!');
     });
+  };
+
+  /* Kolom ucapan: scroll halaman biasa sampai diketuk; setelah diketuk, scroll di dalam kolom */
+  const initWishBox = () => {
+    const box = $('#wishBox');
+    let on = false;
+    const open = () => {
+      if (on) return;
+      on = true; box.classList.add('on');
+      history.pushState({ wb: 1 }, '');
+      loadWishes();
+    };
+    const shut = () => { on = false; box.classList.remove('on'); };
+    const close = () => { if (!on) return; if (history.state && history.state.wb) history.back(); else shut(); };
+    box.addEventListener('click', (e) => { if (e.target.closest('#wishClose')) close(); else open(); });
+    box.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !on) open();
+      else if (e.key === 'Escape') close();
+    });
+    window.addEventListener('popstate', () => { if (on) shut(); });
   };
 
   /* ---------- Mulai ---------- */
@@ -219,7 +252,9 @@
   applyGuest();
   window.addEventListener('hashchange', applyGuest);
   renderWishes();
+  loadWishes();
   initRsvp();
+  initWishBox();
   tick(); timer = setInterval(tick, 1000);
   observeReveal();
 

@@ -20,14 +20,14 @@ window.INVITATION = {
       full: 'Afina Syuhudi, S.Psi.',
       role: 'Putri dari',
       parents: 'Bapak Suhudi & Ibu Saudah',
-      photo: 'assets/img/afina.jpg?v=2',
+      photo: 'assets/img/profil-afina.jpg',
     },
     groom: {
       short: 'Wisnu',
       full: 'Wisnu Setya Wardhana, S.Pd.',
       role: 'Putra dari',
       parents: 'Bapak Duwi Mulyono & Ibu Warniyati',
-      photo: 'assets/img/wisnu.jpg?v=2',
+      photo: 'assets/img/profil-wisnu.jpg',
     },
   },
 
@@ -72,13 +72,14 @@ window.INVITATION = {
     families: 'Dengan penuh cinta, keluarga besar Bpk. Suhudi & Bpk. Duwi Mulyono',
   },
 
-  music: 'assets/audio/janji-suci-yovie-nuno.mp3', // letakkan file mp3 Anda dengan nama ini di assets/audio/
+  music: 'assets/audio/janji-suci-yovie-nuno.mp3',
   musicTitle: 'Janji Suci - Yovie & Nuno',
   defaultGuest: 'Tamu Undangan',
 
-  // Opsional: URL Google Apps Script / webhook untuk menyimpan RSVP secara permanen.
+  // DATABASE UCAPAN: tempel URL "Web app" dari Google Apps Script di antara tanda kutip.
+  // Contoh: 'https://script.google.com/macros/s/XXXXXXXX/exec'
   // Kosongkan untuk mode demo (ucapan hanya tersimpan di halaman).
-  rsvpEndpoint: '',
+  rsvpEndpoint: 'https://script.google.com/macros/s/AKfycbwH01-gCNH3vSIj3X3J8Kl1axCrvnAswYZveS4rHG9N9g5qVY0RuqHG7ejzz9WAr2T7gg/exec',
 
   sampleWishes: [
     { name: 'Keluarga Besar', status: 'Hadir', text: 'Semoga menjadi keluarga sakinah, mawaddah, warahmah.', time: 'Contoh' },
