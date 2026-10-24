@@ -64,8 +64,7 @@ window.INVITATION = {
   // Hadiah digital. Tambah/hapus item sesuai kebutuhan.
   // Untuk QRIS: isi "qris" dengan path gambar, mis. 'assets/img/qris.png'
   gifts: [
-    { bank: 'Bank BCA', number: '1234567890', name: 'Afina Syuhudi', qris: null },
-    { bank: 'Bank Mandiri', number: '0987654321', name: 'Wisnu Setya Wardhana', qris: null },
+    { bank: 'Bank BTN', number: '20601610034869', name: 'Afina Syuhudi', qris: null },
   ],
 
   footer: {
