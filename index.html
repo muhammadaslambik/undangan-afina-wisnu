@@ -30,14 +30,18 @@ tailwind.config = { theme: { extend: { fontFamily: {
 .gal button{display:block;padding:0;border:1px solid rgba(201,165,92,.45);border-radius:14px;overflow:hidden;aspect-ratio:2/3;background:#0d130d;cursor:zoom-in}
 .gal img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 22%;transition:transform .6s ease}
 .gal button:hover img{transform:scale(1.05)}
-#lb{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;background:rgba(8,12,8,.95);padding:1rem;touch-action:none;user-select:none;-webkit-user-select:none}
-#lb.on{display:flex}
-#lb img{max-width:100%;max-height:calc(100% - 56px);object-fit:contain;border-radius:12px;box-shadow:0 10px 40px #000}
-.lb-btn{position:absolute;width:44px;height:44px;border-radius:50%;border:1px solid rgba(201,165,92,.6);background:rgba(13,19,13,.6);color:#e9d39a;font-size:24px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer}
+#lb{position:fixed;inset:0;z-index:80;display:none;background:rgba(8,12,8,.96);touch-action:none;user-select:none;-webkit-user-select:none;overscroll-behavior:contain}
+#lb.on{display:block}
+.lb-view{position:absolute;inset:0;overflow:hidden;cursor:grab}
+.lb-track{display:flex;width:300%;height:100%;will-change:transform}
+.lb-s{flex:0 0 33.3333%;height:100%;display:flex;align-items:center;justify-content:center;padding:1rem 1rem 3.5rem}
+.lb-s img{max-width:100%;max-height:100%;object-fit:contain;border-radius:12px;box-shadow:0 10px 40px #000;pointer-events:none;-webkit-user-drag:none}
+.lb-btn{position:absolute;width:44px;height:44px;border-radius:50%;border:1px solid rgba(201,165,92,.6);background:rgba(13,19,13,.6);color:#e9d39a;font-size:24px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:opacity .25s}
 .lb-x{right:12px;top:calc(12px + env(safe-area-inset-top,0px))}
 .lb-prev{left:10px;top:50%;margin-top:-22px}
 .lb-next{right:10px;top:50%;margin-top:-22px}
-.lb-n{position:absolute;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom,0px));text-align:center;color:#e9d39a;font-size:13px;letter-spacing:.12em}
+.lb-n{position:absolute;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom,0px));text-align:center;color:#e9d39a;font-size:13px;letter-spacing:.12em;transition:opacity .25s;pointer-events:none}
+.ui-off .lb-btn,.ui-off .lb-n{opacity:0;pointer-events:none}
 </style>
 </head>
 <body>
@@ -205,45 +209,107 @@ tailwind.config = { theme: { extend: { fontFamily: {
 <script src="assets/js/scene.js?v=1"></script>
 <script>
 (() => {
+  const a = document.getElementById('bgm');
+  if (!a) return;
+  let resume = false;
+  const hide = () => { if (!a.paused) { resume = true; a.pause(); } };
+  const show = () => { if (resume) { resume = false; a.play().catch(() => {}); } };
+  document.addEventListener('visibilitychange', () => (document.hidden ? hide() : show()));
+  addEventListener('pagehide', hide);
+  addEventListener('pageshow', show);
+})();
+</script>
+<script>
+(() => {
   const btns = [...document.querySelectorAll('.gal button')];
-  const srcs = btns.map((b) => b.dataset.full);
+  const srcs = btns.map((b) => b.dataset.full), N = srcs.length, mod = (k) => (k + N) % N;
   const lb = document.createElement('div'); lb.id = 'lb';
-  lb.innerHTML = '<img alt="Foto mempelai"><button type="button" class="lb-btn lb-x" aria-label="Tutup">×</button><button type="button" class="lb-btn lb-prev" aria-label="Foto sebelumnya">‹</button><button type="button" class="lb-btn lb-next" aria-label="Foto berikutnya">›</button><div class="lb-n"></div>';
+  const slide = '<div class="lb-s"><img alt="Foto mempelai" draggable="false"></div>';
+  lb.innerHTML = '<div class="lb-view"><div class="lb-track">' + slide + slide + slide + '</div></div>'
+    + '<button type="button" class="lb-btn lb-x" aria-label="Tutup">×</button>'
+    + '<button type="button" class="lb-btn lb-prev" aria-label="Foto sebelumnya">‹</button>'
+    + '<button type="button" class="lb-btn lb-next" aria-label="Foto berikutnya">›</button><div class="lb-n"></div>';
   document.body.append(lb);
-  const im = lb.querySelector('img'), num = lb.querySelector('.lb-n');
-  let i = 0, isOpen = false;
-  const show = (k, dir = 0) => {
-    i = (k + srcs.length) % srcs.length;
-    im.src = srcs[i]; num.textContent = (i + 1) + ' / ' + srcs.length;
-    if (dir) im.animate([{ transform: 'translateX(' + dir * 48 + 'px)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 260, easing: 'ease-out' });
-    [i + 1, i - 1].forEach((j) => { new Image().src = srcs[(j + srcs.length) % srcs.length]; });
+  const view = lb.querySelector('.lb-view'), track = lb.querySelector('.lb-track'), num = lb.querySelector('.lb-n');
+  let i = 0, isOpen = false, busy = false;
+  const W = () => view.clientWidth;
+  const setX = (x, anim) => {
+    track.style.transition = anim ? 'transform .28s cubic-bezier(.22,.8,.3,1)' : 'none';
+    track.style.transform = 'translate3d(' + x + 'px,0,0)';
+  };
+  const label = () => { num.textContent = (i + 1) + ' / ' + N; };
+  const fill = () => {
+    const im = track.querySelectorAll('img');
+    im[0].src = srcs[mod(i - 1)]; im[1].src = srcs[i]; im[2].src = srcs[mod(i + 1)]; label();
+  };
+  const go = (dir) => {
+    if (busy) return; busy = true;
+    setX(-W() - dir * W(), true);
+    let fin = false;
+    const done = () => {
+      if (fin) return; fin = true;
+      i = mod(i + dir);
+      if (dir > 0) { const s = track.firstElementChild; track.append(s); s.firstElementChild.src = srcs[mod(i + 1)]; }
+      else { const s = track.lastElementChild; track.prepend(s); s.firstElementChild.src = srcs[mod(i - 1)]; }
+      label(); setX(-W(), false); busy = false;
+    };
+    track.addEventListener('transitionend', done, { once: true });
+    setTimeout(done, 400);
   };
   const open = (k) => {
     if (!isOpen) {
       history.pushState({ lb: 1 }, '');
-      isOpen = true; lb.classList.add('on'); document.documentElement.style.overflow = 'hidden';
+      isOpen = true; lb.classList.remove('ui-off'); lb.classList.add('on'); document.documentElement.style.overflow = 'hidden';
     }
-    show(k);
+    i = k; fill(); setX(-W(), false);
   };
   const hide = () => { isOpen = false; lb.classList.remove('on'); document.documentElement.style.overflow = ''; };
   const close = () => { if (!isOpen) return; if (history.state && history.state.lb) history.back(); else hide(); };
   window.addEventListener('popstate', () => { if (isOpen) hide(); });
+  window.addEventListener('resize', () => { if (isOpen) setX(-W(), false); });
   btns.forEach((b, k) => b.addEventListener('click', () => open(k)));
   lb.querySelector('.lb-x').addEventListener('click', close);
-  lb.querySelector('.lb-prev').addEventListener('click', (e) => { e.stopPropagation(); show(i - 1, -1); });
-  lb.querySelector('.lb-next').addEventListener('click', (e) => { e.stopPropagation(); show(i + 1, 1); });
-  lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
-  let x0 = 0, y0 = 0;
-  lb.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
-  lb.addEventListener('touchend', (e) => {
-    const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
-    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) show(i + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
-  }, { passive: true });
+  lb.querySelector('.lb-prev').addEventListener('click', () => go(-1));
+  lb.querySelector('.lb-next').addEventListener('click', () => go(1));
+
+  // Geser mengikuti jari/kursor secara langsung; ketuk (tanpa geser) untuk sembunyi/tampil navigasi
+  let sx = 0, dx = 0, t0 = 0, drag = false, moved = false;
+  view.addEventListener('pointerdown', (e) => {
+    if (busy) return;
+    drag = true; moved = false; sx = e.clientX; dx = 0; t0 = performance.now();
+    view.setPointerCapture(e.pointerId);
+  });
+  view.addEventListener('pointermove', (e) => {
+    if (!drag) return;
+    dx = e.clientX - sx;
+    if (Math.abs(dx) > 6) moved = true;
+    if (moved) setX(-W() + dx, false);
+  });
+  const end = (cancel) => {
+    if (!drag) return; drag = false;
+    if (!moved) { if (!cancel) lb.classList.toggle('ui-off'); return; }
+    const speed = Math.abs(dx) / Math.max(performance.now() - t0, 1);
+    if (!cancel && (Math.abs(dx) > W() * 0.2 || speed > 0.5)) go(dx < 0 ? 1 : -1);
+    else setX(-W(), true);
+  };
+  view.addEventListener('pointerup', () => end(false));
+  view.addEventListener('pointercancel', () => end(true));
+
+  // Desktop: geser dua jari di trackpad (atau roda mouse)
+  let wacc = 0, wlock = 0, wt;
+  view.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const now = Date.now(); if (now < wlock) return;
+    wacc += Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    if (Math.abs(wacc) > 50) { go(wacc > 0 ? 1 : -1); wacc = 0; wlock = now + 450; }
+    clearTimeout(wt); wt = setTimeout(() => { wacc = 0; }, 200);
+  }, { passive: false });
+
   addEventListener('keydown', (e) => {
     if (!isOpen) return;
     if (e.key === 'Escape') close();
-    else if (e.key === 'ArrowRight') show(i + 1, 1);
-    else if (e.key === 'ArrowLeft') show(i - 1, -1);
+    else if (e.key === 'ArrowRight') go(1);
+    else if (e.key === 'ArrowLeft') go(-1);
   });
 })();
 </script>
