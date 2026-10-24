@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#1b2119">
-<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#f6f0e4">
+<meta name="color-scheme" content="light">
 <title>Undangan Pernikahan</title>
 <meta property="og:title" content="Undangan Pernikahan Afina & Wisnu">
 <meta property="og:description" content="Ahad, 15 November 2026. Kami mengundang Anda di hari bahagia kami.">
@@ -23,25 +23,9 @@ tailwind.config = { theme: { extend: { fontFamily: {
   sans: ['Jost', 'system-ui', 'sans-serif'] } } } };
 </script>
 <link rel="stylesheet" href="assets/css/style.css?v=8">
-<link rel="stylesheet" href="assets/css/scene.css?v=3">
+<link rel="stylesheet" href="assets/css/scene.css?v=4">
+<link rel="stylesheet" href="assets/css/floral.css?v=1">
 <style>
-.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
-@media(min-width:768px){.gal{grid-template-columns:repeat(3,1fr);gap:1rem}}
-.gal button{display:block;padding:0;border:1px solid rgba(201,165,92,.45);border-radius:14px;overflow:hidden;aspect-ratio:2/3;background:#0d130d;cursor:zoom-in}
-.gal img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 22%;transition:transform .6s ease}
-.gal button:hover img{transform:scale(1.05)}
-#lb{position:fixed;inset:0;z-index:80;display:none;background:rgba(8,12,8,.96);touch-action:none;user-select:none;-webkit-user-select:none;overscroll-behavior:contain}
-#lb.on{display:block}
-.lb-view{position:absolute;top:0;bottom:0;left:50%;width:min(100vw,66.667vh);width:min(100vw,66.667dvh);transform:translateX(-50%);overflow:hidden;cursor:grab}
-.lb-track{display:flex;width:300%;height:100%;will-change:transform}
-.lb-s{flex:0 0 33.3333%;height:100%;display:flex;align-items:center;justify-content:center}
-.lb-s img{width:100%;height:auto;max-height:100%;object-fit:contain;pointer-events:none;-webkit-user-drag:none;transform-origin:50% 50%;will-change:transform}
-.lb-btn{position:absolute;width:44px;height:44px;border-radius:50%;border:1px solid rgba(201,165,92,.6);background:rgba(13,19,13,.6);color:#e9d39a;font-size:24px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:opacity .25s}
-.lb-x{right:12px;top:calc(12px + env(safe-area-inset-top,0px))}
-.lb-prev{left:10px;top:50%;margin-top:-22px}
-.lb-next{right:10px;top:50%;margin-top:-22px}
-.lb-n{position:absolute;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom,0px));text-align:center;color:#e9d39a;font-size:13px;letter-spacing:.12em;transition:opacity .25s;pointer-events:none}
-.ui-off .lb-btn,.ui-off .lb-n{opacity:0;pointer-events:none}
 .wish-box{position:relative;height:min(34rem,78vh);height:min(34rem,78svh);overflow:hidden;border-radius:18px;border:1px solid rgba(201,165,92,.4);background:rgba(13,19,13,.55);cursor:pointer}
 .wish-box.on{cursor:auto;border-color:#c9a55c}
 .wish-list{height:100%;overflow:hidden;padding:.75rem;margin:0;list-style:none;touch-action:pan-y}
@@ -86,7 +70,7 @@ tailwind.config = { theme: { extend: { fontFamily: {
 <audio id="bgm" loop preload="none"></audio>
 
 <!-- HERO / COVER -->
-<header id="hero" class="hero bgp relative flex items-center justify-center text-center px-5" style="--img:url(/assets/img/foto-hitam.jpg);--pos:center 22%;--ov:.66">
+<header id="hero" class="hero bgp relative flex items-center justify-center text-center px-5" style="--img:url(/assets/img/bunga-emas.jpg);--bgc:#f7efe6">
   <div id="scene" class="scene" aria-hidden="true"></div>
   <div class="hero-inner relative w-full max-w-xl">
     <p class="font-serif italic hero-kicker" style="color: var(--muted)">Undangan Pernikahan</p>
@@ -106,7 +90,7 @@ tailwind.config = { theme: { extend: { fontFamily: {
 </header>
 
 <main id="content">
-  <section class="px-6 py-20 text-center bgp" style="--img:url(/assets/img/foto-pantai.jpg);--pos:center 30%">
+  <section class="px-6 py-20 text-center bgp" style="--img:url(/assets/img/bunga-biru.jpg);--bgc:#faf3e8">
     <div class="max-w-xl mx-auto reveal">
       <p class="verse-ar" dir="rtl" lang="ar" data-bind="verse.arabic"></p>
       <p class="font-serif italic text-xl leading-relaxed mt-6" style="color: var(--sage-d)">“<span data-bind="verse.text"></span>”</p>
@@ -125,14 +109,14 @@ tailwind.config = { theme: { extend: { fontFamily: {
     </div>
   </section>
 
-  <section class="px-6 py-20 bgp" style="--img:url(/assets/img/foto-siger.jpg);--pos:center 25%">
+  <section class="px-6 py-20 bgp" style="--img:url(/assets/img/bunga-pink.jpg);--bgc:#f8f4ee">
     <div class="max-w-3xl mx-auto text-center">
       <h2 class="font-script text-5xl reveal" style="color: var(--sage-d)">Mempelai</h2>
       <div id="coupleGrid" class="grid md:grid-cols-2 gap-14 mt-14"></div>
     </div>
   </section>
 
-  <section class="px-6 py-20 bgp" style="--img:url(/assets/img/foto-studio.jpg);--pos:center 25%">
+  <section class="px-6 py-20 bgp" style="--img:url(/assets/img/bunga-emas.jpg);--bgc:#f7efe6">
     <div class="max-w-3xl mx-auto text-center">
       <h2 class="font-script text-5xl reveal" style="color: var(--gold)">Rangkaian Acara</h2>
       <p class="mt-3 font-serif text-xl reveal" style="color: var(--muted)" data-bind="date.label"></p>
@@ -147,22 +131,8 @@ tailwind.config = { theme: { extend: { fontFamily: {
     </div>
   </section>
 
-  <section class="px-6 py-20" style="background: var(--sage-l)">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="font-script text-5xl reveal" style="color: var(--gold)">Galeri Foto</h2>
-      <p class="mt-3 text-sm reveal" style="color: var(--muted)">Sepenggal momen bahagia kami.</p>
-      <div class="gal mt-10">
-      <button type="button" class="reveal" data-full="assets/img/foto-hitam.jpg" aria-label="Perbesar foto"><img src="assets/img/foto-hitam.jpg" alt="Foto mempelai" loading="lazy" decoding="async"></button>
-      <button type="button" class="reveal" data-full="assets/img/foto-emas.jpg" aria-label="Perbesar foto"><img src="assets/img/foto-emas.jpg" alt="Foto mempelai" loading="lazy" decoding="async"></button>
-      <button type="button" class="reveal" data-full="assets/img/foto-pantai.jpg" aria-label="Perbesar foto"><img src="assets/img/foto-pantai.jpg" alt="Foto mempelai" loading="lazy" decoding="async"></button>
-      <button type="button" class="reveal" data-full="assets/img/foto-siger.jpg" aria-label="Perbesar foto"><img src="assets/img/foto-siger.jpg" alt="Foto mempelai" loading="lazy" decoding="async"></button>
-      <button type="button" class="reveal" data-full="assets/img/foto-studio.jpg" aria-label="Perbesar foto"><img src="assets/img/foto-studio.jpg" alt="Foto mempelai" loading="lazy" decoding="async"></button>
-      <button type="button" class="reveal" data-full="assets/img/foto-putih.jpg" aria-label="Perbesar foto"><img src="assets/img/foto-putih.jpg" alt="Foto mempelai" loading="lazy" decoding="async"></button>
-      </div>
-    </div>
-  </section>
 
-  <section class="px-6 py-20 bgp" style="--img:url(/assets/img/foto-putih.jpg);--pos:center 25%">
+  <section class="px-6 py-20 bgp" style="--img:url(/assets/img/bunga-biru.jpg);--bgc:#faf3e8">
     <div class="max-w-xl mx-auto">
       <h2 class="font-script text-5xl text-center reveal" style="color: var(--sage-d)">Konfirmasi &amp; Ucapan</h2>
       <p class="text-center text-sm mt-3 reveal" style="color: var(--muted)">Kabari kami apakah Anda dapat hadir dan tinggalkan doa restu.</p>
@@ -199,7 +169,7 @@ tailwind.config = { theme: { extend: { fontFamily: {
     </div>
   </section>
 
-  <section class="px-6 py-20 bgp" style="--img:url(/assets/img/foto-emas.jpg);--pos:center 25%">
+  <section class="px-6 py-20 bgp" style="--img:url(/assets/img/bunga-pink.jpg);--bgc:#f8f4ee">
     <div class="max-w-2xl mx-auto text-center">
       <h2 class="font-script text-5xl reveal" style="color: var(--gold)">Hadiah Digital</h2>
       <p class="mt-4 text-sm leading-relaxed max-w-md mx-auto reveal" style="color: var(--muted)">Kehadiran dan doa Anda sudah menjadi hadiah terindah. Bila ingin berbagi kebahagiaan lebih, Anda dapat mengirimkannya melalui salah satu cara berikut.</p>
@@ -208,7 +178,7 @@ tailwind.config = { theme: { extend: { fontFamily: {
   </section>
 </main>
 
-<footer class="hero bgp px-6 py-20 text-center" style="--img:url(/assets/img/foto-hitam.jpg);--pos:center 28%">
+<footer class="hero bgp px-6 py-20 text-center" style="--img:url(/assets/img/bunga-emas.jpg);--bgc:#f7efe6">
   <p class="font-serif italic text-lg max-w-md mx-auto leading-relaxed" style="color: var(--muted)" data-bind="footer.closing"></p>
   <p class="font-script text-5xl mt-8" style="color: var(--sage-d)"><span data-bind="couple.bride.short"></span> &amp; <span data-bind="couple.groom.short"></span></p>
   <p class="text-xs mt-8" style="color: var(--muted)" data-bind="footer.families"></p>
@@ -229,183 +199,6 @@ tailwind.config = { theme: { extend: { fontFamily: {
   document.addEventListener('visibilitychange', () => (document.hidden ? hide() : show()));
   addEventListener('pagehide', hide);
   addEventListener('pageshow', show);
-})();
-</script>
-<script>
-(() => {
-  const btns = [...document.querySelectorAll('.gal button')];
-  const srcs = btns.map((b) => b.dataset.full), N = srcs.length, mod = (k) => (k + N) % N;
-  const lb = document.createElement('div'); lb.id = 'lb';
-  const slide = '<div class="lb-s"><img alt="Foto mempelai" draggable="false"></div>';
-  lb.innerHTML = '<div class="lb-view"><div class="lb-track">' + slide + slide + slide + '</div></div>'
-    + '<button type="button" class="lb-btn lb-x" aria-label="Tutup">×</button>'
-    + '<button type="button" class="lb-btn lb-prev" aria-label="Foto sebelumnya">‹</button>'
-    + '<button type="button" class="lb-btn lb-next" aria-label="Foto berikutnya">›</button><div class="lb-n"></div>';
-  document.body.append(lb);
-  const view = lb.querySelector('.lb-view'), track = lb.querySelector('.lb-track'), num = lb.querySelector('.lb-n');
-  let i = 0, isOpen = false, busy = false;
-  let s = 1, tx = 0, ty = 0; // zoom dan geseran foto yang sedang tampil
-  const W = () => view.clientWidth;
-  const cur = () => track.children[1].firstElementChild;
-  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
-  const rel = (cx, cy) => { const r = view.getBoundingClientRect(); return [cx - (r.left + r.width / 2), cy - (r.top + r.height / 2)]; };
-  const setX = (x, anim) => {
-    track.style.transition = anim ? 'transform .28s cubic-bezier(.22,.8,.3,1)' : 'none';
-    track.style.transform = 'translate3d(' + x + 'px,0,0)';
-  };
-  const applyZ = (anim) => {
-    const im = cur();
-    im.style.transition = anim ? 'transform .2s ease-out' : 'none';
-    im.style.transform = 'translate3d(' + tx + 'px,' + ty + 'px,0) scale(' + s + ')';
-  };
-  const fit = () => {
-    const im = cur();
-    const mx = Math.max(0, (im.offsetWidth * s - view.clientWidth) / 2), my = Math.max(0, (im.offsetHeight * s - view.clientHeight) / 2);
-    tx = clamp(tx, -mx, mx); ty = clamp(ty, -my, my);
-  };
-  const resetZ = (anim) => { s = 1; tx = ty = 0; applyZ(anim); };
-  const zoomAt = (ns, px, py) => {
-    ns = clamp(ns, 1, 4);
-    const k = ns / s; tx = px - k * (px - tx); ty = py - k * (py - ty); s = ns;
-    if (s < 1.02) { s = 1; tx = ty = 0; } else fit();
-  };
-  const label = () => { num.textContent = (i + 1) + ' / ' + N; };
-  const fill = () => {
-    const im = track.querySelectorAll('img');
-    im[0].src = srcs[mod(i - 1)]; im[1].src = srcs[i]; im[2].src = srcs[mod(i + 1)]; label();
-  };
-  const rotate = (dir) => {
-    i = mod(i + dir);
-    if (dir > 0) { const e = track.firstElementChild; track.append(e); e.firstElementChild.src = srcs[mod(i + 1)]; }
-    else { const e = track.lastElementChild; track.prepend(e); e.firstElementChild.src = srcs[mod(i - 1)]; }
-    label();
-  };
-  const go = (dir) => {
-    if (busy) return; busy = true;
-    if (s !== 1) resetZ(false);
-    setX(-W() - dir * W(), true);
-    let fin = false;
-    const done = () => {
-      if (fin) return; fin = true;
-      rotate(dir); setX(-W(), false); busy = false;
-    };
-    track.addEventListener('transitionend', done, { once: true });
-    setTimeout(done, 400);
-  };
-  const open = (k) => {
-    if (!isOpen) {
-      history.pushState({ lb: 1 }, '');
-      isOpen = true; lb.classList.remove('ui-off'); lb.classList.add('on'); document.documentElement.style.overflow = 'hidden';
-    }
-    i = k; fill(); setX(-W(), false); resetZ(false);
-  };
-  const hide = () => { isOpen = false; ptrs.clear(); mode = 'none'; lb.classList.remove('on'); document.documentElement.style.overflow = ''; };
-  const close = () => { if (!isOpen) return; if (history.state && history.state.lb) history.back(); else hide(); };
-  window.addEventListener('popstate', () => { if (isOpen) hide(); });
-  window.addEventListener('resize', () => { if (isOpen) { setX(-W(), false); fit(); applyZ(false); } });
-  btns.forEach((b, k) => b.addEventListener('click', () => open(k)));
-  lb.querySelector('.lb-x').addEventListener('click', close);
-  lb.querySelector('.lb-prev').addEventListener('click', () => go(-1));
-  lb.querySelector('.lb-next').addEventListener('click', () => go(1));
-
-  // Sentuhan / kursor: geser antar foto, cubit 2 jari untuk zoom, geser saat zoom, ketuk 2x untuk zoom
-  const ptrs = new Map();
-  let mode = 'none', sx = 0, sy = 0, dx = 0, t0 = 0, moved = false, tx0 = 0, ty0 = 0;
-  let pd0 = 1, ps0 = 1, pm0 = [0, 0], lastTap = 0, lastX = 0, lastY = 0;
-  const pts = () => [...ptrs.values()];
-  const dist = () => { const [a, b] = pts(); return Math.hypot(a.x - b.x, a.y - b.y) || 1; };
-  const mid = () => { const [a, b] = pts(); return rel((a.x + b.x) / 2, (a.y + b.y) / 2); };
-  const tap = (e) => {
-    const now = Date.now();
-    if (now - lastTap < 300 && Math.hypot(e.clientX - lastX, e.clientY - lastY) < 30) {
-      lastTap = 0; lb.classList.toggle('ui-off');
-      if (s > 1) resetZ(true); else { const [px, py] = rel(e.clientX, e.clientY); zoomAt(2.5, px, py); applyZ(true); }
-      return;
-    }
-    lastTap = now; lastX = e.clientX; lastY = e.clientY; lb.classList.toggle('ui-off');
-  };
-  lb.addEventListener('pointerdown', (e) => {
-    if (busy || e.target.closest('.lb-btn')) return;
-    lb.setPointerCapture(e.pointerId);
-    ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY });
-    if (ptrs.size === 1) {
-      mode = s > 1 ? 'pan' : 'swipe'; moved = false; sx = e.clientX; sy = e.clientY; dx = 0; t0 = performance.now(); tx0 = tx; ty0 = ty;
-    } else if (ptrs.size === 2) {
-      if (mode === 'swipe') setX(-W(), true);
-      mode = 'pinch'; moved = true; pd0 = dist(); ps0 = s; pm0 = mid(); tx0 = tx; ty0 = ty;
-    }
-  });
-  lb.addEventListener('pointermove', (e) => {
-    const p = ptrs.get(e.pointerId); if (!p) return;
-    p.x = e.clientX; p.y = e.clientY;
-    if (mode === 'pinch' && ptrs.size === 2) {
-      const m = mid(), ns = clamp(ps0 * dist() / pd0, 1, 4), k = ns / ps0;
-      s = ns; tx = m[0] - k * (pm0[0] - tx0); ty = m[1] - k * (pm0[1] - ty0);
-      fit(); applyZ(false);
-    } else if (mode === 'pan') {
-      if (Math.hypot(e.clientX - sx, e.clientY - sy) > 6) moved = true;
-      tx = tx0 + (e.clientX - sx); ty = ty0 + (e.clientY - sy); fit(); applyZ(false);
-    } else if (mode === 'swipe') {
-      dx = e.clientX - sx; if (Math.abs(dx) > 6) moved = true;
-      if (moved) setX(-W() + dx, false);
-    }
-  });
-  const up = (e, cancel) => {
-    if (!ptrs.has(e.pointerId)) return;
-    ptrs.delete(e.pointerId);
-    if (mode === 'pinch') {
-      if (s < 1.02) resetZ(true);
-      if (ptrs.size === 1) {
-        const r = pts()[0]; mode = s > 1 ? 'pan' : 'none'; moved = true; sx = r.x; sy = r.y; tx0 = tx; ty0 = ty;
-      } else mode = 'none';
-      return;
-    }
-    if (ptrs.size) return;
-    const was = mode; mode = 'none';
-    if (was === 'swipe') {
-      if (!moved) { if (!cancel) tap(e); return; }
-      const speed = Math.abs(dx) / Math.max(performance.now() - t0, 1);
-      if (!cancel && (Math.abs(dx) > W() * 0.2 || speed > 0.5)) go(dx < 0 ? 1 : -1); else setX(-W(), true);
-    } else if (was === 'pan' && !moved && !cancel) tap(e);
-  };
-  lb.addEventListener('pointerup', (e) => up(e, false));
-  lb.addEventListener('pointercancel', (e) => up(e, true));
-
-  // Trackpad desktop: foto menempel ke dua jari (1:1) dan baru berpindah setelah gerakan berhenti
-  let wacc = 0, wAxis = '', wlock = 0, wt;
-  const wend = () => {
-    if (wAxis === 'x') {
-      if (Math.abs(wacc) > W() * 0.2) { wlock = Date.now() + 200; go(wacc > 0 ? 1 : -1); } else setX(-W(), true);
-    }
-    wacc = 0; wAxis = '';
-  };
-  lb.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    if (e.ctrlKey) {
-      const [px, py] = rel(e.clientX, e.clientY);
-      zoomAt(s * Math.exp(-clamp(e.deltaY, -25, 25) * 0.01), px, py); applyZ(false); return;
-    }
-    if (s > 1) { tx -= e.deltaX; ty -= e.deltaY; fit(); applyZ(false); return; }
-    if (busy || Date.now() < wlock) return;
-    if (!wAxis) wAxis = Math.abs(e.deltaX) >= Math.abs(e.deltaY) ? 'x' : 'y';
-    if (wAxis === 'x') {
-      wacc += e.deltaX;
-      while (wacc >= W()) { rotate(1); wacc -= W(); }
-      while (wacc <= -W()) { rotate(-1); wacc += W(); }
-      setX(-W() - wacc, false);
-    } else {
-      wacc += e.deltaY;
-      if (Math.abs(wacc) > 60) { wlock = Date.now() + 450; go(wacc > 0 ? 1 : -1); wacc = 0; wAxis = ''; return; }
-    }
-    clearTimeout(wt); wt = setTimeout(wend, 500);
-  }, { passive: false });
-
-  addEventListener('keydown', (e) => {
-    if (!isOpen) return;
-    if (e.key === 'Escape') close();
-    else if (e.key === 'ArrowRight') go(1);
-    else if (e.key === 'ArrowLeft') go(-1);
-  });
 })();
 </script>
 </body>

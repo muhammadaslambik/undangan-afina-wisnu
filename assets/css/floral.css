@@ -1,0 +1,21 @@
+/* Tema bunga: latar krem berbunga, teks gelap. Dimuat setelah style.css dan scene.css */
+:root,html[data-theme="dark"],html[data-theme="light"]{--bg:#f6f0e4!important;--sage:#a9b8a4!important;--sage-d:#35566b!important;--sage-l:rgba(255,255,255,.28)!important;--gold:#a67c2e!important;--muted:#5b6760!important;--line:rgba(53,86,107,.25)!important;color-scheme:light}
+html,body{background:#f6f0e4!important;color:#2b3a36!important}
+.bgp{position:relative;isolation:isolate;background:var(--bgc,#f6f0e4)!important}
+.bgp::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--img) center/cover no-repeat!important}
+main .bgp{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center}
+@media(min-width:900px){.bgp::before{background-size:auto 100%!important}}
+.card{background:rgba(255,255,255,.66)!important;border-color:rgba(166,124,46,.38)!important;color:#2b3a36;box-shadow:0 6px 22px rgba(53,86,107,.12)!important}
+.field{background:rgba(255,255,255,.85)!important;color:#2b3a36!important;border-color:rgba(53,86,107,.3)!important}
+.field::placeholder{color:#7b857f!important}
+.btn-line{color:#35566b!important;border-color:rgba(53,86,107,.5)!important}
+.guest{background:rgba(255,255,255,.55)!important;border-color:rgba(166,124,46,.5)!important}
+.guest-name{color:#35566b!important}
+.page-frame{border-color:rgba(166,124,46,.55)!important}
+.corner{color:#a67c2e!important}
+.wish-box{background:rgba(255,255,255,.55)!important;border-color:rgba(166,124,46,.45)!important}
+.wish-hint{color:#35566b!important;background:linear-gradient(transparent,rgba(246,240,228,.96))!important}
+.wish-x{background:rgba(255,255,255,.9)!important;color:#35566b!important;border-color:rgba(166,124,46,.6)!important}
+/* Cover: hanya burung yang terbang; bintang, bulan, dan awan malam disembunyikan */
+.sc-star,.sc-moon,.sc-cloud,.scene::before{display:none!important}
+.sc-bird{color:#5f7f94!important}
