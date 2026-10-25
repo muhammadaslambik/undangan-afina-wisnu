@@ -237,7 +237,6 @@ if(hideGift){
   document.getElementById('giftSection').style.display='none';
   const gd=document.getElementById('giftDivider'); if(gd) gd.style.display='none';
   const gm=document.getElementById('giftMenuItem'); if(gm) gm.style.display='none';
-  const gd=document.getElementById('giftDivider'); if(gd) gd.style.display='none';
 }
 let guest=searchParams.get('to');
 if(!guest){const m=fullHref.match(/[?&]to=([^&]+)/); if(m) guest=decodeURIComponent(m[1].replace(/\+/g,' '));}
@@ -284,6 +283,7 @@ function tick(){const diff=TARGET-new Date();if(diff<=0) return;const d=Math.flo
 setInterval(tick,1000);tick();
 
 // Reveal
+document.querySelectorAll('#hero .reveal').forEach(el=>el.classList.add('in'));
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
