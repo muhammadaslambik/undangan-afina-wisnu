@@ -1,75 +1,80 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#7A8C6D">
+<meta name="theme-color" content="#1b2119">
 <meta property="og:title" content="Undangan Pernikahan Afina & Wisnu">
-<meta property="og:description" content="Ahad, 15 November 2026 - Mohon doa restu.">
+<meta property="og:description" content="Ahad, 15 November 2026 - Ds. Loireng, Sayung, Demak">
+<meta property="og:url" content="https://afina-wisnu.pages.dev/">
 <link rel="icon" href="assets/img/profil-afina.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>tailwind.config={theme:{extend:{fontFamily:{script:['Pinyon Script','cursive'],serif:['Cormorant Garamond','serif'],sans:['Jost','sans-serif']}}}}</script>
 <style>
-:root{--sage:#7A8C6D;--sage-d:#4A5A40;--gold:#C9A55C;--cream:#FFFCF8;--ink:#1B2119;--muted:#6B7A68}
+:root{--bg:#121812;--bg2:#1b2119;--card:#222d22;--card2:#2a352a;--sage:#8A9A7B;--sage-d:#C2D0B6;--gold:#C9A55C;--gold2:#E9D39A;--cream:#FFFCF8;--ink:#E8E6E1;--muted:#9AA89A}
 *{scroll-behavior:smooth}
-body{background:var(--cream);color:var(--ink);font-family:'Jost',sans-serif;overflow:hidden}
+body{background:var(--bg);color:var(--ink);font-family:'Jost',sans-serif;overflow:hidden}
 body.opened{overflow:auto}
-.btn-gold{background:linear-gradient(135deg,var(--gold),#E9D39A);color:#1B2119;padding:.9rem 2rem;border-radius:9999px;font-weight:500;transition:.3s;box-shadow:0 8px 24px rgba(201,165,92,.3)}
-.btn-gold:hover{transform:translateY(-2px)}
-.card{background:rgba(255,255,255,.9);backdrop-filter:blur(12px);border:1px solid rgba(201,165,92,.25);border-radius:20px;box-shadow:0 8px 32px rgba(27,33,25,.06)}
-#hero{position:fixed;inset:0;z-index:50;background:var(--cream);display:flex;align-items:center;justify-content:center;transition:transform .9s cubic-bezier(.77,0,.175,1)}
-#hero.hide{transform:translateY(-100%)}
-.corner{position:absolute;width:72px;height:72px;color:var(--gold);opacity:.65}
-.corner.tl{top:14px;left:14px}.corner.tr{top:14px;right:14px;transform:scaleX(-1)}.corner.bl{bottom:14px;left:14px;transform:scaleY(-1)}.corner.br{bottom:14px;right:14px;transform:scale(-1)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#121812;padding:.9rem 2rem;border-radius:9999px;font-weight:600;transition:.3s;box-shadow:0 8px 24px rgba(201,165,92,.25)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(201,165,92,.4)}
+.card{background:var(--card);border:1px solid rgba(201,165,92,.22);border-radius:20px;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+#hero{min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;position:relative;background:var(--bg);z-index:10}
+.corner{position:absolute;width:72px;height:72px;color:var(--gold);opacity:.55}
+.corner.tl{top:14px;left:14px}.corner.tr{top:14px;right:14px;transform:scaleX(-1)}
 .divider{display:flex;align-items:center;gap:12px;justify-content:center;margin:1rem 0}
 .divider::before,.divider::after{content:'';height:1px;width:48px;background:linear-gradient(to right,transparent,var(--gold))}
-.field{width:100%;padding:.85rem 1rem;border:1px solid rgba(27,33,25,.12);border-radius:12px;background:white;outline:none}
+.field{width:100%;padding:.85rem 1rem;border:1px solid rgba(201,165,92,.2);border-radius:12px;background:var(--card2);color:var(--ink);outline:none}
+.field::placeholder{color:var(--muted)}
 .field:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,165,92,.15)}
 .reveal{opacity:0;transform:translateY(24px);transition:.8s}
 .reveal.in{opacity:1;transform:none}
-.wish-box{position:relative;height:min(34rem,78vh);overflow:hidden;border-radius:18px;border:1px solid rgba(201,165,92,.4);background:rgba(255,255,255,.9)}
-.wish-box.on{cursor:auto}
-.wish-list{height:100%;overflow:hidden;padding:.75rem;list-style:none}
+.wish-box{position:relative;height:min(34rem,78vh);overflow:hidden;border-radius:18px;border:1px solid rgba(201,165,92,.3);background:var(--card)}
 .wish-box.on .wish-list{overflow-y:auto;padding-top:3.2rem}
-.wish-hint{position:absolute;left:0;right:0;bottom:0;padding:2.4rem .75rem .75rem;text-align:center;font-size:.8rem;color:#8a7a4a;background:linear-gradient(transparent,rgba(255,252,248,.96));pointer-events:none}
+.wish-list{height:100%;overflow:hidden;padding:.75rem;list-style:none}
+.wish-hint{position:absolute;left:0;right:0;bottom:0;padding:2.4rem .75rem .75rem;text-align:center;font-size:.8rem;color:var(--gold2);background:linear-gradient(transparent,var(--card));pointer-events:none}
 .wish-box.on .wish-hint{display:none}
-.wish-x{display:none;position:absolute;top:.5rem;right:.5rem;width:36px;height:36px;border-radius:50%;border:1px solid rgba(201,165,92,.6);background:white;color:var(--gold);font-size:22px;align-items:center;justify-content:center;z-index:2;cursor:pointer}
+.wish-x{display:none;position:absolute;top:.5rem;right:.5rem;width:36px;height:36px;border-radius:50%;border:1px solid rgba(201,165,92,.6);background:var(--card2);color:var(--gold);font-size:22px;align-items:center;justify-content:center;z-index:2;cursor:pointer}
 .wish-box.on .wish-x{display:flex}
+#backToCover{position:fixed;left:50%;top:12px;transform:translateX(-50%) translateY(-20px);z-index:60;opacity:0;pointer-events:none;transition:.3s}
+#backToCover.show{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body>
 
 <svg width="0" height="0" style="position:absolute"><symbol id="orn" viewBox="0 0 80 80"><g fill="none" stroke="currentColor" stroke-width="1"><path d="M6 58C6 28 28 6 58 6"/><path d="M14 46C14 28 28 14 46 14" opacity=".55"/></g><g fill="currentColor"><circle cx="6" cy="58" r="1.8"/><circle cx="58" cy="6" r="1.8"/><path d="M30 19C34 12.5 41 11 46 13.5C42 18.5 36 20.5 30 19Z" opacity=".85"/><path d="M19 30C12.5 34 11 41 13.5 46C18.5 42 20.5 36 19 30Z" opacity=".85"/></g></symbol></svg>
 
-<div class="fixed inset-0 pointer-events-none z-[1]">
-<svg class="corner tl"><use href="#orn"/></svg><svg class="corner tr"><use href="#orn"/></svg><svg class="corner bl"><use href="#orn"/></svg><svg class="corner br"><use href="#orn"/></svg>
+<button id="backToCover" class="card px-4 py-2 text-sm">↑ Kembali ke Cover</button>
+
+<div class="fixed inset-0 pointer-events-none z-[1]" id="ornaments">
+<svg class="corner tl"><use href="#orn"/></svg><svg class="corner tr"><use href="#orn"/></svg>
 </div>
 
 <button id="musicBtn" aria-label="musik" class="fixed right-4 z-[60] w-11 h-11 rounded-full card flex items-center justify-center shadow-lg" style="bottom:calc(1.5rem + env(safe-area-inset-bottom,0px));color:var(--gold)"><span id="icPlay">▶</span><span id="icPause" class="hidden">⏸</span></button>
 <audio id="bgm" loop preload="auto" src="assets/audio/janji-suci-yovie-nuno.mp3"></audio>
 
-<!-- COVER / HERO - MENUTUP SEMUA -->
+<!-- COVER - TIDAK HILANG, BISA DI-SCROLL BALIK -->
 <header id="hero">
-<div class="relative w-full max-w-xl px-6 text-center">
-<p class="font-serif italic tracking-wide" style="color:var(--muted)">Undangan Pernikahan</p>
-<h1 class="font-script text-[3.6rem] sm:text-[4.8rem] leading-none mt-4" style="color:var(--sage-d)">Afina <span class="font-serif italic text-[2.2rem] mx-1" style="color:var(--gold)">&</span> Wisnu</h1>
-<div class="divider"><span class="font-serif tracking-[0.18em] text-sm">AHAD, 15 NOVEMBER 2026</span></div>
-<p class="text-[14px] leading-relaxed max-w-[26rem] mx-auto" style="color:var(--muted)">Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Anda untuk menyaksikan hari bahagia kami.</p>
-<div class="mt-10 card p-6">
+<div class="relative w-full max-w-xl">
+<p class="font-serif italic tracking-wide reveal" style="color:var(--muted)">Undangan Pernikahan</p>
+<h1 class="font-script text-[3.6rem] sm:text-[5rem] leading-none mt-4 reveal" style="color:var(--sage-d)">Afina <span class="font-serif italic text-[2.2rem] mx-1" style="color:var(--gold)">&</span> Wisnu</h1>
+<div class="divider reveal"><span class="font-serif tracking-[0.18em] text-sm">AHAD, 15 NOVEMBER 2026</span></div>
+<p class="text-[14px] leading-relaxed max-w-[26rem] mx-auto reveal" style="color:var(--muted)">Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Anda untuk menyaksikan hari bahagia kami.</p>
+<div class="mt-10 card p-6 reveal">
 <p class="font-serif italic text-sm" style="color:var(--muted)">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
-<p id="guestName" class="font-serif text-[1.6rem] font-semibold mt-2">Tamu Undangan</p>
+<p id="guestName" class="font-serif text-[1.7rem] font-semibold mt-2">Tamu Undangan</p>
 <button id="openBtn" class="btn-gold mt-6 w-full">Buka Undangan</button>
+<p class="text-[11px] mt-3" style="color:var(--muted)">Mohon maaf bila ada kesalahan penulisan nama/gelar</p>
 </div>
 </div>
 </header>
 
-<!-- MAIN CONTENT - BARU MUNCUL SETELAH BUKA -->
-<main id="content" class="relative z-10 pt-8">
+<!-- MAIN CONTENT - MUNCUL SETELAH BUKA, TAPI COVER MASIH BISA DI-SCROLL KE ATAS -->
+<main id="content" class="relative z-10">
 <section class="px-6 py-20 text-center">
 <div class="max-w-xl mx-auto reveal">
-<p class="text-[18px]" dir="rtl" style="font-family:'Amiri',serif">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِقَوْمٍ يَتَفَكَّرُونَ</p>
+<p class="text-[18px] leading-relaxed" dir="rtl" style="font-family:'Amiri',serif">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِقَوْمٍ يَتَفَكَّرُونَ</p>
 <p class="font-serif italic text-[16px] leading-relaxed mt-6" style="color:var(--sage-d)">“Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.”</p>
 <p class="mt-3 text-sm font-semibold" style="color:var(--gold)">QS. Ar-Rum: 21</p>
 </div>
@@ -90,12 +95,12 @@ body.opened{overflow:auto}
 <h2 class="font-script text-5xl reveal" style="color:var(--sage-d)">Mempelai</h2>
 <div class="grid md:grid-cols-2 gap-8 mt-12">
 <div class="card p-8 text-center reveal">
-<img src="assets/img/profil-afina.jpg?v=3" alt="Afina" class="w-40 h-40 rounded-full mx-auto object-cover border-[3px] border-[#E9D39A] shadow-lg">
+<img src="assets/img/profil-afina.jpg?v=3" alt="Afina" class="w-40 h-40 rounded-full mx-auto object-cover border-[3px] border-[#C9A55C] shadow-lg">
 <h3 class="font-serif text-2xl font-semibold mt-6">Afina Syuhudi, S.Psi.</h3>
 <p class="text-sm mt-2" style="color:var(--muted)">Putri dari</p><p class="font-medium">Bapak Suhudi & Ibu Saudah</p>
 </div>
 <div class="card p-8 text-center reveal">
-<img src="assets/img/profil-wisnu.jpg?v=3" alt="Wisnu" class="w-40 h-40 rounded-full mx-auto object-cover border-[3px] border-[#E9D39A] shadow-lg">
+<img src="assets/img/profil-wisnu.jpg?v=3" alt="Wisnu" class="w-40 h-40 rounded-full mx-auto object-cover border-[3px] border-[#C9A55C] shadow-lg">
 <h3 class="font-serif text-2xl font-semibold mt-6">Wisnu Setya Wardhana, S.Pd.</h3>
 <p class="text-sm mt-2" style="color:var(--muted)">Putra dari</p><p class="font-medium">Bapak Duwi Mulyono & Ibu Warniyati</p>
 </div>
@@ -106,9 +111,11 @@ body.opened{overflow:auto}
 <section class="px-6 py-20">
 <div class="max-w-3xl mx-auto text-center">
 <h2 class="font-script text-5xl reveal" style="color:var(--gold)">Rangkaian Acara</h2>
-<div class="grid md:grid-cols-2 gap-6 mt-12 text-left">
-<div class="card p-7 reveal"><h3 class="font-serif text-xl font-semibold">💍 Akad Nikah</h3><p class="mt-3 text-sm"><b>09.00 WIB – 11.00 WIB</b><br>Rumah Mempelai Wanita<br><span style="color:var(--muted)">Ds. Loireng, Kec. Sayung, Kab. Demak, RT: 02/RW: 02, Jawa Tengah.</span></p><a href="https://maps.app.goo.gl/vB1MUiRTvxw3Rq5v5?g_st=am" target="_blank" class="btn-gold inline-block mt-4 text-sm py-2.5">Lihat Peta</a></div>
-<div class="card p-7 reveal"><h3 class="font-serif text-xl font-semibold">🎉 Resepsi</h3><p class="mt-3 text-sm"><b>11.00 – Selesai</b><br>Rumah Mempelai Wanita<br><span style="color:var(--muted)">Ds. Loireng, Kec. Sayung, Kab. Demak, RT: 02/RW: 02, Jawa Tengah.</span></p><a href="https://maps.app.goo.gl/vB1MUiRTvxw3Rq5v5?g_st=am" target="_blank" class="btn-gold inline-block mt-4 text-sm py-2.5">Lihat Peta</a></div>
+<p class="mt-3 font-serif text-xl reveal" style="color:var(--muted)">Ahad, 15 November 2026</p>
+<p class="mt-2 text-sm reveal" style="color:var(--muted)">Hari Bahagia Kami</p>
+<div class="grid md:grid-cols-2 gap-6 mt-10 text-left">
+<div class="card p-7 reveal"><h3 class="font-serif text-xl font-semibold">💍 Akad Nikah</h3><p class="mt-3 text-sm"><b>09.00 WIB – 11.00 WIB</b><br>Ahad, 15 November 2026<br>Rumah Mempelai Wanita<br><span style="color:var(--muted)">Ds. Loireng, Kec. Sayung, Kab. Demak, RT: 02/RW: 02, Jawa Tengah.</span></p><a href="https://maps.app.goo.gl/vB1MUiRTvxw3Rq5v5?g_st=am" target="_blank" class="btn-gold inline-block mt-4 text-sm py-2.5">Lihat Peta</a></div>
+<div class="card p-7 reveal"><h3 class="font-serif text-xl font-semibold">🎉 Resepsi</h3><p class="mt-3 text-sm"><b>11.00 – Selesai</b><br>Ahad, 15 November 2026<br>Rumah Mempelai Wanita<br><span style="color:var(--muted)">Ds. Loireng, Kec. Sayung, Kab. Demak, RT: 02/RW: 02, Jawa Tengah.</span></p><a href="https://maps.app.goo.gl/vB1MUiRTvxw3Rq5v5?g_st=am" target="_blank" class="btn-gold inline-block mt-4 text-sm py-2.5">Lihat Peta</a></div>
 </div>
 <div class="max-w-xl mx-auto card p-6 mt-10 reveal text-center"><h3 class="font-serif font-semibold">Protokol Kesehatan</h3><p class="text-sm mt-2" style="color:var(--muted)">Demi kenyamanan bersama, mohon tetap menjaga kebersihan tangan, mengenakan masker bila sedang kurang sehat, dan menjaga jarak yang nyaman selama acara berlangsung.</p></div>
 </div>
@@ -121,15 +128,14 @@ body.opened{overflow:auto}
 <form id="rsvpForm" class="card p-6 sm:p-8 mt-10 space-y-5 reveal">
 <div><label class="text-sm">Nama</label><input id="nama" class="field mt-1.5" maxlength="60" placeholder="Nama lengkap"></div>
 <div class="grid grid-cols-2 gap-3">
-<label class="relative"><input type="radio" name="hadir" value="Hadir" checked class="peer absolute opacity-0"><span class="block text-center py-3 rounded-full border peer-checked:bg-[#7A8C6D] peer-checked:text-white transition">Hadir</span></label>
-<label class="relative"><input type="radio" name="hadir" value="Tidak Hadir" class="peer absolute opacity-0"><span class="block text-center py-3 rounded-full border peer-checked:bg-[#7A8C6D] peer-checked:text-white transition">Tidak Hadir</span></label>
+<label class="relative"><input type="radio" name="hadir" value="Hadir" checked class="peer absolute opacity-0"><span class="block text-center py-3 rounded-full border peer-checked:bg-[#8A9A7B] peer-checked:text-[#121812] peer-checked:border-[#8A9A7B] transition" style="border-color:rgba(201,165,92,.3)">Hadir</span></label>
+<label class="relative"><input type="radio" name="hadir" value="Tidak Hadir" class="peer absolute opacity-0"><span class="block text-center py-3 rounded-full border peer-checked:bg-[#8A9A7B] peer-checked:text-[#121812] peer-checked:border-[#8A9A7B] transition" style="border-color:rgba(201,165,92,.3)">Tidak Hadir</span></label>
 </div>
 <div><label class="text-sm">Ucapan & doa restu</label><textarea id="ucapan" rows="4" maxlength="300" class="field mt-1.5 resize-none" placeholder="Tulis ucapan"></textarea></div>
-<p id="formErr" class="text-sm hidden text-red-600"></p>
+<p id="formErr" class="text-sm hidden text-red-400"></p>
 <button type="submit" class="btn-gold w-full">Kirim Ucapan</button>
 <p id="formStatus" class="text-xs text-center mt-2" style="color:var(--muted)"></p>
 </form>
-
 <div class="mt-10" style="max-width:26rem;margin-left:auto;margin-right:auto">
 <div class="flex justify-between items-center mb-4"><h3 class="font-serif text-2xl font-semibold">Ucapan Tamu</h3><span id="wishCount" class="text-sm" style="color:var(--muted)">Memuat...</span></div>
 <div id="wishBox" class="wish-box" role="button" tabindex="0">
@@ -141,7 +147,7 @@ body.opened{overflow:auto}
 </div>
 </section>
 
-<section class="px-6 py-20">
+<section id="giftSection" class="px-6 py-20">
 <div class="max-w-2xl mx-auto text-center">
 <h2 class="font-script text-5xl gold reveal">Hadiah Digital</h2>
 <p class="mt-4 text-sm max-w-md mx-auto reveal" style="color:var(--muted)">Kehadiran dan doa Anda sudah menjadi hadiah terindah.</p>
@@ -157,45 +163,83 @@ body.opened{overflow:auto}
 </footer>
 </main>
 
-<div id="toast" class="fixed left-1/2 -translate-x-1/2 bottom-24 px-5 py-2.5 rounded-full text-sm opacity-0 pointer-events-none transition-all z-[70]" style="background:#1B2119;color:white"></div>
+<div id="toast" class="fixed left-1/2 -translate-x-1/2 bottom-24 px-5 py-2.5 rounded-full text-sm opacity-0 pointer-events-none transition-all z-[70]" style="background:#E8E6E1;color:#121812"></div>
 
 <script>
 const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwH01-gCNH3vSIj3X3J8Kl1axCrvnAswYZveS4rHG9N9g5qVY0RuqHG7ejzz9WAr2T7gg/exec';
 const TARGET = new Date('2026-11-15T09:00:00+07:00');
+const DEFAULT_URL = 'https://afina-wisnu.pages.dev/';
 
-// === Guest Name ===
-const params = new URLSearchParams(location.search);
-const to = params.get('to');
-if(to){ const clean=to.replace(/\+/g,' '); document.getElementById('guestName').textContent=clean; const namaEl=document.getElementById('nama'); if(namaEl) namaEl.value=clean; }
+// === PARSE URL: support ?to=, ?hadiah=0, /hadiah=0, /hadiah=0?to= ===
+const fullHref = window.location.href;
+const searchParams = new URLSearchParams(window.location.search);
+const pathname = window.location.pathname;
 
-// === COVER LOGIC - KUNCI SCROLL SAMPAI BUKA ===
+// Detect hadiah=0 anywhere (query or path like /hadiah=0 or /hadiah=0?to=)
+const hideGift = fullHref.includes('hadiah=0');
+if(hideGift){
+  const giftSec = document.getElementById('giftSection');
+  if(giftSec) giftSec.style.display='none';
+  console.log('Hadiah Digital disembunyikan karena hadiah=0');
+}
+
+// Guest name parsing: handle ?to= and also /hadiah=0?to=
+let guest = searchParams.get('to');
+if(!guest){
+  // Try parse from href manually for cases like /hadiah=0?to=Bayti
+  const match = fullHref.match(/[?&]to=([^&]+)/);
+  if(match) guest = decodeURIComponent(match[1].replace(/\+/g,' '));
+}
+if(guest){
+  const clean = guest.replace(/\+/g,' ').trim();
+  document.getElementById('guestName').textContent = clean;
+  const namaEl = document.getElementById('nama');
+  if(namaEl) namaEl.value = clean;
+}
+
+// === COVER LOGIC: LOCKED until Buka, but can scroll back up after ===
 const hero = document.getElementById('hero');
 const openBtn = document.getElementById('openBtn');
 const bgm = document.getElementById('bgm');
 const musicBtn = document.getElementById('musicBtn');
 const icPlay = document.getElementById('icPlay');
 const icPause = document.getElementById('icPause');
+const backToCoverBtn = document.getElementById('backToCover');
 let musicPlaying = false;
+let isOpened = false;
 
 function playMusic(){
-  if(!bgm.src) { toast('File lagu tidak ditemukan di assets/audio/'); return; }
+  if(!bgm.getAttribute('src')){ toast('File lagu belum ada'); return; }
   bgm.play().then(()=>{ musicPlaying=true; icPlay.classList.add('hidden'); icPause.classList.remove('hidden'); }).catch(()=>{ toast('Klik ikon musik untuk memutar'); });
 }
 function pauseMusic(){ bgm.pause(); musicPlaying=false; icPlay.classList.remove('hidden'); icPause.classList.add('hidden'); }
 
 openBtn.addEventListener('click', ()=>{
-  hero.classList.add('hide');
+  isOpened = true;
   document.body.classList.add('opened');
-  setTimeout(()=>{ hero.style.display='none'; },900);
   playMusic();
-  document.getElementById('content').scrollIntoView({behavior:'auto'});
-  setTimeout(()=>{ document.getElementById('content').scrollIntoView({behavior:'smooth'}); },100);
+  // Smooth scroll to content
+  document.getElementById('content').scrollIntoView({behavior:'smooth'});
+  // Show back button after a delay
+  setTimeout(()=>{ checkScroll(); },1000);
 });
 
 musicBtn.addEventListener('click', ()=>{ musicPlaying?pauseMusic():playMusic(); });
 
-// Pause saat tab hidden
-document.addEventListener('visibilitychange', ()=>{ if(document.hidden && musicPlaying){ bgm.pause(); } else if(!document.hidden && musicPlaying){ bgm.play().catch(()=>{});} });
+// Back to cover button
+backToCoverBtn.addEventListener('click', ()=>{
+  hero.scrollIntoView({behavior:'smooth'});
+});
+function checkScroll(){
+  if(!isOpened) return;
+  if(window.scrollY > hero.offsetHeight/2){
+    backToCoverBtn.classList.add('show');
+  } else {
+    backToCoverBtn.classList.remove('show');
+  }
+}
+window.addEventListener('scroll', checkScroll);
+document.addEventListener('visibilitychange', ()=>{ if(document.hidden && musicPlaying){ bgm.pause(); } else if(!document.hidden && musicPlaying && isOpened){ bgm.play().catch(()=>{});} });
 
 // === Countdown ===
 function tick(){
@@ -216,10 +260,22 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 // === Toast ===
 function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.style.opacity='1'; setTimeout(()=>t.style.opacity='0',2500); }
 window.copyRek=()=>{ navigator.clipboard.writeText('20601610034869').then(()=>toast('No. rekening disalin!')); };
-window.copyLink=()=>{ navigator.clipboard.writeText(location.href).then(()=>toast('Link disalin!')); };
-window.shareWA=()=>{ const txt=`Undangan Pernikahan Afina & Wisnu - Ahad, 15 Nov 2026\n${location.href}`; window.open(`https://wa.me/?text=${encodeURIComponent(txt)}`,'_blank'); };
+window.copyLink=()=>{ 
+  // Always copy default url + guest if any
+  let url = DEFAULT_URL;
+  if(guest) url += '?to=' + encodeURIComponent(guest);
+  if(hideGift) url += (guest?'&':'?') + 'hadiah=0';
+  navigator.clipboard.writeText(url).then(()=>toast('Link disalin!')); 
+};
+window.shareWA=()=>{ 
+  let url = DEFAULT_URL;
+  if(guest) url += '?to=' + encodeURIComponent(guest);
+  if(hideGift) url += (guest?'&':'?') + 'hadiah=0';
+  const txt=`Undangan Pernikahan Afina & Wisnu - Ahad, 15 Nov 2026\n${url}`; 
+  window.open(`https://wa.me/?text=${encodeURIComponent(txt)}`,'_blank'); 
+};
 
-// === RSVP DATABASE ASLI - FETCH + POST ===
+// === RSVP DATABASE ASLI ===
 let wishes=[];
 async function fetchWishes(){
   try{
@@ -227,7 +283,6 @@ async function fetchWishes(){
     const data=await res.json();
     if(Array.isArray(data)){ wishes=data; }
   }catch(e){
-    console.log('Gagal fetch, pakai contoh',e);
     wishes=[
       {name:'Keluarga Besar',status:'Hadir',text:'Semoga menjadi keluarga sakinah, mawaddah, warahmah.',time:'Contoh'},
       {name:'Sahabat Kuliah',status:'Hadir',text:'Selamat menempuh hidup baru!',time:'Contoh'}
@@ -240,21 +295,16 @@ function renderWishes(){
   wishes.slice().reverse().forEach(w=>{
     const li=document.createElement('li'); li.className='card p-4 text-left';
     const name=w.name||w.nama||'Tamu'; const status=w.status||w.hadir||'Hadir'; const text=w.text||w.ucapan||''; const time=w.time||w.waktu||'';
-    li.innerHTML=`<div class="flex justify-between"><span class="font-semibold text-sm">${name}</span><span class="text-[11px] px-2 py-0.5 rounded-full ${status==='Hadir'?'bg-green-100 text-green-700':'bg-red-100 text-red-700'}">${status}</span></div><p class="text-sm mt-2 leading-relaxed">${text}</p><p class="text-[11px] mt-2" style="color:var(--muted)">${time}</p>`;
+    li.innerHTML=`<div class="flex justify-between"><span class="font-semibold text-sm">${name}</span><span class="text-[11px] px-2 py-0.5 rounded-full ${status==='Hadir'?'bg-green-900 text-green-200':'bg-red-900 text-red-200'}">${status}</span></div><p class="text-sm mt-2 leading-relaxed">${text}</p><p class="text-[11px] mt-2" style="color:var(--muted)">${time}</p>`;
     list.appendChild(li);
   });
   document.getElementById('wishCount').textContent=`${wishes.length} ucapan`;
 }
 fetchWishes();
-
-// wish box expand
 const wishBox=document.getElementById('wishBox');
 const wishClose=document.getElementById('wishClose');
 wishBox.addEventListener('click',()=>{ wishBox.classList.add('on'); });
-wishBox.addEventListener('keydown',(e)=>{ if(e.key==='Enter') wishBox.classList.add('on'); });
 wishClose.addEventListener('click',(e)=>{ e.stopPropagation(); wishBox.classList.remove('on'); });
-
-// form submit - POST ke endpoint asli
 document.getElementById('rsvpForm').addEventListener('submit', async e=>{
   e.preventDefault();
   const nama=document.getElementById('nama').value.trim();
@@ -266,18 +316,16 @@ document.getElementById('rsvpForm').addEventListener('submit', async e=>{
   err.classList.add('hidden');
   statusEl.textContent='Mengirim...';
   const payload={name:nama,status:hadir,text:ucapan,time:new Date().toLocaleString('id-ID')};
-  // tampilkan langsung
   wishes.push(payload); renderWishes();
   try{
     await fetch(RSVP_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)});
     statusEl.textContent='Tersimpan ke database!';
     toast('Terima kasih! Ucapan tersimpan.');
-  }catch(errFetch){
-    statusEl.textContent='Gagal simpan online, tapi muncul di halaman.';
-    toast('Tersimpan lokal, cek koneksi Sheets.');
+  }catch{
+    statusEl.textContent='Gagal simpan online.';
   }
   e.target.reset();
-  if(to) document.getElementById('nama').value=to.replace(/\+/g,' ');
+  if(guest) document.getElementById('nama').value=guest;
   setTimeout(()=>statusEl.textContent='',3000);
 });
 </script>
