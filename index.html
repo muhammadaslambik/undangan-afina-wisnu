@@ -24,7 +24,7 @@ tailwind.config = { theme: { extend: { fontFamily: {
 </script>
 <link rel="stylesheet" href="assets/css/style.css?v=8">
 <link rel="stylesheet" href="assets/css/scene.css?v=4">
-<link rel="stylesheet" href="assets/css/floral.css?v=2">
+<link rel="stylesheet" href="assets/css/floral.css?v=3">
 <style>
 .wish-box{position:relative;height:min(34rem,78vh);height:min(34rem,78svh);overflow:hidden;border-radius:18px;border:1px solid rgba(201,165,92,.4);background:rgba(13,19,13,.55);cursor:pointer}
 .wish-box.on{cursor:auto;border-color:#c9a55c}
@@ -70,7 +70,7 @@ tailwind.config = { theme: { extend: { fontFamily: {
 <audio id="bgm" loop preload="none"></audio>
 
 <!-- HERO / COVER -->
-<header id="hero" class="hero bgp relative flex items-center justify-center text-center px-5" style="--img-top:url(/assets/img/gelap-emas-atas.jpg);--img-bot:url(/assets/img/gelap-emas-bawah.jpg);--ht:0.533;--hb:0.444;--bgc:#141a13">
+<header id="hero" class="hero bgp relative flex items-center justify-center text-center px-5" data-fl="emas">
   <div id="scene" class="scene" aria-hidden="true"></div>
   <div class="hero-inner relative w-full max-w-xl">
     <p class="font-serif italic hero-kicker" style="color: var(--muted)">Undangan Pernikahan</p>
@@ -90,7 +90,7 @@ tailwind.config = { theme: { extend: { fontFamily: {
 </header>
 
 <main id="content">
-  <section class="px-6 py-20 text-center bgp" style="--img-top:url(/assets/img/gelap-biru-atas.jpg);--img-bot:url(/assets/img/gelap-biru-bawah.jpg);--ht:0.456;--hb:0.478;--bgc:#141a13">
+  <section class="px-6 py-20 text-center bgp" data-fl="biru">
     <div class="max-w-xl mx-auto reveal">
       <p class="verse-ar" dir="rtl" lang="ar" data-bind="verse.arabic"></p>
       <p class="font-serif italic text-xl leading-relaxed mt-6" style="color: var(--sage-d)">“<span data-bind="verse.text"></span>”</p>
@@ -109,14 +109,14 @@ tailwind.config = { theme: { extend: { fontFamily: {
     </div>
   </section>
 
-  <section class="px-6 py-20 bgp" style="--img-top:url(/assets/img/gelap-pink-atas.jpg);--img-bot:url(/assets/img/gelap-pink-bawah.jpg);--ht:0.444;--hb:0.456;--bgc:#141a13">
+  <section class="px-6 py-20 bgp" data-fl="emas">
     <div class="max-w-3xl mx-auto text-center">
       <h2 class="font-script text-5xl reveal" style="color: var(--sage-d)">Mempelai</h2>
       <div id="coupleGrid" class="grid md:grid-cols-2 gap-14 mt-14"></div>
     </div>
   </section>
 
-  <section class="px-6 py-20 bgp" style="--img-top:url(/assets/img/gelap-emas-atas.jpg);--img-bot:url(/assets/img/gelap-emas-bawah.jpg);--ht:0.533;--hb:0.444;--bgc:#141a13">
+  <section class="px-6 py-20 bgp" data-fl="biru">
     <div class="max-w-3xl mx-auto text-center">
       <h2 class="font-script text-5xl reveal" style="color: var(--gold)">Rangkaian Acara</h2>
       <p class="mt-3 font-serif text-xl reveal" style="color: var(--muted)" data-bind="date.label"></p>
@@ -132,7 +132,7 @@ tailwind.config = { theme: { extend: { fontFamily: {
   </section>
 
 
-  <section class="px-6 py-20 bgp" style="--img-top:url(/assets/img/gelap-biru-atas.jpg);--img-bot:url(/assets/img/gelap-biru-bawah.jpg);--ht:0.456;--hb:0.478;--bgc:#141a13">
+  <section class="px-6 py-20 bgp" data-fl="emas">
     <div class="max-w-xl mx-auto">
       <h2 class="font-script text-5xl text-center reveal" style="color: var(--sage-d)">Konfirmasi &amp; Ucapan</h2>
       <p class="text-center text-sm mt-3 reveal" style="color: var(--muted)">Kabari kami apakah Anda dapat hadir dan tinggalkan doa restu.</p>
@@ -169,7 +169,7 @@ tailwind.config = { theme: { extend: { fontFamily: {
     </div>
   </section>
 
-  <section class="px-6 py-20 bgp" style="--img-top:url(/assets/img/gelap-pink-atas.jpg);--img-bot:url(/assets/img/gelap-pink-bawah.jpg);--ht:0.444;--hb:0.456;--bgc:#141a13">
+  <section class="px-6 py-20 bgp" data-fl="biru">
     <div class="max-w-2xl mx-auto text-center">
       <h2 class="font-script text-5xl reveal" style="color: var(--gold)">Hadiah Digital</h2>
       <p class="mt-4 text-sm leading-relaxed max-w-md mx-auto reveal" style="color: var(--muted)">Kehadiran dan doa Anda sudah menjadi hadiah terindah. Bila ingin berbagi kebahagiaan lebih, Anda dapat mengirimkannya melalui salah satu cara berikut.</p>
@@ -178,7 +178,7 @@ tailwind.config = { theme: { extend: { fontFamily: {
   </section>
 </main>
 
-<footer class="hero bgp px-6 py-20 text-center" style="--img-top:url(/assets/img/gelap-emas-atas.jpg);--img-bot:url(/assets/img/gelap-emas-bawah.jpg);--ht:0.533;--hb:0.444;--bgc:#141a13">
+<footer class="hero bgp px-6 py-20 text-center" data-fl="emas">
   <p class="font-serif italic text-lg max-w-md mx-auto leading-relaxed" style="color: var(--muted)" data-bind="footer.closing"></p>
   <p class="font-script text-5xl mt-8" style="color: var(--sage-d)"><span data-bind="couple.bride.short"></span> &amp; <span data-bind="couple.groom.short"></span></p>
   <p class="text-xs mt-8" style="color: var(--muted)" data-bind="footer.families"></p>

@@ -1,11 +1,13 @@
-/* Latar bunga mode gelap: bunga hanya di strip atas dan bawah tiap halaman; isi diberi jarak sehingga tidak menimpa tulisan.
-   Dimuat setelah style.css dan scene.css */
-.bgp{--fw:min(100vw,480px);position:relative;isolation:isolate;background:var(--bgc,#141a13)!important;padding-top:calc(var(--fw)*var(--ht,.45)*.7 + .75rem)!important;padding-bottom:calc(var(--fw)*var(--hb,.45)*.7 + .75rem)!important}
-.bgp::before,.bgp::after{content:"";position:absolute;left:50%;width:var(--fw);transform:translateX(-50%);z-index:-1;background-repeat:no-repeat;background-size:100% 100%;pointer-events:none;-webkit-mask-composite:source-in;mask-composite:intersect}
-.bgp::before{top:0;height:calc(var(--fw)*var(--ht,.45));background-image:var(--img-top);-webkit-mask-image:linear-gradient(to bottom,#000 75%,transparent),linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(to bottom,#000 75%,transparent),linear-gradient(to right,transparent,#000 7%,#000 93%,transparent)}
-.bgp::after{bottom:0;height:calc(var(--fw)*var(--hb,.45));background-image:var(--img-bot);-webkit-mask-image:linear-gradient(to top,#000 75%,transparent),linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(to top,#000 75%,transparent),linear-gradient(to right,transparent,#000 7%,#000 93%,transparent)}
+/* Latar bunga mode gelap: bunga kecil hanya di empat sudut tiap halaman. Dimuat setelah style.css dan scene.css */
+[data-fl=biru]{--c-tl:url(/assets/img/sudut-biru-tl.webp);--c-tr:url(/assets/img/sudut-biru-tr.webp);--c-bl:url(/assets/img/sudut-biru-bl.webp);--c-br:url(/assets/img/sudut-biru-br.webp)}
+[data-fl=emas]{--c-tl:url(/assets/img/sudut-emas-tl.webp);--c-tr:url(/assets/img/sudut-emas-tr.webp);--c-bl:url(/assets/img/sudut-emas-bl.webp);--c-br:url(/assets/img/sudut-emas-br.webp)}
+.bgp{--cs:clamp(96px,28vw,150px);position:relative;isolation:isolate;background:#141a13!important;padding-top:calc(var(--cs)*.8 + .5rem)!important;padding-bottom:calc(var(--cs)*.8 + .5rem)!important}
+.bgp::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--c-tl) left top/var(--cs) auto no-repeat,var(--c-tr) right top/var(--cs) auto no-repeat,var(--c-bl) left bottom/var(--cs) auto no-repeat,var(--c-br) right bottom/var(--cs) auto no-repeat}
 main .bgp,footer.bgp{display:flex;flex-direction:column;justify-content:center}
 main .bgp>div,footer.bgp>*{width:100%;max-width:30rem!important;margin-left:auto;margin-right:auto}
+/* jarak antar tulisan dirapatkan */
+.bgp .mt-14{margin-top:2rem!important}.bgp .mt-12{margin-top:1.75rem!important}.bgp .mt-10{margin-top:1.5rem!important}.bgp .mt-8{margin-top:1.25rem!important}.bgp .gap-14{gap:2rem!important}
+/* desktop: bunga di empat sudut layar, jauh dari tulisan di tengah */
+@media(min-width:900px){.bgp{--cs:clamp(180px,20vw,290px);padding-top:4rem!important;padding-bottom:4rem!important}main .bgp{min-height:36rem}}
 @media(min-width:768px){#eventsGrid{grid-template-columns:1fr!important}#coupleGrid{gap:1.5rem!important}}
-#hero{--fw:min(100vw,480px,48svh)}
 #hero .hero-title{font-size:clamp(2.6rem,12vw,4.2rem)!important}
