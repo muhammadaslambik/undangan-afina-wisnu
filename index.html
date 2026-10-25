@@ -3,49 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#1b2119">
 <meta property="og:title" content="Undangan Pernikahan Afina & Wisnu">
+<meta property="og:url" content="https://afina-wisnu.pages.dev/">
 <link rel="icon" href="assets/img/profil-afina.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>tailwind.config={theme:{extend:{fontFamily:{script:['Pinyon Script','cursive'],serif:['Cormorant Garamond','serif'],sans:['Jost','sans-serif']}}}}</script>
 <style>
-:root{--bg:#0f1510;--bg2:#151d15;--card:#1c271c;--card2:#253525;--sage:#8A9A7B;--sage-d:#C8D6B8;--gold:#C9A55C;--gold2:#E9D39A;--ink:#EAE6E0;--muted:#9AA89A}
+:root{--bg:#121812;--card:#1e2a1e;--card2:#283528;--sage:#8A9A7B;--sage-d:#C2D0B6;--gold:#C9A55C;--gold2:#E9D39A;--ink:#E8E6E1;--muted:#9AA89A}
 *{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:'Jost',sans-serif;overflow:hidden}
 body.opened{overflow:auto}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#121812;padding:.9rem 2rem;border-radius:9999px;font-weight:600;transition:.3s;box-shadow:0 8px 24px rgba(201,165,92,.25)}
+.btn-gold:hover{transform:translateY(-2px)}
+.card{background:var(--card);border:1px solid rgba(201,165,92,.22);border-radius:20px;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+#hero{min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;position:relative;background:var(--bg)}
+.corner{position:absolute;width:90px;height:90px;color:var(--gold);opacity:.6;pointer-events:none}
+.corner.tl{top:12px;left:12px;animation:floatCorner 6s ease-in-out infinite}
+.corner.tr{top:12px;right:12px;transform:scaleX(-1);animation:floatCorner 6s ease-in-out infinite reverse}
+.corner.bl{bottom:12px;left:12px;transform:scaleY(-1);animation:floatCorner 7s ease-in-out infinite}
+.corner.br{bottom:12px;right:12px;transform:scale(-1);animation:floatCorner 7s ease-in-out infinite reverse}
+@keyframes floatCorner{0%,100%{transform:translateY(0) scaleX(var(--sx,1)) scaleY(var(--sy,1))}50%{transform:translateY(-6px) scaleX(var(--sx,1)) scaleY(var(--sy,1))}}
+.tr{--sx:-1;--sy:1}.bl{--sx:1;--sy:-1}.br{--sx:-1;--sy:-1}.tl{--sx:1;--sy:1}
 
-/* STABLE CORNER DECORATIONS - FIXED, NO SHIFT ON SCROLL */
-.corner-fixed{position:fixed;z-index:5;width:110px;height:110px;pointer-events:none;opacity:.85}
-.corner-fixed.tl{top:0;left:0}
-.corner-fixed.tr{top:0;right:0;transform:scaleX(-1)}
-.corner-fixed.bl{bottom:0;left:0;transform:scaleY(-1)}
-.corner-fixed.br{bottom:0;right:0;transform:scale(-1)}
-.corner-svg{width:100%;height:100%;overflow:visible}
-.corner-path{fill:none;stroke:var(--gold);stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
-.corner-path-glow{fill:none;stroke:var(--gold);stroke-width:3;stroke-linecap:round;opacity:.15;filter:blur(4px)}
-.leaf{fill:var(--gold);opacity:.9;transform-origin:center}
-.leaf-1{animation:leafSway 5s ease-in-out infinite}
-.leaf-2{animation:leafSway 5.5s ease-in-out infinite reverse}
-.dot{fill:var(--gold)}
-.dot-glow{fill:var(--gold);opacity:.3;filter:blur(2px)}
-@keyframes leafSway{0%,100%{transform:rotate(-4deg) scale(1)}50%{transform:rotate(4deg) scale(1.05)}}
-@keyframes pathDraw{0%{stroke-dashoffset:200}100%{stroke-dashoffset:0}}
-@keyframes glowPulse{0%,100%{opacity:.15}50%{opacity:.35}}
-.path-animate{stroke-dasharray:8 6;animation:pathDraw 20s linear infinite}
-.glow-animate{animation:glowPulse 3s ease-in-out infinite}
+/* Section divider animation */
+.divider-anim{position:relative;height:60px;display:flex;align-items:center;justify-content:center;margin:20px 0;overflow:hidden}
+.divider-line{height:1px;width:0;background:linear-gradient(90deg,transparent,var(--gold),transparent);animation:expandLine 1.5s ease-out forwards}
+.divider-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;margin:0 12px;animation:pulseDot 2s infinite;box-shadow:0 0 12px var(--gold)}
+.divider-flower{font-size:20px;animation:spinFlower 8s linear infinite}
+@keyframes expandLine{to{width:120px}}
+@keyframes pulseDot{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.4);opacity:1}}
+@keyframes spinFlower{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 
-/* DIVIDER MAHAKARYA */
-.divider-master{position:relative;display:flex;align-items:center;justify-content:center;gap:16px;margin:36px auto;height:48px;max-width:400px}
-.divider-master::before,.divider-master::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.6}
-.divider-center{position:relative;width:42px;height:42px;display:flex;align-items:center;justify-content:center}
-.divider-ring{position:absolute;inset:0;border:1px solid var(--gold);border-radius:50%;opacity:.3;animation:ringPulse 3s infinite}
-.divider-ring:nth-child(2){inset:6px;animation-delay:.5s}
-.divider-icon{font-size:18px;animation:iconFloat 3s ease-in-out infinite;filter:drop-shadow(0 0 8px var(--gold))}
-@keyframes ringPulse{0%,100%{transform:scale(1);opacity:.3}50%{transform:scale(1.15);opacity:.6}}
-@keyframes iconFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+/* Ornament floating particles */
+.particle{position:absolute;width:3px;height:3px;background:var(--gold);border-radius:50%;opacity:.4;animation:drift 10s linear infinite}
+@keyframes drift{0%{transform:translateY(100vh) translateX(0);opacity:0}10%{opacity:.4}90%{opacity:.4}100%{transform:translateY(-10vh) translateX(20px);opacity:0}}
 
-/* MUSIC BUTTON - ROTATING RING */
+.field{width:100%;padding:.85rem 1rem;border:1px solid rgba(201,165,92,.2);border-radius:12px;background:var(--card2);color:var(--ink)}
+.field:focus{border-color:var(--gold);outline:none;box-shadow:0 0 0 3px rgba(201,165,92,.15)}
+.reveal{opacity:0;transform:translateY(28px);transition:all .9s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* Menu */
+#menuBtn{position:fixed;right:16px;bottom:84px;z-index:70;width:46px;height:46px;border-radius:50%;background:var(--card);border:1px solid rgba(201,165,92,.35);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.4);transition:.3s}
+#menuBtn:hover{transform:scale(1.05)}
+
+/* MUSIC BUTTON - ROTATING ELEGANT - ONLY GOOD PART FROM MAHAKARYA */
 #musicBtn{position:fixed;right:16px;bottom:24px;z-index:70;width:52px;height:52px;border-radius:50%;background:var(--card);border:1px solid rgba(201,165,92,.3);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.5);overflow:visible}
 .music-ring{position:absolute;inset:-3px;border-radius:50%;border:2px solid transparent;border-top-color:var(--gold);border-right-color:rgba(201,165,92,.3);animation:spinRing 2.5s linear infinite;opacity:0}
 #musicBtn.playing .music-ring{opacity:1}
@@ -58,111 +63,38 @@ body.opened{overflow:auto}
 .music-bars span:nth-child(2){animation-delay:.15s}.music-bars span:nth-child(3){animation-delay:.3s}
 @keyframes barWave{0%,100%{height:4px}50%{height:14px}}
 
-/* MENU */
-#menuBtn{position:fixed;right:16px;bottom:86px;z-index:70;width:52px;height:52px;border-radius:50%;background:var(--card);border:1px solid rgba(201,165,92,.3);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.5);transition:.3s}
-#menuBtn:hover{transform:scale(1.06);border-color:var(--gold)}
-#menuPanel{position:fixed;right:16px;bottom:152px;z-index:69;width:240px;background:rgba(28,39,28,.97);backdrop-filter:blur(20px);border:1px solid rgba(201,165,92,.25);border-radius:20px;padding:14px;opacity:0;transform:translateY(20px) scale(.94);pointer-events:none;transition:all .45s cubic-bezier(.16,1,.3,1);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+#menuPanel{position:fixed;right:16px;bottom:144px;z-index:69;width:220px;background:rgba(30,42,30,.96);backdrop-filter:blur(16px);border:1px solid rgba(201,165,92,.25);border-radius:18px;padding:12px;opacity:0;transform:translateY(16px) scale(.96);pointer-events:none;transition:all .35s cubic-bezier(.16,1,.3,1);box-shadow:0 16px 48px rgba(0,0,0,.5)}
 #menuPanel.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
-.menu-item{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px 12px;border-radius:12px;font-size:13.5px;transition:.25s;color:var(--ink);position:relative;overflow:hidden}
-.menu-item::before{content:'';position:absolute;left:0;top:50%;width:2px;height:0;background:var(--gold);transform:translateY(-50%);transition:.25s}
-.menu-item:hover{background:rgba(201,165,92,.1);color:var(--gold2);padding-left:16px}
-.menu-item:hover::before{height:60%}
-.menu-icon{width:22px;text-align:center;font-size:14px}
-.submenu{display:none;padding-left:34px;padding-top:4px;flex-direction:column;gap:2px}
-.submenu.open{display:flex}
+.menu-item{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:11px 12px;border-radius:12px;font-size:13.5px;transition:.2s;color:var(--ink)}
+.menu-item:hover{background:rgba(201,165,92,.12);color:var(--gold2)}
+.menu-icon{width:20px;text-align:center}
+.submenu{display:none;padding-left:32px;padding-top:6px;gap:8px}
+.submenu.open{display:flex;flex-direction:column}
 
-/* ADVANCED REVEAL - NOT MONOTON */
-.reveal{opacity:0;transition:all 1s cubic-bezier(.16,1,.3,1)}
-.reveal.from-bottom{transform:translateY(40px)}
-.reveal.from-left{transform:translateX(-40px)}
-.reveal.from-right{transform:translateX(40px)}
-.reveal.from-scale{transform:scale(.92)}
-.reveal.from-rotate{transform:translateY(30px) rotate(-1.5deg)}
-.reveal.in{opacity:1;transform:translate(0) scale(1) rotate(0) !important}
-.reveal.delay-1{transition-delay:.15s}.reveal.delay-2{transition-delay:.3s}.reveal.delay-3{transition-delay:.45s}.reveal.delay-4{transition-delay:.6s}
-
-/* Text reveal */
-.text-reveal{clip-path:inset(0 100% 0 0);transition:clip-path 1.2s cubic-bezier(.77,0,.175,1)}
-.text-reveal.in{clip-path:inset(0 0 0 0)}
-
-.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0f1510;padding:.9rem 2rem;border-radius:9999px;font-weight:700;letter-spacing:.02em;transition:.4s;box-shadow:0 8px 24px rgba(201,165,92,.25);position:relative;overflow:hidden}
-.btn-gold::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.2),transparent);opacity:0;transition:.3s}
-.btn-gold:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(201,165,92,.4)}
-.btn-gold:hover::before{opacity:1}
-.card{background:var(--card);border:1px solid rgba(201,165,92,.18);border-radius:22px;box-shadow:0 12px 40px rgba(0,0,0,.35);backdrop-filter:blur(8px)}
-.field{width:100%;padding:.9rem 1.1rem;border:1px solid rgba(201,165,92,.18);border-radius:14px;background:var(--card2);color:var(--ink);transition:.3s}
-.field:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,165,92,.12);outline:none}
-.wish-box{position:relative;height:min(34rem,78vh);overflow:hidden;border-radius:20px;border:1px solid rgba(201,165,92,.25);background:var(--card)}
+.wish-box{position:relative;height:min(34rem,78vh);overflow:hidden;border-radius:18px;border:1px solid rgba(201,165,92,.3);background:var(--card)}
 .wish-list{height:100%;overflow:hidden;padding:.75rem;list-style:none}
 .wish-box.on .wish-list{overflow-y:auto;padding-top:3.2rem}
 .wish-hint{position:absolute;left:0;right:0;bottom:0;padding:2.4rem .75rem .75rem;text-align:center;font-size:.8rem;color:var(--gold2);background:linear-gradient(transparent,var(--card));pointer-events:none}
 .wish-box.on .wish-hint{display:none}
-.wish-x{display:none;position:absolute;top:.5rem;right:.5rem;width:36px;height:36px;border-radius:50%;border:1px solid rgba(201,165,92,.5);background:var(--card2);color:var(--gold);align-items:center;justify-content:center;z-index:2;cursor:pointer}
+.wish-x{display:none;position:absolute;top:.5rem;right:.5rem;width:36px;height:36px;border-radius:50%;border:1px solid rgba(201,165,92,.6);background:var(--card2);color:var(--gold);align-items:center;justify-content:center;z-index:2;cursor:pointer}
 .wish-box.on .wish-x{display:flex}
 </style>
 </head>
 <body>
 
-<!-- STABLE CORNER DECORATIONS - FIXED, ELEGANT, NO SHIFT ON SCROLL -->
-<div class="corner-fixed tl">
-<svg class="corner-svg" viewBox="0 0 110 110">
-<!-- Glow -->
-<path class="corner-path-glow glow-animate" d="M12 88 C12 38, 38 12, 88 12"/>
-<path class="corner-path-glow glow-animate" d="M22 72 C22 38, 38 22, 72 22" style="animation-delay:.5s"/>
-<!-- Main lines -->
-<path class="corner-path path-animate" d="M12 88 C12 38, 38 12, 88 12"/>
-<path class="corner-path" d="M22 72 C22 38, 38 22, 72 22" opacity=".55"/>
-<!-- Dots -->
-<circle class="dot" cx="12" cy="88" r="2.2"/>
-<circle class="dot-glow" cx="12" cy="88" r="5"/>
-<circle class="dot" cx="88" cy="12" r="2.2"/>
-<circle class="dot-glow" cx="88" cy="12" r="5"/>
-<!-- Elegant leaves -->
-<g class="leaf leaf-1"><path d="M38 18 C44 11, 52 12, 58 17 C52 22, 44 23, 38 18 Z"/></g>
-<g class="leaf leaf-2"><path d="M18 38 C11 44, 12 52, 17 58 C22 52, 23 44, 18 38 Z"/></g>
-<g class="leaf leaf-1" style="animation-delay:.8s"><path d="M50 24 C55 20, 61 22, 64 27 C60 30, 54 31, 50 24 Z" opacity=".7"/></g>
-</svg>
-</div>
-<div class="corner-fixed tr">
-<svg class="corner-svg" viewBox="0 0 110 110">
-<path class="corner-path-glow glow-animate" d="M12 88 C12 38, 38 12, 88 12"/>
-<path class="corner-path path-animate" d="M12 88 C12 38, 38 12, 88 12"/>
-<path class="corner-path" d="M22 72 C22 38, 38 22, 72 22" opacity=".55"/>
-<circle class="dot" cx="12" cy="88" r="2.2"/><circle class="dot-glow" cx="12" cy="88" r="5"/>
-<circle class="dot" cx="88" cy="12" r="2.2"/><circle class="dot-glow" cx="88" cy="12" r="5"/>
-<g class="leaf leaf-1"><path d="M38 18 C44 11, 52 12, 58 17 C52 22, 44 23, 38 18 Z"/></g>
-<g class="leaf leaf-2"><path d="M18 38 C11 44, 12 52, 17 58 C22 52, 23 44, 18 38 Z"/></g>
-</svg>
-</div>
-<div class="corner-fixed bl">
-<svg class="corner-svg" viewBox="0 0 110 110">
-<path class="corner-path-glow glow-animate" d="M12 88 C12 38, 38 12, 88 12"/>
-<path class="corner-path path-animate" d="M12 88 C12 38, 38 12, 88 12"/>
-<path class="corner-path" d="M22 72 C22 38, 38 22, 72 22" opacity=".55"/>
-<circle class="dot" cx="12" cy="88" r="2.2"/><circle class="dot-glow" cx="12" cy="88" r="5"/>
-<circle class="dot" cx="88" cy="12" r="2.2"/><circle class="dot-glow" cx="88" cy="12" r="5"/>
-<g class="leaf leaf-1"><path d="M38 18 C44 11, 52 12, 58 17 C52 22, 44 23, 38 18 Z"/></g>
-<g class="leaf leaf-2"><path d="M18 38 C11 44, 12 52, 17 58 C22 52, 23 44, 18 38 Z"/></g>
-</svg>
-</div>
-<div class="corner-fixed br">
-<svg class="corner-svg" viewBox="0 0 110 110">
-<path class="corner-path-glow glow-animate" d="M12 88 C12 38, 38 12, 88 12"/>
-<path class="corner-path path-animate" d="M12 88 C12 38, 38 12, 88 12"/>
-<path class="corner-path" d="M22 72 C22 38, 38 22, 72 22" opacity=".55"/>
-<circle class="dot" cx="12" cy="88" r="2.2"/><circle class="dot-glow" cx="12" cy="88" r="5"/>
-<circle class="dot" cx="88" cy="12" r="2.2"/><circle class="dot-glow" cx="88" cy="12" r="5"/>
-<g class="leaf leaf-1"><path d="M38 18 C44 11, 52 12, 58 17 C52 22, 44 23, 38 18 Z"/></g>
-<g class="leaf leaf-2"><path d="M18 38 C11 44, 12 52, 17 58 C22 52, 23 44, 18 38 Z"/></g>
-</svg>
+<svg width="0" height="0" style="position:absolute"><symbol id="orn" viewBox="0 0 80 80"><g fill="none" stroke="currentColor" stroke-width="1"><path d="M6 58C6 28 28 6 58 6" stroke-dasharray="4 3"><animate attributeName="stroke-dashoffset" from="0" to="28" dur="6s" repeatCount="indefinite"/></path><path d="M14 46C14 28 28 14 46 14" opacity=".5"/></g><g fill="currentColor"><circle cx="6" cy="58" r="1.8"><animate attributeName="r" values="1.8;2.4;1.8" dur="3s" repeatCount="indefinite"/></circle><circle cx="58" cy="6" r="1.8"><animate attributeName="r" values="1.8;2.4;1.8" dur="3s" begin="1s" repeatCount="indefinite"/></circle><path d="M30 19C34 12.5 41 11 46 13.5C42 18.5 36 20.5 30 19Z" opacity=".85"><animateTransform attributeName="transform" type="rotate" from="0 38 16" to="5 38 16" dur="4s" repeatCount="indefinite" additive="sum"/></path><path d="M19 30C12.5 34 11 41 13.5 46C18.5 42 20.5 36 19 30Z" opacity=".85"><animateTransform attributeName="transform" type="rotate" from="0 16 38" to="-5 16 38" dur="4s" repeatCount="indefinite" additive="sum"/></path></g></symbol></svg>
+
+<div class="fixed inset-0 pointer-events-none z-0" id="particles"></div>
+<div class="fixed inset-0 pointer-events-none z-[1]">
+<svg class="corner tl"><use href="#orn"/></svg><svg class="corner tr"><use href="#orn"/></svg><svg class="corner bl"><use href="#orn"/></svg><svg class="corner br"><use href="#orn"/></svg>
 </div>
 
-<!-- MENU + MUSIC -->
-<button id="menuBtn" aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+<!-- MENU BUTTON + MUSIC -->
+<button id="menuBtn" aria-label="Menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
 <button id="musicBtn" aria-label="musik"><div class="music-ring"></div><div class="music-ring2"></div><div class="music-icon"><span id="icPlay">▶</span><span id="icPause" class="hidden"><span class="music-bars"><span></span><span></span><span></span></span></span></div></button>
 
 <div id="menuPanel">
-<button class="menu-item" data-target="hero"><span class="menu-icon">✦</span>Cover Depan</button>
+<button class="menu-item" data-target="hero"><span class="menu-icon">🏠</span>Cover Depan</button>
 <button class="menu-item" data-target="hari"><span class="menu-icon">⏳</span>Hari Bahagia</button>
 <button class="menu-item" data-target="mempelai"><span class="menu-icon">💍</span>Mempelai</button>
 <button class="menu-item" id="btnLihatPetaMenu"><span class="menu-icon">📍</span>Lihat Peta</button>
@@ -179,14 +111,15 @@ body.opened{overflow:auto}
 <audio id="bgm" loop preload="auto" src="assets/audio/janji-suci-yovie-nuno.mp3"></audio>
 
 <header id="hero">
-<div class="relative w-full max-w-xl px-6">
-<p class="font-serif italic tracking-wide reveal from-bottom" style="color:var(--muted)">Undangan Pernikahan</p>
-<h1 class="font-script text-[3.8rem] sm:text-[5.2rem] leading-none mt-4 reveal from-scale delay-1" style="color:var(--sage-d)">Afina <span class="font-serif italic text-[2.3rem] mx-1" style="color:var(--gold)">&</span> Wisnu</h1>
-<div class="reveal from-bottom delay-2"><div class="flex items-center justify-center gap-3 mt-5"><div class="h-[1px] w-14 bg-gradient-to-r from-transparent to-[var(--gold)]"></div><span class="text-[var(--gold)] text-[10px]">⬥</span><div class="h-[1px] w-14 bg-gradient-to-l from-transparent to-[var(--gold)]"></div></div><p class="font-serif tracking-[0.2em] text-[11px] mt-3">AHAD, 15 NOVEMBER 2026</p></div>
-<p class="text-[14px] leading-relaxed max-w-[26rem] mx-auto mt-5 reveal from-bottom delay-3" style="color:var(--muted)">Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Anda untuk menyaksikan hari bahagia kami.</p>
-<div class="mt-10 card p-6 reveal from-bottom delay-4">
+<div class="relative w-full max-w-xl">
+<p class="font-serif italic tracking-wide reveal" style="color:var(--muted)">Undangan Pernikahan</p>
+<h1 class="font-script text-[3.6rem] sm:text-[5rem] leading-none mt-4 reveal" style="color:var(--sage-d)">Afina <span class="font-serif italic text-[2.2rem] mx-1" style="color:var(--gold)">&</span> Wisnu</h1>
+<div class="flex items-center justify-center gap-3 mt-4 reveal"><div class="h-[1px] w-12 bg-gradient-to-r from-transparent to-[var(--gold)]"></div><span class="text-[var(--gold)]">✦</span><div class="h-[1px] w-12 bg-gradient-to-l from-transparent to-[var(--gold)]"></div></div>
+<p class="font-serif tracking-[0.18em] text-xs mt-4 reveal">AHAD, 15 NOVEMBER 2026</p>
+<p class="text-[14px] leading-relaxed max-w-[26rem] mx-auto mt-4 reveal" style="color:var(--muted)">Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Anda untuk menyaksikan hari bahagia kami.</p>
+<div class="mt-10 card p-6 reveal">
 <p class="font-serif italic text-sm" style="color:var(--muted)">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
-<p id="guestName" class="font-serif text-[1.75rem] font-semibold mt-2 text-reveal">Tamu Undangan</p>
+<p id="guestName" class="font-serif text-[1.7rem] font-semibold mt-2">Tamu Undangan</p>
 <button id="openBtn" class="btn-gold mt-6 w-full">Buka Undangan</button>
 </div>
 </div>
@@ -194,69 +127,68 @@ body.opened{overflow:auto}
 
 <main id="content" class="relative z-10">
 
-<div class="divider-master reveal from-scale"><div class="divider-ring"></div><div class="divider-ring"></div><div class="divider-center"><span class="divider-icon">❀</span></div></div>
+<div class="divider-anim"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-flower">❀</div><div class="divider-dot"></div><div class="divider-line"></div></div>
 
 <section class="px-6 py-16 text-center" id="hari">
-<div class="max-w-xl mx-auto">
-<p class="text-[18px] reveal from-bottom" dir="rtl" style="font-family:'Amiri',serif">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً</p>
-<p class="font-serif italic text-[15px] mt-6 leading-relaxed reveal from-left delay-1" style="color:var(--sage-d)">“Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.”</p>
-<p class="mt-3 text-sm font-semibold reveal from-right delay-2" style="color:var(--gold)">QS. Ar-Rum: 21</p>
+<div class="max-w-xl mx-auto reveal">
+<p class="text-[18px]" dir="rtl" style="font-family:'Amiri',serif">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً</p>
+<p class="font-serif italic text-[15px] mt-6 leading-relaxed" style="color:var(--sage-d)">“Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.”</p>
+<p class="mt-2 text-sm font-semibold" style="color:var(--gold)">QS. Ar-Rum: 21</p>
 </div>
-<div class="max-w-xl mx-auto mt-14">
-<h2 class="font-script text-5xl reveal from-bottom" style="color:var(--sage-d)">Menuju Hari Bahagia</h2>
+<div class="max-w-xl mx-auto mt-14 reveal">
+<h2 class="font-script text-5xl" style="color:var(--sage-d)">Menuju Hari Bahagia</h2>
 <div class="grid grid-cols-4 gap-3 mt-8">
-<div class="card py-4 reveal from-bottom delay-1"><div id="cd-d" class="font-serif text-3xl font-semibold">00</div><div class="text-xs mt-1" style="color:var(--muted)">Hari</div></div>
-<div class="card py-4 reveal from-bottom delay-2"><div id="cd-h" class="font-serif text-3xl font-semibold">00</div><div class="text-xs mt-1" style="color:var(--muted)">Jam</div></div>
-<div class="card py-4 reveal from-bottom delay-3"><div id="cd-m" class="font-serif text-3xl font-semibold">00</div><div class="text-xs mt-1" style="color:var(--muted)">Menit</div></div>
-<div class="card py-4 reveal from-bottom delay-4"><div id="cd-s" class="font-serif text-3xl font-semibold">00</div><div class="text-xs mt-1" style="color:var(--muted)">Detik</div></div>
+<div class="card py-4"><div id="cd-d" class="font-serif text-3xl font-semibold">00</div><div class="text-xs mt-1" style="color:var(--muted)">Hari</div></div>
+<div class="card py-4"><div id="cd-h" class="font-serif text-3xl font-semibold">00</div><div class="text-xs mt-1" style="color:var(--muted)">Jam</div></div>
+<div class="card py-4"><div id="cd-m" class="font-serif text-3xl font-semibold">00</div><div class="text-xs mt-1" style="color:var(--muted)">Menit</div></div>
+<div class="card py-4"><div id="cd-s" class="font-serif text-3xl font-semibold">00</div><div class="text-xs mt-1" style="color:var(--muted)">Detik</div></div>
 </div>
 </div>
 </section>
 
-<div class="divider-master reveal from-scale"><div class="divider-ring"></div><div class="divider-center"><span class="divider-icon">✿</span></div></div>
+<div class="divider-anim"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-flower">✿</div><div class="divider-dot"></div><div class="divider-line"></div></div>
 
 <section class="px-6 py-16" id="mempelai">
 <div class="max-w-3xl mx-auto text-center">
-<h2 class="font-script text-5xl reveal from-bottom" style="color:var(--sage-d)">Mempelai</h2>
+<h2 class="font-script text-5xl reveal" style="color:var(--sage-d)">Mempelai</h2>
 <div class="grid md:grid-cols-2 gap-8 mt-10">
-<div class="card p-8 text-center reveal from-left delay-1">
-<img src="assets/img/profil-afina.jpg?v=3" class="w-44 h-44 rounded-full mx-auto object-cover border-[3px] border-[#C9A55C] shadow-[0_0_30px_rgba(201,165,92,.25)]">
-<h3 class="font-serif text-2xl font-semibold mt-6 reveal from-bottom delay-2">Afina Syuhudi, S.Psi.</h3>
-<p class="text-sm mt-2 reveal from-bottom delay-3" style="color:var(--muted)">Putri dari<br><span class="font-medium text-[var(--ink)]">Bapak Suhudi & Ibu Saudah</span></p>
+<div class="card p-8 text-center reveal">
+<img src="assets/img/profil-afina.jpg?v=3" class="w-40 h-40 rounded-full mx-auto object-cover border-[3px] border-[#C9A55C] shadow-lg">
+<h3 class="font-serif text-2xl font-semibold mt-6">Afina Syuhudi, S.Psi.</h3>
+<p class="text-sm mt-2" style="color:var(--muted)">Putri dari</p><p class="font-medium">Bapak Suhudi & Ibu Saudah</p>
 </div>
-<div class="card p-8 text-center reveal from-right delay-1">
-<img src="assets/img/profil-wisnu.jpg?v=3" class="w-44 h-44 rounded-full mx-auto object-cover border-[3px] border-[#C9A55C] shadow-[0_0_30px_rgba(201,165,92,.25)]">
-<h3 class="font-serif text-2xl font-semibold mt-6 reveal from-bottom delay-2">Wisnu Setya Wardhana, S.Pd.</h3>
-<p class="text-sm mt-2 reveal from-bottom delay-3" style="color:var(--muted)">Putra dari<br><span class="font-medium text-[var(--ink)]">Bapak Duwi Mulyono & Ibu Warniyati</span></p>
+<div class="card p-8 text-center reveal">
+<img src="assets/img/profil-wisnu.jpg?v=3" class="w-40 h-40 rounded-full mx-auto object-cover border-[3px] border-[#C9A55C] shadow-lg">
+<h3 class="font-serif text-2xl font-semibold mt-6">Wisnu Setya Wardhana, S.Pd.</h3>
+<p class="text-sm mt-2" style="color:var(--muted)">Putra dari</p><p class="font-medium">Bapak Duwi Mulyono & Ibu Warniyati</p>
 </div>
 </div>
 </div>
 </section>
 
-<div class="divider-master reveal from-scale"><div class="divider-ring"></div><div class="divider-center"><span class="divider-icon">❧</span></div></div>
+<div class="divider-anim"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-flower">❧</div><div class="divider-dot"></div><div class="divider-line"></div></div>
 
 <section class="px-6 py-16" id="acara">
 <div class="max-w-3xl mx-auto text-center">
-<h2 class="font-script text-5xl reveal from-bottom" style="color:var(--gold)">Rangkaian Acara</h2>
-<p class="mt-3 font-serif text-xl reveal from-bottom delay-1" style="color:var(--muted)">Ahad, 15 November 2026</p>
+<h2 class="font-script text-5xl reveal" style="color:var(--gold)">Rangkaian Acara</h2>
+<p class="mt-3 font-serif text-xl reveal" style="color:var(--muted)">Ahad, 15 November 2026</p>
 <div class="grid md:grid-cols-2 gap-6 mt-8 text-left">
-<div class="card p-7 reveal from-rotate delay-1"><h3 class="font-serif text-xl font-semibold">💍 Akad Nikah</h3><p class="mt-3 text-sm leading-relaxed"><b>09.00 WIB – 11.00 WIB</b><br>Ahad, 15 Nov 2026<br>Rumah Mempelai Wanita<br><span style="color:var(--muted)">Ds. Loireng, Kec. Sayung, Kab. Demak, RT: 02/RW: 02</span></p><button class="btn-gold mt-4 text-sm py-2.5" onclick="openMaps()">Lihat Peta</button></div>
-<div class="card p-7 reveal from-rotate delay-2"><h3 class="font-serif text-xl font-semibold">🎉 Resepsi</h3><p class="mt-3 text-sm leading-relaxed"><b>11.00 – Selesai</b><br>Ahad, 15 Nov 2026<br>Rumah Mempelai Wanita<br><span style="color:var(--muted)">Ds. Loireng, Kec. Sayung, Kab. Demak, RT: 02/RW: 02</span></p><button class="btn-gold mt-4 text-sm py-2.5" onclick="openMaps()">Lihat Peta</button></div>
+<div class="card p-7 reveal"><h3 class="font-serif text-xl font-semibold">💍 Akad Nikah</h3><p class="mt-3 text-sm"><b>09.00 WIB – 11.00 WIB</b><br>Ahad, 15 Nov 2026<br>Rumah Mempelai Wanita<br><span style="color:var(--muted)">Ds. Loireng, Kec. Sayung, Kab. Demak</span></p><button class="btn-gold mt-4 text-sm py-2.5" onclick="openMaps()">Lihat Peta</button></div>
+<div class="card p-7 reveal"><h3 class="font-serif text-xl font-semibold">🎉 Resepsi</h3><p class="mt-3 text-sm"><b>11.00 – Selesai</b><br>Ahad, 15 Nov 2026<br>Rumah Mempelai Wanita<br><span style="color:var(--muted)">Ds. Loireng, Kec. Sayung, Kab. Demak</span></p><button class="btn-gold mt-4 text-sm py-2.5" onclick="openMaps()">Lihat Peta</button></div>
 </div>
 </div>
 </section>
 
-<div class="divider-master reveal from-scale"><div class="divider-ring"></div><div class="divider-center"><span class="divider-icon">❦</span></div></div>
+<div class="divider-anim"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-flower">❀</div><div class="divider-dot"></div><div class="divider-line"></div></div>
 
 <section class="px-6 py-16" id="rsvp">
 <div class="max-w-xl mx-auto">
-<h2 class="font-script text-5xl text-center reveal from-bottom" style="color:var(--sage-d)">Konfirmasi & Ucapan</h2>
-<p class="text-center text-sm mt-3 reveal from-bottom delay-1" style="color:var(--muted)">Kabari kami apakah Anda dapat hadir</p>
-<form id="rsvpForm" class="card p-6 sm:p-8 mt-8 space-y-5 reveal from-bottom delay-2">
+<h2 class="font-script text-5xl text-center reveal" style="color:var(--sage-d)">Konfirmasi & Ucapan</h2>
+<form id="rsvpForm" class="card p-6 sm:p-8 mt-8 space-y-5 reveal">
 <div><label class="text-sm">Nama</label><input id="nama" class="field mt-1.5" maxlength="60"></div>
 <div class="grid grid-cols-2 gap-3">
-<label class="relative"><input type="radio" name="hadir" value="Hadir" checked class="peer absolute opacity-0"><span class="block text-center py-3 rounded-full border peer-checked:bg-[#8A9A7B] peer-checked:text-[#0f1510] transition" style="border-color:rgba(201,165,92,.25)">Hadir</span></label>
-<label class="relative"><input type="radio" name="hadir" value="Tidak Hadir" class="peer absolute opacity-0"><span class="block text-center py-3 rounded-full border peer-checked:bg-[#8A9A7B] peer-checked:text-[#0f1510] transition" style="border-color:rgba(201,165,92,.25)">Tidak Hadir</span></label>
+<label class="relative"><input type="radio" name="hadir" value="Hadir" checked class="peer absolute opacity-0"><span class="block text-center py-3 rounded-full border peer-checked:bg-[#8A9A7B] peer-checked:text-[#121812] transition" style="border-color:rgba(201,165,92,.3)">Hadir</span></label>
+<label class="relative"><input type="radio" name="hadir" value="Tidak Hadir" class="peer absolute opacity-0"><span class="block text-center py-3 rounded-full border peer-checked:bg-[#8A9A7B] peer-checked:text-[#121812] transition" style="border-color:rgba(201,165,92,.3)">Tidak Hadir</span></label>
 </div>
 <div><label class="text-sm">Ucapan</label><textarea id="ucapan" rows="4" maxlength="300" class="field mt-1.5 resize-none"></textarea></div>
 <p id="formErr" class="text-sm hidden text-red-400"></p>
@@ -264,33 +196,32 @@ body.opened{overflow:auto}
 <p id="formStatus" class="text-xs text-center mt-2" style="color:var(--muted)"></p>
 </form>
 <div class="mt-10" style="max-width:26rem;margin:auto">
-<div class="flex justify-between items-center mb-4 reveal from-left"><h3 class="font-serif text-2xl font-semibold">Ucapan Tamu</h3><span id="wishCount" class="text-sm" style="color:var(--muted)"></span></div>
-<div id="wishBox" class="wish-box reveal from-scale"><ul id="wishList" class="wish-list space-y-3"></ul><button type="button" id="wishClose" class="wish-x">×</button><div class="wish-hint">Ketuk untuk melihat semua</div></div>
+<div class="flex justify-between items-center mb-4"><h3 class="font-serif text-2xl font-semibold">Ucapan Tamu</h3><span id="wishCount" class="text-sm" style="color:var(--muted)"></span></div>
+<div id="wishBox" class="wish-box"><ul id="wishList" class="wish-list space-y-3"></ul><button type="button" id="wishClose" class="wish-x">×</button><div class="wish-hint">Ketuk untuk melihat semua</div></div>
 </div>
 </div>
 </section>
 
-<div class="divider-master reveal from-scale" id="giftDivider"><div class="divider-ring"></div><div class="divider-center"><span class="divider-icon">🎁</span></div></div>
+<div class="divider-anim" id="giftDivider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-flower">❦</div><div class="divider-dot"></div><div class="divider-line"></div></div>
 
 <section id="giftSection" class="px-6 py-16">
 <div class="max-w-2xl mx-auto text-center">
-<h2 class="font-script text-5xl gold reveal from-bottom">Hadiah Digital</h2>
-<p class="mt-4 text-sm max-w-md mx-auto reveal from-bottom delay-1" style="color:var(--muted)">Kehadiran dan doa Anda sudah menjadi hadiah terindah</p>
-<div class="card max-w-sm mx-auto p-6 mt-8 reveal from-scale delay-2"><p class="font-semibold">Bank BTN</p><p class="font-mono text-lg mt-1">20601610034869</p><p class="text-sm" style="color:var(--muted)">a.n Afina Syuhudi</p><button onclick="copyRek()" class="btn-gold w-full mt-4 text-sm">Salin No. Rekening</button></div>
+<h2 class="font-script text-5xl gold reveal">Hadiah Digital</h2>
+<div class="card max-w-sm mx-auto p-6 mt-8 reveal"><p class="font-semibold">Bank BTN</p><p class="font-mono text-lg mt-1">20601610034869</p><p class="text-sm" style="color:var(--muted)">a.n Afina Syuhudi</p><button onclick="copyRek()" class="btn-gold w-full mt-4 text-sm">Salin No. Rekening</button></div>
 </div>
 </section>
 
-<div class="divider-master reveal from-scale"><div class="divider-ring"></div><div class="divider-center"><span class="divider-icon">✦</span></div></div>
+<div class="divider-anim"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-flower">✦</div><div class="divider-dot"></div><div class="divider-line"></div></div>
 
 <footer class="px-6 py-16 text-center" id="share">
-<p class="font-serif italic text-lg max-w-md mx-auto reveal from-bottom" style="color:var(--muted)">Merupakan kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.</p>
-<p class="font-script text-5xl mt-8 reveal from-scale" style="color:var(--sage-d)">Afina & Wisnu</p>
-<p class="text-xs mt-8 reveal from-bottom" style="color:var(--muted)">Dengan penuh cinta, keluarga besar Bpk. Suhudi & Bpk. Duwi Mulyono</p>
-<div class="mt-8 flex justify-center gap-3 reveal from-bottom delay-1"><button onclick="shareWA()" class="card px-5 py-2.5 text-sm hover:border-[var(--gold)] transition">WhatsApp</button><button onclick="copyLink()" class="card px-5 py-2.5 text-sm hover:border-[var(--gold)] transition">Copy Link</button></div>
+<p class="font-serif italic text-lg max-w-md mx-auto" style="color:var(--muted)">Merupakan kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.</p>
+<p class="font-script text-5xl mt-8" style="color:var(--sage-d)">Afina & Wisnu</p>
+<p class="text-xs mt-8" style="color:var(--muted)">Dengan penuh cinta, keluarga besar Bpk. Suhudi & Bpk. Duwi Mulyono</p>
+<div class="mt-8 flex justify-center gap-3"><button onclick="shareWA()" class="card px-5 py-2.5 text-sm">WhatsApp</button><button onclick="copyLink()" class="card px-5 py-2.5 text-sm">Copy Link</button></div>
 </footer>
 </main>
 
-<div id="toast" class="fixed left-1/2 -translate-x-1/2 bottom-24 px-5 py-2.5 rounded-full text-sm opacity-0 pointer-events-none transition-all z-[80]" style="background:#EAE6E0;color:#0f1510"></div>
+<div id="toast" class="fixed left-1/2 -translate-x-1/2 bottom-24 px-5 py-2.5 rounded-full text-sm opacity-0 pointer-events-none transition-all z-[70]" style="background:#E8E6E1;color:#121812"></div>
 
 <script>
 const RSVP_ENDPOINT='https://script.google.com/macros/s/AKfycbwH01-gCNH3vSIj3X3J8Kl1axCrvnAswYZveS4rHG9N9g5qVY0RuqHG7ejzz9WAr2T7gg/exec';
@@ -298,18 +229,25 @@ const TARGET=new Date('2026-11-15T09:00:00+07:00');
 const MAP_URL='https://maps.app.goo.gl/vB1MUiRTvxw3Rq5v5?g_st=am';
 const DEFAULT_URL='https://afina-wisnu.pages.dev/';
 
+// URL parsing - support ?hadiah=0 and /hadiah=0?to=
 const fullHref=window.location.href;
 const searchParams=new URLSearchParams(window.location.search);
 const hideGift=fullHref.includes('hadiah=0');
 if(hideGift){
   document.getElementById('giftSection').style.display='none';
-  document.getElementById('giftDivider').style.display='none';
+  const gd=document.getElementById('giftDivider'); if(gd) gd.style.display='none';
   const gm=document.getElementById('giftMenuItem'); if(gm) gm.style.display='none';
+  const gd=document.getElementById('giftDivider'); if(gd) gd.style.display='none';
 }
 let guest=searchParams.get('to');
 if(!guest){const m=fullHref.match(/[?&]to=([^&]+)/); if(m) guest=decodeURIComponent(m[1].replace(/\+/g,' '));}
 if(guest){const c=guest.replace(/\+/g,' ').trim(); document.getElementById('guestName').textContent=c; const n=document.getElementById('nama'); if(n) n.value=c;}
 
+// Particles
+const pc=document.getElementById('particles');
+for(let i=0;i<12;i++){const d=document.createElement('div');d.className='particle';d.style.left=Math.random()*100+'%';d.style.animationDelay=Math.random()*10+'s';d.style.animationDuration=(8+Math.random()*6)+'s';pc.appendChild(d);}
+
+// Cover logic
 const hero=document.getElementById('hero');
 const openBtn=document.getElementById('openBtn');
 const bgm=document.getElementById('bgm');
@@ -322,6 +260,7 @@ function pauseMusic(){bgm.pause();musicPlaying=false;musicBtn.classList.remove('
 openBtn.addEventListener('click',()=>{isOpened=true;document.body.classList.add('opened');playMusic();document.getElementById('content').scrollIntoView({behavior:'smooth'});});
 musicBtn.addEventListener('click',()=>{musicPlaying?pauseMusic():playMusic();});
 
+// Menu
 const menuBtn=document.getElementById('menuBtn');
 const menuPanel=document.getElementById('menuPanel');
 const shareSub=document.getElementById('shareSubmenu');
@@ -329,24 +268,32 @@ let menuOpen=false;
 menuBtn.addEventListener('click',()=>{menuOpen=!menuOpen;menuPanel.classList.toggle('open',menuOpen);});
 document.addEventListener('click',(e)=>{if(!menuPanel.contains(e.target) && !menuBtn.contains(e.target)){menuPanel.classList.remove('open');menuOpen=false;shareSub.classList.remove('open');}});
 document.querySelectorAll('.menu-item[data-target]').forEach(btn=>{
-  btn.addEventListener('click',()=>{const id=btn.dataset.target;document.getElementById(id)?.scrollIntoView({behavior:'smooth'});menuPanel.classList.remove('open');menuOpen=false;});
+  btn.addEventListener('click',()=>{
+    const id=btn.dataset.target;
+    document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+    menuPanel.classList.remove('open');menuOpen=false;
+  });
 });
 document.getElementById('btnLihatPetaMenu').addEventListener('click',()=>{openMaps();menuPanel.classList.remove('open');menuOpen=false;});
 document.getElementById('btnShareLink').addEventListener('click',()=>{shareSub.classList.toggle('open');});
 function openMaps(){window.open(MAP_URL,'_blank');}
 window.openMaps=openMaps;
 
+// Countdown
 function tick(){const diff=TARGET-new Date();if(diff<=0) return;const d=Math.floor(diff/86400000),h=Math.floor(diff%86400000/3600000),m=Math.floor(diff%3600000/60000),s=Math.floor(diff%60000/1000);document.getElementById('cd-d').textContent=String(d).padStart(2,'0');document.getElementById('cd-h').textContent=String(h).padStart(2,'0');document.getElementById('cd-m').textContent=String(m).padStart(2,'0');document.getElementById('cd-s').textContent=String(s).padStart(2,'0');}
 setInterval(tick,1000);tick();
 
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');}});},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+// Reveal
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
+// Toast
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.style.opacity='1';setTimeout(()=>t.style.opacity='0',2500);}
 window.copyRek=()=>{navigator.clipboard.writeText('20601610034869').then(()=>toast('No. rekening disalin!'));};
 window.copyLink=()=>{let url=DEFAULT_URL;const p=[];if(hideGift) p.push('hadiah=0');if(guest) p.push('to='+encodeURIComponent(guest));if(p.length) url+='?'+p.join('&');navigator.clipboard.writeText(url).then(()=>toast('Link disalin!'));};
 window.shareWA=()=>{let url=DEFAULT_URL;const p=[];if(hideGift) p.push('hadiah=0');if(guest) p.push('to='+encodeURIComponent(guest));if(p.length) url+='?'+p.join('&');window.open(`https://wa.me/?text=${encodeURIComponent('Undangan Pernikahan Afina & Wisnu - '+url)}`,'_blank');};
 
+// RSVP
 let wishes=[];
 async function fetchWishes(){try{const r=await fetch(RSVP_ENDPOINT);const d=await r.json();if(Array.isArray(d)) wishes=d;}catch{wishes=[{name:'Keluarga Besar',status:'Hadir',text:'Semoga menjadi keluarga sakinah, mawaddah, warahmah.',time:'Contoh'}];}renderWishes();}
 function renderWishes(){const list=document.getElementById('wishList');list.innerHTML='';wishes.slice().reverse().forEach(w=>{const li=document.createElement('li');li.className='card p-4 text-left';const name=w.name||w.nama||'Tamu';const status=w.status||'Hadir';const text=w.text||'';const time=w.time||'';li.innerHTML=`<div class="flex justify-between"><span class="font-semibold text-sm">${name}</span><span class="text-[11px] px-2 py-0.5 rounded-full ${status==='Hadir'?'bg-green-900 text-green-200':'bg-red-900 text-red-200'}">${status}</span></div><p class="text-sm mt-2">${text}</p><p class="text-[11px] mt-2" style="color:var(--muted)">${time}</p>`;list.appendChild(li);});document.getElementById('wishCount').textContent=`${wishes.length} ucapan`;}
