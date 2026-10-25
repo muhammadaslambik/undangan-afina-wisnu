@@ -1,13 +1,16 @@
-/* Latar bunga mode gelap: bunga kecil hanya di empat sudut tiap halaman. Dimuat setelah style.css dan scene.css */
+/* Latar bunga mode gelap: bunga kecil hanya di dua sudut atas tiap halaman (sudut bawah hanya di penutup). Dimuat setelah style.css dan scene.css */
 [data-fl=biru]{--c-tl:url(/assets/img/sudut-biru-tl.webp);--c-tr:url(/assets/img/sudut-biru-tr.webp);--c-bl:url(/assets/img/sudut-biru-bl.webp);--c-br:url(/assets/img/sudut-biru-br.webp)}
 [data-fl=emas]{--c-tl:url(/assets/img/sudut-emas-tl.webp);--c-tr:url(/assets/img/sudut-emas-tr.webp);--c-bl:url(/assets/img/sudut-emas-bl.webp);--c-br:url(/assets/img/sudut-emas-br.webp)}
-.bgp{--cs:clamp(96px,28vw,150px);position:relative;isolation:isolate;background:#141a13!important;padding-top:calc(var(--cs)*.8 + .5rem)!important;padding-bottom:calc(var(--cs)*.8 + .5rem)!important}
-.bgp::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--c-tl) left top/var(--cs) auto no-repeat,var(--c-tr) right top/var(--cs) auto no-repeat,var(--c-bl) left bottom/var(--cs) auto no-repeat,var(--c-br) right bottom/var(--cs) auto no-repeat}
+/* bingkai garis emas dan hiasan sudutnya disembunyikan */
+.page-corners{display:none!important}
+.bgp{--cs:clamp(80px,22vw,115px);position:relative;isolation:isolate;background:#141a13!important;padding-top:calc(var(--cs)*.75 + .5rem)!important;padding-bottom:1.75rem!important}
+.bgp::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--c-tl) left top/var(--cs) auto no-repeat,var(--c-tr) right top/var(--cs) auto no-repeat}
+footer.bgp{padding-bottom:calc(var(--cs)*.75 + .5rem)!important}
+footer.bgp::before{background:var(--c-tl) left top/var(--cs) auto no-repeat,var(--c-tr) right top/var(--cs) auto no-repeat,var(--c-bl) left bottom/var(--cs) auto no-repeat,var(--c-br) right bottom/var(--cs) auto no-repeat}
 main .bgp,footer.bgp{display:flex;flex-direction:column;justify-content:center}
 main .bgp>div,footer.bgp>*{width:100%;max-width:30rem!important;margin-left:auto;margin-right:auto}
 /* jarak antar tulisan dirapatkan */
 .bgp .mt-14{margin-top:2rem!important}.bgp .mt-12{margin-top:1.75rem!important}.bgp .mt-10{margin-top:1.5rem!important}.bgp .mt-8{margin-top:1.25rem!important}.bgp .gap-14{gap:2rem!important}
-/* desktop: bunga di empat sudut layar, jauh dari tulisan di tengah */
-@media(min-width:900px){.bgp{--cs:clamp(180px,20vw,290px);padding-top:4rem!important;padding-bottom:4rem!important}main .bgp{min-height:36rem}}
+@media(min-width:900px){.bgp{--cs:clamp(150px,16vw,230px);padding-top:3.5rem!important;padding-bottom:3.5rem!important}}
 @media(min-width:768px){#eventsGrid{grid-template-columns:1fr!important}#coupleGrid{gap:1.5rem!important}}
 #hero .hero-title{font-size:clamp(2.6rem,12vw,4.2rem)!important}
