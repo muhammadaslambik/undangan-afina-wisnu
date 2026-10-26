@@ -142,6 +142,17 @@
   box.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !on) open(); else if (e.key === 'Escape') close(); });
   addEventListener('popstate', () => { if (on) shut(); });
 
+  /* Mode gelap (pilihan tersimpan di localStorage) */
+  const meta = document.querySelector('meta[name="theme-color"]');
+  const sync = () => { const d = root.dataset.theme === 'dark'; meta.content = d ? '#141a13' : '#FFFCF8'; $('#themeBtn').setAttribute('aria-pressed', d); };
+  sync();
+  $('#themeBtn').addEventListener('click', () => {
+    const d = root.dataset.theme !== 'dark';
+    if (d) root.dataset.theme = 'dark'; else root.removeAttribute('data-theme');
+    try { localStorage.setItem('tema', d ? 'dark' : 'light'); } catch (e) {}
+    sync();
+  });
+
   /* Buka undangan */
   $('#openBtn').addEventListener('click', () => {
     playMusic(); root.classList.remove('locked'); cover.classList.add('out'); scrollTo(0, 0);
