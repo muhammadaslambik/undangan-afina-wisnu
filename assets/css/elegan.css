@@ -115,6 +115,7 @@ html.scrolling .cn,html.scrolling .sp,html.scrolling .sep b{animation-play-state
 .cd div{padding:.85rem .2rem;border-radius:18px;text-align:center}.cd b{display:block;font:500 1.7rem/1 'Playfair Display',serif;font-variant-numeric:tabular-nums}.cd span{font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.6}
 
 .htime .dt{margin:0 .6em}@media(max-width:767px){.htime>span{display:block}.htime .dt{display:none}}
+.htime .dt{margin:0 .6em}@media(max-width:767px){.htime>span{display:block}.htime .dt{display:none}}
 /* ayat */
 .orn{width:44px;height:44px;margin:0 auto 1.1rem;border-radius:50%;border:1px solid rgba(221,187,92,.5);display:flex;align-items:center;justify-content:center;font-size:17px;color:var(--gold)}
 .ar{font:400 clamp(1.3rem,5.6vw,1.75rem)/1.95 Amiri,serif;direction:rtl}
