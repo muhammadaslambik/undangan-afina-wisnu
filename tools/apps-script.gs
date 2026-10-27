@@ -28,7 +28,7 @@ function doPost(e) {
       hadir ? 'Hadir' : 'Tidak Hadir',
       cut_(d.text, 300)
     ]]);
-    s.getRange(r, 5).setValue(hadir ? Math.min(5, Math.max(1, parseInt(d.guests, 10) || 1)) : 0);
+    s.getRange(r, 5).setValue(hadir ? Math.min(100, Math.max(1, parseInt(d.guests, 10) || 1)) : 0);
     return ContentService.createTextOutput('ok');
   } catch (err) {
     return ContentService.createTextOutput('error');
