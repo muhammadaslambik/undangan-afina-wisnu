@@ -114,7 +114,7 @@
   const stage = pgs.map((pg) => {
     pg._k = 0;
     pg.querySelectorAll('.fx,.pop').forEach((n, i) => n.style.setProperty('--i', i));
-    const L = [...pg.querySelectorAll('*')].filter((n) => !n.children.length && n.textContent.trim() && !n.matches(SKIP));
+    const L = pg.id === 'mempelai' ? [] : [...pg.querySelectorAll('*')].filter((n) => !n.children.length && n.textContent.trim() && !n.matches(SKIP));
     L.forEach((n) => {
       n._t = n.textContent; n._a = document.createTextNode(''); n._b = el('span', 'tb', n._t); n.replaceChildren(n._a, n._b);
       if (RM) setK(n, n._t.length);
@@ -208,9 +208,9 @@
 
   /* Jumlah tamu (disembunyikan bila Tidak Hadir) */
   let guests = 1; const gRow = $('#gRow');
-  const setG = (n) => { guests = Math.min(5, Math.max(1, n)); $('#gNum').textContent = guests; };
+  const setG = (n) => { guests = Math.min(100, Math.max(1, Math.round(+n) || 1)); $('#gNum').value = guests; };
   $('#gMinus').addEventListener('click', () => setG(guests - 1));
-  $('#gPlus').addEventListener('click', () => setG(guests + 1));
+  $('#gPlus').addEventListener('click', () => setG(guests + 1)); $('#gNum').addEventListener('change', () => setG($('#gNum').value));
   $$('input[name="hadir"]').forEach((r) => r.addEventListener('change', () => gRow.classList.toggle('hidden', $('input[name="hadir"]:checked').value !== 'Hadir')));
 
   $('#nama').addEventListener('input', (e) => (e.target.dataset.auto = '0'));
@@ -221,7 +221,7 @@
     if (!name || !text) { err.textContent = 'Isi nama dan ucapan terlebih dahulu.'; err.classList.remove('hidden'); return; }
     err.classList.add('hidden');
     const time = new Date().toLocaleString('id-ID', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'});
-    const entry = { name, status, guests: status === 'Hadir' ? guests : 0, text, time };
+    setG($('#gNum').value); const entry = { name, status, guests: status === 'Hadir' ? guests : 0, text, time };
     wishes.unshift(entry); render(true);
     if (C.rsvpEndpoint) fetch(C.rsvpEndpoint, { method: 'POST', mode: 'no-cors', body: JSON.stringify(entry) }).catch(() => {});
     const b = e.target.querySelector('button[type="submit"]'); b.disabled = true; setTimeout(() => (b.disabled = false), 10000);

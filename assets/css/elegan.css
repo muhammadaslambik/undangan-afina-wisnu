@@ -127,7 +127,7 @@ html.scrolling .cn,html.scrolling .sp,html.scrolling .sep b{animation-play-state
 .pc:nth-child(2){flex-direction:row-reverse;text-align:right}
 .arch{flex:none;width:96px;height:124px;border-radius:60px;overflow:hidden;border:3px solid rgba(var(--ir),.9);box-shadow:0 0 0 1px rgba(221,187,92,.5),0 10px 26px rgba(0,0,0,.4);background:var(--soft)}
 .arch img{width:100%;height:100%;object-fit:cover;display:block}
-.pc h3{font:500 1.3rem/1.2 'Playfair Display',serif}
+.pc h3{font:500 1.3rem/1.2 'Playfair Display',serif}.pg.in .arch{animation:spin2 1.8s ease-in-out .3s both}@keyframes spin2{from{transform:perspective(700px) scale(.3) rotateY(0)}to{transform:perspective(700px) scale(1) rotateY(720deg)}}
 .pt span{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.65;margin-top:.3rem}.pt h3+span{margin-top:.6rem}
 @media(min-width:768px){.grid2{grid-template-columns:1fr 1fr}.pc,.pc:nth-child(2){flex-direction:column;text-align:center;padding:1.8rem}.arch{width:150px;height:190px;border-radius:80px}}
 
@@ -150,7 +150,7 @@ label.l,.lb{display:block;font-size:11px;letter-spacing:.15em;text-transform:upp
 .two{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}.err{color:#e59a84;font-size:13px;margin-top:.7rem}
 .grow{display:flex;justify-content:space-between;align-items:center;margin-top:.5rem}.grow .lb{margin:0}
 .stp{display:flex;align-items:center;gap:.5rem}.stp button{width:34px;height:34px;border-radius:50%;border:1px solid rgba(221,187,92,.5);background:transparent;color:var(--ink);font-size:18px;line-height:1;cursor:pointer}
-.stp output{min-width:1.8rem;text-align:center;font:500 1.2rem 'Playfair Display',serif}
+.stp input{width:3.6rem;text-align:center;font:500 1.2rem 'Playfair Display',serif;color:inherit;background:transparent;border:0;border-bottom:1px solid rgba(var(--ir),.25);border-radius:0;padding:.1rem 0;-moz-appearance:textfield;appearance:textfield}.stp input::-webkit-outer-spin-button,.stp input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}.stp input:focus{outline:0;border-bottom-color:var(--gold)}
 .whead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.6rem}.whead h3{font-weight:500;font-size:1.3rem}.whead span{font-size:12px;opacity:.55}
 .wish-box{position:relative;height:min(12.5rem,32svh);overflow:hidden;border-radius:22px;border:1px solid rgba(159,176,143,.35);background:rgba(255,255,255,.04);cursor:pointer}
 .wish-box.on{cursor:auto;border-color:var(--pr)}

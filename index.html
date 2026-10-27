@@ -15,7 +15,7 @@
 <link rel="icon" href="assets/img/profil-afina.jpg?v=4" type="image/jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/elegan.css?v=4">
+<link rel="stylesheet" href="assets/css/elegan.css?v=5">
 </head>
 <body>
 <audio id="bgm" loop preload="none"></audio>
@@ -101,7 +101,7 @@
       </div>
       <div id="gRow" class="grow">
         <span class="lb">Jumlah Tamu Hadir</span>
-        <div class="stp"><button type="button" id="gMinus" aria-label="Kurangi">−</button><output id="gNum">1</output><button type="button" id="gPlus" aria-label="Tambah">+</button></div>
+        <div class="stp"><button type="button" id="gMinus" aria-label="Kurangi">−</button><input id="gNum" type="number" inputmode="numeric" min="1" max="100" value="1" aria-label="Jumlah tamu hadir"><button type="button" id="gPlus" aria-label="Tambah">+</button></div>
       </div>
       <label class="l" for="ucapan">Ucapan &amp; Doa</label>
       <textarea id="ucapan" rows="3" maxlength="300" class="field" placeholder="Tulis doa terbaik untuk kami..."></textarea>
@@ -142,6 +142,6 @@
 
 <div id="toast"></div>
 <script src="assets/js/config.js?v=11"></script>
-<script src="assets/js/main.js?v=14"></script>
+<script src="assets/js/main.js?v=15"></script>
 </body>
 </html>
