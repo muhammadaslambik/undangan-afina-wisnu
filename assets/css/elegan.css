@@ -180,7 +180,7 @@ label.l,.lb{display:block;font-size:11px;letter-spacing:.15em;text-transform:upp
 
 #acara .loc.fx,#acara .note.fx,#hadiah .fx{transform:none}
 #acara.in .ev{animation:spin2 1.8s ease-in-out .3s backwards}
-#rsvp.in .uc,#hadiah.in .gift{animation:spin2 1.8s ease-in-out .4s backwards}
+#rsvp.in .uc,#rsvp.in #rsvpForm,#hadiah.in .gift{animation:spin2 1.8s ease-in-out .4s backwards}
 #acara.in .acts .btn{animation:spin2 1.8s ease-in-out .5s backwards}
 #penutup .rv,#penutup .fx{opacity:0;transform:none;transition:opacity .3s}
 #penutup.in .rv,#penutup.in .fx{opacity:1;transition:opacity 1s ease calc(var(--r,0)*.3s + .2s),transform .2s}

@@ -109,7 +109,7 @@
   $$('.sep').forEach((s) => sio.observe(s));
 
   /* Animasi tiap halaman: bingkai muncul, ikon muncul, teks diketik cepat. Berulang setiap masuk dari atas maupun bawah */
-  const SKIP = '.nt,.orn,.ar,.ico,.cd *,.wish-list *,#wishCount,.rp *,.stp *,.sep *,.pill i,.dot *,button,a.btn,output';
+  const SKIP = '#rsvpForm *,.nt,.orn,.ar,.ico,.cd *,.wish-list *,#wishCount,.rp *,.stp *,.sep *,.pill i,.dot *,button,a.btn,output';
   const setK = (n, k) => { n._a.nodeValue = n._t.slice(0, k); n._b.textContent = n._t.slice(k); };
   const stage = pgs.map((pg) => {
     pg._k = 0;
