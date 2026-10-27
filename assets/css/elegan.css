@@ -102,7 +102,7 @@ html.scrolling .cn,html.scrolling .sp,html.scrolling .sep b{animation-play-state
 .sep span{width:4px;height:4px;border-radius:50%;background:var(--gold);transform:scale(0);transition:transform .6s cubic-bezier(.34,1.56,.64,1) .9s}
 .sep b{width:9px;height:9px;border:1px solid var(--gold);transform:rotate(0) scale(0);transition:transform 1s cubic-bezier(.34,1.56,.64,1) .35s}
 .sep.show i{transform:none}.sep.show span{transform:scale(1)}
-.sep.show b{transform:rotate(225deg) scale(1);animation:glow 3s ease-in-out 1.4s infinite}
+.sep.show b{transform:rotate(225deg) scale(1);animation:glow 3s ease-in-out 1.4s infinite,rot 5s linear infinite;animation-play-state:running,paused}html.mus .sep.show b{animation-play-state:running,running}html.scrolling .sep.show b{animation-play-state:paused,paused}@keyframes rot{from{rotate:0deg}to{rotate:360deg}}
 @keyframes glow{0%,100%{background:transparent;box-shadow:none}50%{background:var(--gold);box-shadow:0 0 12px 2px rgba(221,187,92,.7)}}
 
 /* beranda */
@@ -123,7 +123,7 @@ html.scrolling .cn,html.scrolling .sp,html.scrolling .sep b{animation-play-state
 .verse::before{content:"“"}.verse::after{content:"”"}
 .src{font-size:12px;opacity:.55;margin-top:.4rem}
 
-/* mempelai */
+.orn{animation:rot 7s linear infinite paused}html.mus .orn{animation-play-state:running}/* mempelai */
 .grid2{display:grid;gap:1rem}
 .pc{display:flex;align-items:center;gap:1.1rem;padding:1.1rem 1.2rem;border-radius:26px;text-align:left}
 .pc:nth-child(2){flex-direction:row-reverse;text-align:right}

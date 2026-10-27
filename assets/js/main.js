@@ -65,8 +65,8 @@
   /* Musik: baru bunyi setelah tombol ditekan; berhenti saat keluar dari situs, lanjut saat kembali */
   const bgm = $('#bgm'), cover = $('#cover'), mb = $('#musicBtn'); let started = false, resume = false;
   mb.title = C.musicTitle || 'Musik';
-  bgm.preload = 'auto'; bgm.volume = 0.7; bgm.src = C.music;
-  const icon = (on) => { $('#icPlay').classList.toggle('hidden', on); $('#icPause').classList.toggle('hidden', !on); mb.classList.toggle('playing', on); };
+  bgm.preload = 'auto'; bgm.volume = 0.7; bgm.src = C.music; if ('mediaSession' in navigator) navigator.mediaSession.metadata = new MediaMetadata({ title: C.musicTitle || 'Musik', artist: 'Afina & Wisnu', album: 'Undangan Pernikahan', artwork: [{ src: '/assets/img/logo-aw-192.png?v=1', sizes: '192x192', type: 'image/png' }, { src: '/assets/img/logo-aw-512.png?v=1', sizes: '512x512', type: 'image/png' }] });
+  const icon = (on) => { $('#icPlay').classList.toggle('hidden', on); $('#icPause').classList.toggle('hidden', !on); mb.classList.toggle('playing', on); root.classList.toggle('mus', on); };
   bgm.addEventListener('play', () => { started = true; icon(true); cover.classList.remove('music-off'); });
   bgm.addEventListener('pause', () => { icon(false); if (started) cover.classList.add('music-off'); });
   const playMusic = async () => { try { await bgm.play(); } catch (e) { toast('Musik belum bisa diputar. Ketuk tombol musik.'); } };
@@ -153,7 +153,7 @@
   pgs.forEach((p) => pio.observe(p));
 
   /* Bagikan: WhatsApp dan salin tautan (tanpa nama tamu; hadiah=0 ikut terbawa) */
-  const shareUrl = C.site.url.replace(/\/?$/, '/') + ($('#hadiah') ? '' : '?hadiah=0');
+  const shareUrl = C.site.url.replace(/\/+$/, '') + ($('#hadiah') ? '' : '/hadiah=0') + '?to=Tamu+Undangan';
   const shareWA = () => {
     const { bride: b, groom: g } = C.couple, nm = (p) => p.full.split(',')[0];
     const isi = $('#hadiah')
@@ -234,7 +234,7 @@
   const shut = () => { on = false; box.classList.remove('on'); };
   const close = () => { if (!on) return; if (history.state && history.state.wb) history.back(); else shut(); };
   box.addEventListener('click', (e) => (e.target.closest('#wishClose') ? close() : open()));
-  box.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !on) open(); else if (e.key === 'Escape') close(); });
+  box.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !on) open(); else if (e.key === 'Escape') close(); }); document.addEventListener('click', (e) => { if (on && !box.contains(e.target)) close(); });
   addEventListener('popstate', () => {
     const s = history.state || {};
     if (on && !s.wb) shut();
