@@ -178,5 +178,13 @@ label.l,.lb{display:block;font-size:11px;letter-spacing:.15em;text-transform:upp
 .sign{margin-top:1.8rem;padding-top:1.5rem;border-top:1px solid rgba(var(--ir),.12)}
 .sign .fam{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.5;margin-top:1.4rem}
 
+#acara .loc.fx,#acara .note.fx,#hadiah .fx{transform:none}
+#acara.in .ev{animation:spin2 1.8s ease-in-out .3s backwards}
+#acara.in .acts .btn{animation:spin2 1.8s ease-in-out .5s backwards}
+#penutup .rv,#penutup .fx{opacity:0;transform:none;transition:opacity .3s}
+#penutup.in .rv,#penutup.in .fx{opacity:1;transition:opacity 1s ease calc(var(--r,0)*.3s + .2s),transform .2s}
+#penutup.in .btn:active{transform:scale(.97)}
+#penutup .sign{border-top-color:transparent;transition:border-color 1s ease 1.1s}
+#penutup.in .sign{border-top-color:rgba(var(--ir),.12)}
 #toast{position:fixed;left:50%;bottom:calc(5rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%);padding:.7rem 1.4rem;border-radius:99px;background:var(--ink);color:#141a13;font-size:13px;opacity:0;pointer-events:none;transition:opacity .3s;z-index:300;white-space:nowrap}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.fx,.pop{opacity:1;transform:none}.sep i,.sep span,.sep b{transform:none}.birds{display:none}.cn{opacity:1}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.fx,.pop{opacity:1;transform:none}.sep i,.sep span,.sep b{transform:none}.birds{display:none}.cn{opacity:1}}@media(prefers-reduced-motion:reduce){#penutup .rv,#penutup .fx{opacity:1}#penutup .sign{border-top-color:rgba(var(--ir),.12)}}

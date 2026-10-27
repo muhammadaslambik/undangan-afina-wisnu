@@ -30,7 +30,7 @@
   /* Acara */
   C.events.forEach((ev, i) => {
     const c = el('article', 'ev glass fx');
-    c.append(el('div', 'ico pop' + (i ? ' g' : ''), i ? '✿' : '◐'), el('h3', '', ev.title), el('p', 'tm', ev.time));
+    c.append(el('div', 'ico pop' + (i ? ' g' : ''), i ? '✿' : '◐'), el('h3', 'nt', ev.title), el('p', 'tm nt', ev.time));
     $('#eventsGrid').append(c);
   });
   $('#mapBtn').href = C.events[0].mapUrl;
@@ -40,10 +40,10 @@
   if (location.pathname.includes('hadiah=0') || new URLSearchParams(location.search).get('hadiah') === '0') $('#hadiah').remove();
   else C.gifts.forEach((g) => {
     const c = el('div', 'gift glass fx');
-    c.append(el('p', 'bank', g.bank));
+    c.append(el('p', 'bank nt', g.bank));
     if (g.qris) { const q = el('img'); q.src = g.qris; q.alt = 'QRIS ' + g.bank; q.loading = 'lazy'; c.append(q); }
-    if (g.number) c.append(el('p', 'no', g.number.replace(/(\d{4})(?=\d)/g, '$1 ')));
-    c.append(el('p', 'an', 'a.n. ' + g.name));
+    if (g.number) c.append(el('p', 'no nt', g.number.replace(/(\d{4})(?=\d)/g, '$1 ')));
+    c.append(el('p', 'an nt', 'a.n. ' + g.name));
     if (g.number) { const b = el('button', 'btn', 'Salin Nomor'); b.type = 'button'; b.addEventListener('click', () => copy(g.number, 'Nomor rekening disalin')); c.append(b); }
     $('#giftGrid').append(c);
   });
@@ -109,25 +109,27 @@
   $$('.sep').forEach((s) => sio.observe(s));
 
   /* Animasi tiap halaman: bingkai muncul, ikon muncul, teks diketik cepat. Berulang setiap masuk dari atas maupun bawah */
-  const SKIP = '.orn,.ar,.ico,.cd *,.wish-list *,#wishCount,.rp *,.stp *,.sep *,.pill i,.dot *,button,a.btn,output';
+  const SKIP = '.nt,.orn,.ar,.ico,.cd *,.wish-list *,#wishCount,.rp *,.stp *,.sep *,.pill i,.dot *,button,a.btn,output';
   const setK = (n, k) => { n._a.nodeValue = n._t.slice(0, k); n._b.textContent = n._t.slice(k); };
   const stage = pgs.map((pg) => {
     pg._k = 0;
     pg.querySelectorAll('.fx,.pop').forEach((n, i) => n.style.setProperty('--i', i));
-    const L = pg.id === 'mempelai' ? [] : [...pg.querySelectorAll('*')].filter((n) => !n.children.length && n.textContent.trim() && !n.matches(SKIP));
+    const L = pg.id === 'mempelai' || pg.id === 'penutup' ? [] : [...pg.querySelectorAll('*')].filter((n) => !n.children.length && n.textContent.trim() && !n.matches(SKIP));
     L.forEach((n) => {
       n._t = n.textContent; n._a = document.createTextNode(''); n._b = el('span', 'tb', n._t); n.replaceChildren(n._a, n._b);
       if (RM) setK(n, n._t.length);
     });
     return { pg, L };
   });
+  /* Penutup: muncul perlahan dari atas ke bawah (hanya pudar, tanpa geser, agar stabil) */
+  ['.badge', '.h2>span:first-child', '.h2>span:last-child', '.intro', '.sign>p:nth-of-type(1)', '.sign>p:nth-of-type(2)', '.sign>p:nth-of-type(3)', '.acts .btn'].forEach((s, r) => $$('#penutup ' + s).forEach((n) => { n.classList.add('rv'); n.style.setProperty('--r', r); }));
   const menuItems = new Map();
   const enter = ({ pg, L }) => {
     const m = menuItems.get(pg.id); if (m) { menuItems.forEach((b) => b.classList.remove('cur')); m.classList.add('cur'); }
     if (pg.classList.contains('in')) return;
     pg.classList.add('in'); const k = ++pg._k; clearTimeout(pg._d); pg._d = setTimeout(() => pg.classList.add('done'), 2000);
     if (RM) return;
-    let t = 450;
+    let t = pg.id === 'acara' ? 1000 : 450;
     const it = L.map((n) => { const d = Math.min(850, Math.max(160, n._t.length * 14)), o = { n, s: t, d }; t += d * 0.6; return o; });
     const sc = t > 2800 ? 2800 / t : 1; it.forEach((o) => { o.s *= sc; o.d *= sc; });
     const t0 = performance.now();
