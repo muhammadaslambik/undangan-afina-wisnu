@@ -155,7 +155,11 @@
   /* Bagikan: WhatsApp dan salin tautan (tanpa nama tamu; hadiah=0 ikut terbawa) */
   const shareUrl = C.site.url.replace(/\/?$/, '/') + ($('#hadiah') ? '' : '?hadiah=0');
   const shareWA = () => {
-    const t = `Assalamu'alaikum Wr. Wb.\n\nKami mengundang Anda di pernikahan ${C.couple.bride.short} & ${C.couple.groom.short}\n${C.date.label}\n\nBuka undangan:\n${shareUrl}`;
+    const { bride: b, groom: g } = C.couple, nm = (p) => p.full.split(',')[0];
+    const isi = $('#hadiah')
+      ? `Kami mengundang Anda di pernikahan ${b.short} & ${g.short}`
+      : `Kami ${b.parents} bersama ${g.parents} mengundang Anda di pernikahan anak kami ${nm(b)} & ${nm(g)}`;
+    const t = `Assalamu'alaikum Wr. Wb.\n\n${isi}\n${C.date.label}\n\nBuka undangan:\n${shareUrl}`;
     window.open('https://wa.me/?text=' + encodeURIComponent(t), '_blank', 'noopener');
   };
   const shareCopy = () => copy(shareUrl, 'Tautan undangan disalin');
