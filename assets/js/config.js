@@ -72,7 +72,7 @@ window.INVITATION = {
     families: 'Dengan penuh cinta, keluarga besar Bpk. Suhudi & Bpk. Duwi Mulyono',
   },
 
-  music: 'assets/audio/restu-yang-mengalir.mp3',
+  music: 'assets/audio/restu-64.mp3',
   musicTitle: 'Restu yang Mengalir',
   defaultGuest: 'Tamu Undangan',
 
