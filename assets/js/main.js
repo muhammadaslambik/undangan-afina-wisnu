@@ -17,7 +17,7 @@
   /* Teks dari config */
   document.title = C.site.title;
   $$('[data-bind]').forEach((n) => { const v = get(C, n.dataset.bind); if (v != null) n.textContent = v; });
-  $('#heroTime').textContent = C.events.map((e) => e.title + ' ' + e.time).join('  •  ');
+  const ht = $('#heroTime'); C.events.forEach((e, i) => { if (i) ht.append(el('span', 'dt', '\u2022')); ht.append(el('span', '', e.title + ' ' + e.time)); });
 
   /* Mempelai */
   C.couple && [C.couple.bride, C.couple.groom].forEach((p) => {
