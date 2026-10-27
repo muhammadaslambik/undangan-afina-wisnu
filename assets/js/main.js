@@ -100,7 +100,7 @@
     for (let i = 0; i < n; i++) { const s = el('span', 'sp'); s.style.cssText = `left:${rnd() < 0.5 ? rnd() * 16 : 84 + rnd() * 16}%;top:${rnd() * 100}%;--t:${3.5 + rnd() * 4}s;--d:${rnd() * 5}s`; w.append(s); }
     host.prepend(w);
   };
-  deco($('#fx'), 12); deco(cover, 8);
+  deco($('#fx'), 8); deco(cover, 6);
 
   /* Pemisah halaman beranimasi */
   const pgs = $$('.pg');
@@ -152,11 +152,23 @@
   }), { threshold: [0, 0.08, 0.3] });
   pgs.forEach((p) => pio.observe(p));
 
+  /* Bagikan: WhatsApp dan salin tautan (tanpa nama tamu; hadiah=0 ikut terbawa) */
+  const shareUrl = C.site.url.replace(/\/?$/, '/') + ($('#hadiah') ? '' : '?hadiah=0');
+  const shareWA = () => {
+    const t = `Assalamu'alaikum Wr. Wb.\n\nKami mengundang Anda di pernikahan ${C.couple.bride.short} & ${C.couple.groom.short}\n${C.date.label}\n\nBuka undangan:\n${shareUrl}`;
+    window.open('https://wa.me/?text=' + encodeURIComponent(t), '_blank', 'noopener');
+  };
+  const shareCopy = () => copy(shareUrl, 'Tautan undangan disalin');
+  $('#shWa').addEventListener('click', shareWA); $('#shCopy').addEventListener('click', shareCopy);
+
   /* Menu halaman (dari section ber-data-menu; Hadiah Digital otomatis hilang bila hadiah=0) */
   const ml = $('#menuList'), mbtn = $('#menuBtn'); let mon = false;
   pgs.filter((p) => p.dataset.menu).forEach((pg, i) => {
     const li = el('li'), b = el('button', '', pg.dataset.menu); b.type = 'button'; b.dataset.to = pg.id; li.style.setProperty('--n', i); li.append(b); ml.append(li); menuItems.set(pg.id, b);
   });
+  const acts = el('li', 'macts'); acts.style.setProperty('--n', menuItems.size);
+  [['wa', 'Share WhatsApp'], ['copy', 'Copy Link']].forEach(([a, t]) => { const b = el('button', '', t); b.type = 'button'; b.dataset.act = a; acts.append(b); });
+  ml.append(acts);
   const mOpen = () => { if (mon) return; mon = true; root.classList.add('menu-on'); mbtn.setAttribute('aria-expanded', 'true'); history.pushState({ mn: 1 }, ''); };
   const mShut = () => { mon = false; root.classList.remove('menu-on'); mbtn.setAttribute('aria-expanded', 'false'); };
   const mClose = () => { if (!mon) return; if (history.state && history.state.mn) history.back(); else mShut(); };
@@ -164,6 +176,7 @@
   $('#veil').addEventListener('click', mClose);
   ml.addEventListener('click', (e) => {
     const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.act) { (b.dataset.act === 'wa' ? shareWA : shareCopy)(); mClose(); return; }
     mClose(); setTimeout(() => document.getElementById(b.dataset.to).scrollIntoView({ behavior: 'smooth' }), 80);
   });
   addEventListener('keydown', (e) => { if (e.key === 'Escape') mClose(); });
@@ -223,6 +236,10 @@
     if (on && !s.wb) shut();
     if (mon && !s.mn) mShut();
   });
+
+  /* Jeda animasi hiasan saat menggulir agar scroll halus */
+  let st;
+  addEventListener('scroll', () => { root.classList.add('scrolling'); clearTimeout(st); st = setTimeout(() => root.classList.remove('scrolling'), 160); }, { passive: true });
 
   /* Buka undangan */
   $('#openBtn').addEventListener('click', () => {

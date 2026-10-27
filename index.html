@@ -15,7 +15,7 @@
 <link rel="icon" href="assets/img/profil-afina.jpg" type="image/jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/elegan.css?v=3">
+<link rel="stylesheet" href="assets/css/elegan.css?v=4">
 </head>
 <body>
 <audio id="bgm" loop preload="none"></audio>
@@ -80,7 +80,7 @@
   </div></section>
 
   <!-- ACARA -->
-  <section id="acara" class="pg center" data-menu="Acara"><div class="wrap" style="max-width:640px">
+  <section id="acara" class="pg center" data-menu="Acara &amp; Lokasi"><div class="wrap" style="max-width:640px">
     <h2 class="h2">Rangkaian Acara</h2>
     <div id="eventsGrid" class="evg"></div>
     <div class="loc glass fx"><b class="serif" data-bind="events.0.place"></b><p data-bind="events.0.address"></p></div>
@@ -136,11 +136,12 @@
       <p class="serif" style="font-size:1.8rem;margin-top:.2rem"><span data-bind="couple.bride.short"></span> <span>&amp;</span> <span data-bind="couple.groom.short"></span></p>
       <p class="fam" data-bind="footer.families"></p>
     </div>
+    <div class="acts"><button id="shWa" class="btn fx" type="button">Share WhatsApp</button><button id="shCopy" class="btn line fx" type="button">Copy Link</button></div>
   </div></section>
 </main>
 
 <div id="toast"></div>
-<script src="assets/js/config.js?v=10"></script>
-<script src="assets/js/main.js?v=12"></script>
+<script src="assets/js/config.js?v=11"></script>
+<script src="assets/js/main.js?v=13"></script>
 </body>
 </html>

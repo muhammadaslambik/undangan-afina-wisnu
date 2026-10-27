@@ -72,8 +72,8 @@ window.INVITATION = {
     families: 'Dengan penuh cinta, keluarga besar Bpk. Suhudi & Bpk. Duwi Mulyono',
   },
 
-  music: 'assets/audio/janji-suci-yovie-nuno.mp3',
-  musicTitle: 'Janji Suci - Yovie & Nuno',
+  music: 'assets/audio/restu-yang-mengalir.mp3',
+  musicTitle: 'Restu yang Mengalir',
   defaultGuest: 'Tamu Undangan',
 
   // DATABASE UCAPAN: tempel URL "Web app" dari Google Apps Script di antara tanda kutip.
